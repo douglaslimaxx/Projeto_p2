@@ -1,18 +1,25 @@
 package models;
 
 /**
- * 
+ * Representa uma tutoria, que terá uma disciplina sobre a qual a tutoria acontecerá e 
+ * a proficiência que o tutor tem nessa determinada disciplina.
  * @author Douglas Lima
  *
  */
-public class Tutor {
+public class Tutoria {
 
 	private String disciplina;
 	private int proficiencia;
 	private int avaliacao;
 	private int quantia;
 	
-	public Tutor(String disciplina, int proficiencia) {
+	/**
+	 * Método que constrói um objeto do tipo Tutoria a partir dos paramêtros 
+	 * disciplina e proficiência.
+	 * @param disciplina String que é o nome da disciplina da tutoria.
+	 * @param proficiencia int que é a proficiência do tutor nessa disciplina.
+	 */
+	public Tutoria(String disciplina, int proficiencia) {
 		if (disciplina == null) {
 			throw new NullPointerException();
 		}
@@ -28,12 +35,12 @@ public class Tutor {
 		this.quantia = 0;
 	}
 
+	/**
+	 * Método retorna o nome da disciplina da tutoria.
+	 * @return String que é o nome da disciplina da tutoria.
+	 */
 	public String getDisciplina() {
 		return disciplina;
-	}
-
-	public void setDisciplina(String disciplina) {
-		this.disciplina = disciplina;
 	}
 
 	public int getProficiencia() {
