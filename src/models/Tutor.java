@@ -1,5 +1,10 @@
 package models;
 
+/**
+ * 
+ * @author douglaspl
+ *
+ */
 public class Tutor {
 
 	private String disciplina;
