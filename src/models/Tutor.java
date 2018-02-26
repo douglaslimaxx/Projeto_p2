@@ -2,7 +2,7 @@ package models;
 
 /**
  * 
- * @author douglaspl
+ * @author Douglas Lima
  *
  */
 public class Tutor {
