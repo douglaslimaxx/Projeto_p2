@@ -1,3 +1,5 @@
+package models;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -85,7 +87,7 @@ public class Aluno {
 	}
 	
 	public String toString() {
-		return this.matricula + " - " + this.nome + " - " this.codigoCurso + " - " + this.email;
+		return this.matricula + " - " + this.nome + " - " + this.codigoCurso + " - " + this.email;
 	}
 
 }
