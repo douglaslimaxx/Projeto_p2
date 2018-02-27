@@ -1,5 +1,8 @@
 package models;
 
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Representa uma tutoria, que terá uma disciplina sobre a qual a tutoria
  * acontecerá e a proficiência que o tutor tem nessa determinada disciplina.
@@ -9,10 +12,9 @@ package models;
  */
 public class Tutoria {
 
-	private String disciplina;
-	private int proficiencia;
 	private int avaliacao;
 	private int quantia;
+	private Map< String,Disciplina> disciplinas;
 
 	/**
 	 * Método que constrói um objeto do tipo Tutoria a partir dos paramêtros
@@ -23,18 +25,7 @@ public class Tutoria {
 	 * @param proficiencia
 	 *            int que é a proficiência do tutor nessa disciplina.
 	 */
-	public Tutoria(String disciplina, int proficiencia) {
-		if (disciplina == null) {
-			throw new NullPointerException();
-		}
-		if (disciplina.trim().equals("")) {
-			throw new IllegalArgumentException();
-		}
-		if (proficiencia <= 0) {
-			throw new ArithmeticException("Erro na definicao de papel: Proficiencia invalida");
-		}
-		this.disciplina = disciplina;
-		this.proficiencia = proficiencia;
+	public Tutoria() {
 		this.avaliacao = 4;
 		this.quantia = 0;
 	}
@@ -44,8 +35,8 @@ public class Tutoria {
 	 * 
 	 * @return String que é o nome da disciplina da tutoria.
 	 */
-	public String getDisciplina() {
-		return disciplina;
+	public Disciplina getDisciplina(String disciplina) {
+		return this.disciplinas.get(disciplina);
 	}
 
 	/**
@@ -54,8 +45,8 @@ public class Tutoria {
 	 * 
 	 * @return int que é a proficiência do tutor na disciplina.
 	 */
-	public int getProficiencia() {
-		return proficiencia;
+	public int getProficiencia(String disciplina) {
+		return this.disciplinas.get(disciplina).getProficiencia();
 	}
 
 	/**
@@ -97,14 +88,17 @@ public class Tutoria {
 	public void setQuantia(int quantia) {
 		this.quantia = quantia;
 	}
+	
+	public boolean isTutor() {
+		return !this.disciplinas.isEmpty();
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + avaliacao;
-		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
-		result = prime * result + proficiencia;
+		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
 		result = prime * result + quantia;
 		return result;
 	}
@@ -120,15 +114,15 @@ public class Tutoria {
 		Tutoria other = (Tutoria) obj;
 		if (avaliacao != other.avaliacao)
 			return false;
-		if (disciplina == null) {
-			if (other.disciplina != null)
+		if (disciplinas == null) {
+			if (other.disciplinas != null)
 				return false;
-		} else if (!disciplina.equals(other.disciplina))
-			return false;
-		if (proficiencia != other.proficiencia)
+		} else if (!disciplinas.equals(other.disciplinas))
 			return false;
 		if (quantia != other.quantia)
 			return false;
 		return true;
 	}
+
+	
 }
