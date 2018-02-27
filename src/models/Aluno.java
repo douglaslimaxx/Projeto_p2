@@ -1,6 +1,7 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +14,7 @@ public class Aluno {
 	
 	private int codigoCurso;
 	private String matricula, nome, telefone, email;
+	private Map<String, Tutoria> tutorias;
 	
 	/**
 	 * Método que constrói um objeto do tipo Aluno a partir dos paramêtros 
@@ -33,7 +35,8 @@ public class Aluno {
 		this.nome = nome;
 		this.matricula = matricula;
 		this.telefone = telefone;
-		this.codigoCurso = codigoCurso;		
+		this.codigoCurso = codigoCurso;	
+		this.tutorias = new HashMap<>();
 		
 	}
 	
@@ -70,10 +73,6 @@ public class Aluno {
 	public int getCodigoCurso() {
 		return codigoCurso;
 	}
-
-	public void setCodigoCurso(int codigoCurso) {
-		this.codigoCurso = codigoCurso;
-	}
 	
 	/**
 	 * Método que retorna a matrícula.
@@ -81,10 +80,6 @@ public class Aluno {
 	 */
 	public String getMatricula() {
 		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
 	}
 	
 	/**
@@ -95,10 +90,6 @@ public class Aluno {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	/**
 	 * Método que retorna o telefone.
 	 * @return String.
@@ -107,6 +98,10 @@ public class Aluno {
 		return telefone;
 	}
 
+	/**
+	 * Método modifica o número do telefone do Aluno a partir do paramêtro.
+	 * @param telefone String que é o novo número de telefone do Aluno.
+	 */
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
@@ -119,14 +114,22 @@ public class Aluno {
 		return email;
 	}
 
+	/**
+	 * Método modifica o email do aluno a partir do paramêtro.
+	 * @param email String que é o novo do email do Aluno. 
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	
-	ArrayList listaTutor = new ArrayList();
-	
-	public void getTutor() {
-		this.Tutor;
+	/**
+	 * Método que retorna um objeto do tipo Tutoria, a partir do paramêtro que 
+	 * é a chave no mapa de tutorias. A chave é a disciplina da tutoria.  
+	 * @param disciplina String que é a chave da tutoria.
+	 * @return Tutoria que é um objeto do tipo Tutoria.
+	 */
+	public Tutoria getTutoria(String disciplina) {
+		return this.tutorias.get(disciplina);
 	}
 	
 	/**
