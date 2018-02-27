@@ -2,6 +2,8 @@ package models;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Representa a disponibilidade de um tutor em relação a seus horários e
@@ -13,8 +15,8 @@ import java.util.HashSet;
 
 public class Disponibilidade {
 	
-	private HashSet<String> locaisDisponiveis = new HashSet<>();
-	private HashMap<String, String> horariosDisponiveis = new HashMap<>();
+	private Set<String> locaisDisponiveis = new HashSet<>();
+	private Map<String, HashSet<String>> horariosDisponiveis = new HashMap<>();
 	private String email;
 	
 /**
@@ -35,7 +37,7 @@ public class Disponibilidade {
  * @param dia String do dia a ser cadastrado 
  */
 	public void cadastrarHorario(String horario, String dia) {
-		horariosDisponiveis.put(dia, horario);
+		horariosDisponiveis.get(dia).add(horario);
 	}
 
 /**
@@ -54,9 +56,9 @@ public class Disponibilidade {
  */
 	public boolean consultaHorario(String horario, String dia) {
 		boolean consulta = false;
-		if (horariosDisponiveis.containsKey(horario)) {
-			if (horariosDisponiveis.containsValue(horario)) {
-				consulta = true;
+		if (horariosDisponiveis.containsKey(dia)) {
+			if (horariosDisponiveis.get(dia).contains(horario)) {
+				consulta = true;;
 			}
 		}
 		return consulta;
