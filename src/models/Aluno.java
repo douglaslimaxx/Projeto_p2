@@ -14,7 +14,7 @@ public class Aluno {
 	
 	private int codigoCurso;
 	private String matricula, nome, telefone, email;
-	private Map<String, Tutoria> tutorias;
+	private Tutoria tutoria;
 	
 	/**
 	 * Método que constrói um objeto do tipo Aluno a partir dos paramêtros 
@@ -35,8 +35,8 @@ public class Aluno {
 		this.nome = nome;
 		this.matricula = matricula;
 		this.telefone = telefone;
-		this.codigoCurso = codigoCurso;	
-		this.tutorias = new HashMap<>();
+		this.codigoCurso = codigoCurso;
+		this.tutoria = new Tutoria();
 		
 	}
 	
@@ -123,13 +123,11 @@ public class Aluno {
 	}
 	
 	/**
-	 * Método que retorna um objeto do tipo Tutoria, a partir do paramêtro que 
-	 * é a chave no mapa de tutorias. A chave é a disciplina da tutoria.  
-	 * @param disciplina String que é a chave da tutoria.
+	 * Método que retorna um objeto do tipo Tutoria.
 	 * @return Tutoria que é um objeto do tipo Tutoria.
 	 */
-	public Tutoria getTutoria(String disciplina) {
-		return this.tutorias.get(disciplina);
+	public Tutoria getTutoria() {
+		return this.tutoria;
 	}
 	
 	/**
