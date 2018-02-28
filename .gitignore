@@ -1,2 +1,7 @@
 /bin/
 /.metadata/
+.classpath
+.project
+/.recommenders/
+*.class
+/RemoteSystemsTempFiles/
