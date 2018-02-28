@@ -1,5 +1,6 @@
 package models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -24,6 +25,7 @@ public class Tutoria {
 	public Tutoria() {
 		this.avaliacao = 4;
 		this.quantia = 0;
+		this.disciplinas = new HashMap<>();
 	}
 	
 	/**
