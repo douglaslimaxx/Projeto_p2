@@ -132,7 +132,7 @@ public class Aluno {
 	/**
 	 * Metodo que retorna o formato de impressao do aluno.
 	 * O telefone e opcional.
-	 * @return toString de saída do Aluno.
+	 * @return toString de saida do Aluno.
 	 */	
 	@Override 
 	public String toString() {
