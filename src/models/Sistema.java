@@ -29,7 +29,7 @@ public class Sistema {
 	 * @param email String referente ao email do Aluno.
 	 */
     public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-    	this.controllerAluno.cadastraAluno(String nome, String matricula, int codigoCurso, String telefone, String email);
+    	this.controllerAluno.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
     }
     
     /**
@@ -39,7 +39,7 @@ public class Sistema {
      * @return String de representacao textual do Aluno.
      */
     public String recuperaAluno(String matricula) {
-    	return this.controllerAluno.recuperaAluno(String matricula);
+    	return this.controllerAluno.recuperaAluno(matricula);
     }
     
     /**
@@ -48,7 +48,7 @@ public class Sistema {
      * @return String que e juncao da representacao textual dos Alunos.
      */
     public String listarAlunos() {
-    	return this.controllerAluno.listarAlunos();
+    	return this.controllerAluno.listaAlunos();
     }
     
     /**
@@ -58,7 +58,7 @@ public class Sistema {
      * @return 
      */
     public String getInfoAluno(String matricula, String atributo) {
-    	return this.controllerAluno.getInfoAluno(String matricula, String atributo);
+    	return this.controllerAluno.getInfoAluno(matricula, atributo);
     }
     
    /**
@@ -69,7 +69,7 @@ public class Sistema {
      * @return 
      */
     public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-    	this.controllerAluno.tornarTutor(String matricula, String disciplina, int proficiencia);
+    	this.controllerAluno.tornaTutor(matricula, disciplina, proficiencia);
     }
     
    /**
@@ -78,7 +78,7 @@ public class Sistema {
      * @return
      */
     public String recuperaTutor(String matricula) {
-    	return this.controllerAluno.recuperaTutor(String matricula);
+    	return this.controllerAluno.recuperaTutor(matricula);
     }
     
    /**
@@ -97,7 +97,7 @@ public class Sistema {
      * @return
      */
     public void cadastrarHorario(String email, String horario, String dia) {
-    	this.controllerDisponibilidade.cadastrarHorario(String email, String horario, String dia);
+    	this.controllerDisponibilidade.cadastrarHorario(email, horario, dia);
     }
     
    /**
@@ -107,7 +107,7 @@ public class Sistema {
      * @return
      */
     public void cadastrarLocalDeAtendimento(String email, String local) {
-    	this.controllerDisponibilidade.cadastrarLocalDeAtendimento(String email, String local);
+    	this.controllerDisponibilidade.cadastrarLocalDeAtendimento(email, local);
     }
     
    /**
@@ -118,7 +118,7 @@ public class Sistema {
      * @return
      */
     public boolean consultaHorario(String email, String horario, String dia) {
-    	return this.controllerDisponibilidade.consultaHorario(String email, String horario, String dia);
+    	return this.controllerDisponibilidade.consultaHorario(email, horario, dia);
     }
     
    /**
@@ -128,6 +128,6 @@ public class Sistema {
      * @return
      */
     public boolean consultaLocal(String email, String local) {
-    	return this.controllerDisponibilidade.consultaLocal(String email, String local);
+    	return this.controllerDisponibilidade.consultaLocal(email, local);
     }
 }

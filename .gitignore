@@ -1,8 +1,8 @@
 /bin/
 /.metadata/
 /.recommenders/
+/RemoteSystemsTempFiles/
 .classpath
 .project
-/.recommenders/
 *.class
-/RemoteSystemsTempFiles/
+
