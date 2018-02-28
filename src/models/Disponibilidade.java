@@ -73,6 +73,43 @@ public class Disponibilidade {
 	public boolean consultaLocal(String local) {
 		return locaisDisponiveis.contains(local);
 	}
+
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((email == null) ? 0 : email.hashCode());
+	result = prime * result + ((horariosDisponiveis == null) ? 0 : horariosDisponiveis.hashCode());
+	result = prime * result + ((locaisDisponiveis == null) ? 0 : locaisDisponiveis.hashCode());
+	return result;
+}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Disponibilidade other = (Disponibilidade) obj;
+	if (email == null) {
+		if (other.email != null)
+			return false;
+	} else if (!email.equals(other.email))
+		return false;
+	if (horariosDisponiveis == null) {
+		if (other.horariosDisponiveis != null)
+			return false;
+	} else if (!horariosDisponiveis.equals(other.horariosDisponiveis))
+		return false;
+	if (locaisDisponiveis == null) {
+		if (other.locaisDisponiveis != null)
+			return false;
+	} else if (!locaisDisponiveis.equals(other.locaisDisponiveis))
+		return false;
+	return true;
+}
 	
 	
 
