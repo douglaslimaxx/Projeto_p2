@@ -3,6 +3,7 @@ package models;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 /**
  * Cria uma classe aluno atraves de sua matricula, nome, telefone e codigo de curso e email.
  * @author Marta Lais de Macedo Dantas.
@@ -127,13 +128,8 @@ public class Aluno {
 		return this.tutoria;
 	}
 	
-	public boolean isTutor() {
-		return this.tutoria.isTutor();
-	}
 	
-	
-	
-	/**
+        /**
 	 * Metodo que retorna o formato de impressao do aluno.
 	 * O telefone e opcional.
 	 * @return toString de saida do Aluno.
@@ -146,7 +142,21 @@ public class Aluno {
 			return this.matricula + " - " + this.nome + " - " + this.codigoCurso + " - " + this.telefone + " - " + this.email;
 		}
 	}
-
+	
+	/**
+	 * Metodo que valida um tutor.
+	 * @return 
+	 */
+	public boolean validaTutor() {
+		return this.tutoria.validaTutor();
+	}
+	
+	/**
+	 * Metodo que transforma em tutor a partir da disciplina e da proeficiencia.
+	 * @param disciplina String referente a disciplina.
+	 * @param proficiencia int referente a proficiencia. 
+	 * @return 
+	 */
 	public void tornaTutor(String disciplina, int proficiencia) {
 		this.tutoria.adicionaDisciplina(disciplina, proficiencia);		
 	}
