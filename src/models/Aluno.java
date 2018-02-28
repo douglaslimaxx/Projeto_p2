@@ -26,7 +26,6 @@ public class Aluno {
 	 * @param telefone String que representa o telefone do Aluno.
 	 * @param codigoCurso int que representa o codigo do curso do Aluno.
 	 */
-
 	public Aluno(String nome, String matricula, String email, String telefone, int codigoCurso) {
 		entradaValida(nome);
 		entradaValida(matricula);
@@ -43,7 +42,7 @@ public class Aluno {
 	/**
 	 * Metodo que retorna se as entradas sao validas.
 	 * @return void.
-	 */	
+	 */		
 	private void entradaValida(String entrada){
         if(entrada == null)throw new NullPointerException("Parâmetro null!");
         if(entrada.trim().equals("")) throw new IllegalArgumentException("Entrada vazia!");
@@ -100,7 +99,7 @@ public class Aluno {
 
 	/**
 	 * Metodo modifica o numero do telefone do Aluno a partir do parametro.
-	 * @param telefone String que e o novo número de telefone do Aluno.
+	 * @param telefone String que e o novo numero de telefone do Aluno.
 	 */
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
