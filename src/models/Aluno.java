@@ -127,6 +127,12 @@ public class Aluno {
 		return this.tutoria;
 	}
 	
+	public boolean isTutor() {
+		return this.tutoria.isTutor();
+	}
+	
+	
+	
 	/**
 	 * Metodo que retorna o formato de impressao do aluno.
 	 * O telefone e opcional.
@@ -139,5 +145,9 @@ public class Aluno {
 		} else {
 			return this.matricula + " - " + this.nome + " - " + this.codigoCurso + " - " + this.telefone + " - " + this.email;
 		}
+	}
+
+	public void tornaTutor(String disciplina, int proficiencia) {
+		this.tutoria.adicionaDisciplina(disciplina, proficiencia);		
 	}
 }
