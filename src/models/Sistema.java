@@ -124,7 +124,7 @@ public class Sistema {
    /**
      * Metodo de consulta para os locais de tutoria.
      * @param email String referente ao email do tutor.
-     * @param local String referente ao local da tutoria. 
+     * @param local String referente ao local da tutoria.
      * @return
      */
     public boolean consultaLocal(String email, String local) {
