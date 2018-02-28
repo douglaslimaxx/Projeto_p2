@@ -55,8 +55,8 @@ public class Tutoria {
 		return this.disciplinas.get(disciplina).getProficiencia();
 	}
 	
-	public void setProficiencia(String disciplina) {
-		this.disciplinas.get(disciplina).setProficiencia();
+	public void setProficiencia(String disciplina, int proficiencia) {
+		this.disciplinas.get(disciplina).setProficiencia(proficiencia);
 	}
 
 	/**
