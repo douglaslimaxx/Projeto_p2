@@ -12,7 +12,7 @@ public class Sistema {
 	private ControllerDisponibilidade controllerDisponibilidade;
 	
 	/**
-	 * Constroi o Sistema, inicializando os seu dois atributos que sao controllers.
+	 * Constroi o Sistema, inicializando os seus dois atributos que sao controllers.
 	 */
 	public Sistema() {
 		this.controllerAluno = new ControllerAluno();

@@ -1,7 +1,6 @@
 package models;
 
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Representa uma tutoria, que tera uma disciplina sobre a qual a tutoria
@@ -26,6 +25,16 @@ public class Tutoria {
 		this.avaliacao = 4;
 		this.quantia = 0;
 	}
+	
+	/**
+	 * Metodo adiciona um objeto do tipo Disciplina no map de disciplinas, a partir 
+	 * dos parametros disciplina e proficiencia.
+	 * @param disciplina String que e o nome da disciplina.
+	 * @param proficiencia que e a proficiencia do tutor na disciplina.
+	 */
+	public void adicionaDisciplina(String disciplina, int proficiencia) {
+		this.disciplinas.put(disciplina, new Disciplina(disciplina, proficiencia));
+	}
 
 	/**
 	 * Metodo retorna o nome da disciplina da tutoria.
@@ -44,6 +53,10 @@ public class Tutoria {
 	 */
 	public int getProficiencia(String disciplina) {
 		return this.disciplinas.get(disciplina).getProficiencia();
+	}
+	
+	public void setProficiencia(String disciplina) {
+		this.disciplinas.get(disciplina).setProficiencia();
 	}
 
 	/**
@@ -82,8 +95,7 @@ public class Tutoria {
 	 */
 	public void setQuantia(int quantia) {
 		this.quantia = quantia;
-	}
-	
+	}	
 	
 	public boolean isTutor() {
 		return !this.disciplinas.isEmpty();
