@@ -147,8 +147,8 @@ public class Aluno {
 	 * Metodo que valida um tutor.
 	 * @return 
 	 */
-	public boolean validaTutor() {
-		return this.tutoria.validaTutor();
+	public boolean isTutor() {
+		return this.tutoria.isTutor();
 	}
 	
 	/**
@@ -160,4 +160,5 @@ public class Aluno {
 	public void tornaTutor(String disciplina, int proficiencia) {
 		this.tutoria.adicionaDisciplina(disciplina, proficiencia);		
 	}
+
 }
