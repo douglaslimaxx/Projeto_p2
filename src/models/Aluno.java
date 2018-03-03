@@ -151,6 +151,26 @@ public class Aluno {
 		return this.tutoria.isTutor();
 	}
 	
+	public void adicionaDisciplina(String disciplina, int proficiencia) {
+		tutoria.adicionaDisciplina(disciplina, proficiencia);
+	}
+
+	public boolean consultaHorario(String horario, String dia) {
+		return tutoria.consultaHorario(horario, dia);
+	}
+
+	public boolean consultaLocal(String local) {
+		return tutoria.consultaLocal(local);
+	}
+
+	public void cadastrarHorario(String horario, String dia) {
+		tutoria.cadastrarHorario(horario, dia);
+	}
+
+	public void cadastrarLocalDeAtendimento(String local) {
+		tutoria.cadastrarLocalDeAtendimento(local);
+	}
+
 	/**
 	 * Metodo que transforma em tutor a partir da disciplina e da proeficiencia.
 	 * @param disciplina String referente a disciplina.
@@ -159,6 +179,14 @@ public class Aluno {
 	 */
 	public void tornaTutor(String disciplina, int proficiencia) {
 		this.tutoria.adicionaDisciplina(disciplina, proficiencia);		
+	}
+
+	public int totalDinheiroTutor() {
+		return tutoria.totalDinheiroTutor();
+	}
+
+	public void doar(int valor) {
+		this.tutoria.doar(valor);
 	}
 
 }

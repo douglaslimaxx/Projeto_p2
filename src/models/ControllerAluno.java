@@ -104,6 +104,12 @@ public class ControllerAluno {
 		throw new IllegalArgumentException("");
 	}
 	
+	private Aluno alunoPorEmail(String email) {
+		for(Aluno a : alunos.values()) {
+			if(a.getEmail().equals(email))return a;
+		}
+		throw new IllegalArgumentException("");
+	}
 	
 	/**
 	 * Retorna a representacao textual de todos os tutores cadastrados.
@@ -120,6 +126,55 @@ public class ControllerAluno {
 			qtd++;
 		}
 		return ret;
+	}
+
+	/**
+	 * Cadastra o local de atendimento de um tutor com base no e-mail dele.
+	 * @param email do aluno que tera o local atendimento cadastrado.
+	 * @param local disponivel que o tutor possuira.
+	 */
+	public void cadastrarLocalDeAtendimento(String email, String local) {
+		alunoPorEmail(email).cadastrarLocalDeAtendimento(local);
+	}
+
+	/**
+	 * Cadastra o horario em que um tutor estara disponivel com base no e-mail dele.
+	 * @param email do tutor que tera o horario disponivel.
+	 * @param horario disponivel do tutor.
+	 * @param dia que o tutor estara disponivel.
+	 */
+	public void cadastrarHorario(String email, String horario, String dia) {
+		alunoPorEmail(email).cadastrarHorario(horario, dia);
+		
+	}
+
+	/**
+	 * Consulta se o tutor do email especificado possui esse horario e dia disponivel.
+	 * @param email do aluno que voce quer verificar.
+	 * @param horario que sera verificado.
+	 * @param dia que sera verificado.
+	 * @return booleano que representa se existe ou nao horario disponivel.
+	 */
+	public boolean consultaHorario(String email, String horario, String dia) {
+		return alunoPorEmail(email).consultaHorario(horario, dia);
+	}
+
+	/**
+	 * Consulta se o tutor do email especificado tem o local especificado disponível.
+	 * @param email do aluno que voce quer verificar.
+	 * @param local que sera verificado.
+	 * @return booleano que representa se existe ou nao horario disponivel.
+	 */
+	public boolean consultaLocal(String email, String local) {
+		return alunoPorEmail(email).consultaLocal(local);
+	}
+
+	public int totalDinheiroTutor(String email) {
+		return alunoPorEmail(email).totalDinheiroTutor();
+	}
+
+	public void doar(String matriculaTutor, int valor) {
+		alunos.get(matriculaTutor).doar(valor);
 	}
 	
 }
