@@ -161,4 +161,37 @@ public class TutoriaTest {
 			assertEquals(pmc.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
 		}
 	}
+	
+	@Test
+	public void testeSetAvaliacaoAvaliacaoMenorZero() {
+		try {
+			this.tutoria.setAvaliacao(-5);
+		} catch(NoSuchElementException amz) {
+			assertEquals(amz.getMessage(), "Erro na definicao da avaliacao: Avaliacao nao pode ser menor que 0");
+		}
+	}
+	
+	@Test
+	public void testeSetAvaliacaoAvaliacaoMaiorCinco() {
+		try {
+			this.tutoria.setAvaliacao(8);
+		} catch(NoSuchElementException amc) {
+			assertEquals(amc.getMessage(), "Erro na definicao da avaliacao: Avaliacao nao pode ser maior que cinco");
+		}
+	} 
+	
+	@Test
+	public void testeIsTutorNenhumaDisciplina(){
+		String msg = "Tutor começa com nenhuma disciplina";
+		assertFalse(msg, this.tutoria.isTutor());
+	}
+	
+	@Test
+	public void testeIsTutorComDisciplinas(){
+		this.tutoria.adicionaDisciplina("p2", 3);
+		String msg = "Tutor ddeve ter uma disciplina no seu mapa de disciplinas, logo ele será um tutor";
+		assertTrue(msg, this.tutoria.isTutor());
+	}
+	
+	
 }
