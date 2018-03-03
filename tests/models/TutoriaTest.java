@@ -189,7 +189,7 @@ public class TutoriaTest {
 	@Test
 	public void testeIsTutorComDisciplinas(){
 		this.tutoria.adicionaDisciplina("p2", 3);
-		String msg = "Tutor ddeve ter uma disciplina no seu mapa de disciplinas, logo ele será um tutor";
+		String msg = "Tutor deve ter uma disciplina no seu mapa de disciplinas, logo ele será um tutor";
 		assertTrue(msg, this.tutoria.isTutor());
 	}
 	
