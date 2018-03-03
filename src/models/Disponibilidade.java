@@ -24,6 +24,12 @@ public class Disponibilidade {
  * @param email String de email passado pelo tutor.
  */
 	public Disponibilidade(String email) {
+		if (email.equals(null)) {
+			throw new NullPointerException("Erro na definicao de papel: email nao pode ser vazio ou nulo");
+		}
+		if (email.trim().equals("")) {
+			throw new IllegalArgumentException("Erro na definicao de papel: email nao pode ser vazio ou nulo");
+		}
 		this.email = email;
 		this.locaisDisponiveis = new HashSet<>();
 		this.horariosDisponiveis = new HashMap<>();
@@ -37,6 +43,9 @@ public class Disponibilidade {
  * @param dia String do dia a ser cadastrado.
  */
 	public void cadastrarHorario(String horario, String dia) {
+		if (horario.equals(null)) {
+			throw new NullPointerException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+		}
 		horariosDisponiveis.get(dia).add(horario);
 	}
 
