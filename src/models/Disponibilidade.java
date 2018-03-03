@@ -24,7 +24,7 @@ public class Disponibilidade {
  * @param email String de email passado pelo tutor.
  */
 	public Disponibilidade(String email) {
-		if (email.equals(null)) {
+		if (email == null) {
 			throw new NullPointerException("Erro na definicao de papel: email nao pode ser vazio ou nulo");
 		}
 		if (email.trim().equals("")) {
@@ -43,8 +43,17 @@ public class Disponibilidade {
  * @param dia String do dia a ser cadastrado.
  */
 	public void cadastrarHorario(String horario, String dia) {
-		if (horario.equals(null)) {
+		if (horario == null) {
 			throw new NullPointerException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+		}
+		if (horario.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+		}
+		if (dia == null) {
+			throw new NullPointerException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+		}
+		if (dia.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
 		}
 		horariosDisponiveis.get(dia).add(horario);
 	}
@@ -54,6 +63,12 @@ public class Disponibilidade {
  * @param local String do local a ser cadastrado
  */
 	public void cadastrarLocalDeAtendimento(String local) {
+		if (local == null) {
+			throw new NullPointerException("Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+		}
+		if (local.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+		}
 		locaisDisponiveis.add(local);
 	}
 	
@@ -64,6 +79,18 @@ public class Disponibilidade {
  * @return true caso o horário consultado esteja disponível e false caso não.
  */
 	public boolean consultaHorario(String horario, String dia) {
+		if (horario == null) {
+			throw new NullPointerException("Erro ao consultar horario de atendimento: horario nao pode ser vazio ou em branco");
+		}
+		if (horario.trim().equals("")) {
+			throw new IllegalArgumentException("Erro ao consultar horario de atendimento: horario nao pode ser vazio ou em branco");
+		}
+		if (dia == null) {
+			throw new NullPointerException("Erro ao consultar horario de atendimento: dia nao pode ser vazio ou em branco");
+		}
+		if (dia.trim().equals("")) {
+			throw new IllegalArgumentException("Erro ao consultar horario de atendimento: dia nao pode ser vazio ou em branco");
+		}
 		boolean consulta = false;
 		if (horariosDisponiveis.containsKey(dia)) {
 			if (horariosDisponiveis.get(dia).contains(horario)) {
@@ -80,8 +107,15 @@ public class Disponibilidade {
  * @return true caso o local esteja disponível para atendimento e false caso nao.
  */
 	public boolean consultaLocal(String local) {
+		if (local == null) {
+			throw new NullPointerException("Erro ao consultar local de atendimento: local nao pode ser vazio ou em branco");
+		}
+		if (local.trim().equals("")) {
+			throw new IllegalArgumentException("Erro ao consultar local de atendimento: local nao pode ser vazio ou em branco");
+		}
 		return locaisDisponiveis.contains(local);
 	}
+	
 
 @Override
 public int hashCode() {
