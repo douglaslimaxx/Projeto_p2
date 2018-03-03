@@ -1,5 +1,7 @@
 package models;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Representa um Sistema de tutorias, onde alunos podem encontrar tutores que ensinam 
  * certas disciplinas, e tambem podem se tornar tutores de algumas disciplinas.
@@ -8,15 +10,15 @@ package models;
  */
 public class Sistema {
 
+	private int dinheiroSistema;
 	private ControllerAluno controllerAluno;
-	private ControllerDisponibilidade controllerDisponibilidade;
 	
 	/**
 	 * Constroi o Sistema, inicializando os seus dois atributos que sao controllers.
 	 */
 	public Sistema() {
+		this.dinheiroSistema = 0;
 		this.controllerAluno = new ControllerAluno();
-		this.controllerDisponibilidade = new ControllerDisponibilidade(); 
 	}
 	
 	/**
@@ -97,7 +99,7 @@ public class Sistema {
      * @return
      */
     public void cadastrarHorario(String email, String horario, String dia) {
-    	this.controllerDisponibilidade.cadastrarHorario(email, horario, dia);
+    	this.controllerAluno.cadastrarHorario(email, horario, dia);
     }
     
    /**
@@ -107,7 +109,7 @@ public class Sistema {
      * @return
      */
     public void cadastrarLocalDeAtendimento(String email, String local) {
-    	this.controllerDisponibilidade.cadastrarLocalDeAtendimento(email, local);
+    	this.controllerAluno.cadastrarLocalDeAtendimento(email, local);
     }
     
    /**
@@ -118,7 +120,7 @@ public class Sistema {
      * @return
      */
     public boolean consultaHorario(String email, String horario, String dia) {
-    	return this.controllerDisponibilidade.consultaHorario(email, horario, dia);
+    	return this.controllerAluno.consultaHorario(email, horario, dia);
     }
     
    /**
@@ -128,6 +130,33 @@ public class Sistema {
      * @return
      */
     public boolean consultaLocal(String email, String local) {
-    	return this.controllerDisponibilidade.consultaLocal(email, local);
+    	return this.controllerAluno.consultaLocal(email, local);
+    }
+    
+    public void doar(String matriculaTutor, int totalCentavos) {
+    	String nivel = this.controllerAluno.pegarNivel(matriculaTutor);
+    	double nota = this.controllerAluno.pegarNota(matriculaTutor);
+    	double taxa_tutor;
+    	switch (nivel) {
+    		case "TOP":
+    			taxa_tutor = 0.9 + ((nota - 4.5)/10.0);
+    		case "Tutor":
+    			taxa_tutor = 0.8;
+    		case "Aprendiz":
+    			taxa_tutor = 0.4 - ((3.0 - nota)/10.0);
+    		default:
+    			throw new IllegalArgumentException("");
+    	}
+    	int calculo = (int)(1 - taxa_tutor) * totalCentavos;
+    	this.dinheiroSistema += calculo;
+    	this.controllerAluno.doar(matriculaTutor, totalCentavos - calculo);
+    }
+    
+    public int totalDinheiroTutor(String emailTutor) {
+    	return this.controllerAluno.totalDinheiroTutor(emailTutor);
+    }
+    
+    public int totalDinheiroSistema() {
+    	return this.dinheiroSistema;
     }
 }
