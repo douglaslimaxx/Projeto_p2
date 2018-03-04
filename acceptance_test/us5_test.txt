@@ -1,0 +1,44 @@
+##########################
+#   US5 - Avaliar Tutor  #
+##########################
+
+expect "Tutor" pegarNivel matriculaTutor="115260904"
+expect "Tutor" pegarNivel matriculaTutor="115212345"
+
+expect "4,00" pegarNota matriculaTutor="115260904"
+expect "4,00" pegarNota matriculaTutor="115212345"
+
+avaliarTutor idAjuda=1 nota=5
+avaliarTutor idAjuda=7 nota=4
+
+expect "4,17" pegarNota matriculaTutor="115260904"
+expect "4,00" pegarNota matriculaTutor="115212345"
+
+pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
+pegarTutor idAjuda=8
+avaliarTutor idAjuda=8 nota=5
+expect "4,30" pegarNota matriculaTutor="115260904"
+
+pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
+pegarTutor idAjuda=9
+avaliarTutor idAjuda=9 nota=5
+expect "4,42" pegarNota matriculaTutor="115260904"
+
+pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
+pegarTutor idAjuda=10
+avaliarTutor idAjuda=10 nota=5
+expect "4,52" pegarNota matriculaTutor="115260904"
+
+expect "TOP" pegarNivel matriculaTutor="115260904"
+
+pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
+pegarTutor idAjuda=11
+pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
+
+# Testes com exception
+
+expectError "Erro na avaliacao de tutor: Ajuda ja avaliada" avaliarTutor idAjuda=8 nota=5
+expectError "Erro na avaliacao de tutor: id nao encontrado " avaliarTutor idAjuda=999 nota=5
+expectError "Erro na avaliacao de tutor: nota nao pode ser menor que 0" avaliarTutor idAjuda=20 nota=-1
+expectError "Erro na avaliacao de tutor: nota nao pode ser maior que 5" avaliarTutor idAjuda=20 nota=9
+expectError "Erro na avaliacao de tutor: Ajuda nao atribuida a tutor" avaliarTutor idAjuda=21 nota=5

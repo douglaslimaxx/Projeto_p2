@@ -1,0 +1,60 @@
+##########################
+# US4 - Cadastrar Pedidos de Ajuda (Presencial ou Online) #
+##########################
+
+
+  
+expect "1" pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
+expect "2" pedirAjudaPresencial matrAluno="111124242" disciplina="Programacao 2" horario="08:00" dia="qua" localInteresse="LCC3"
+expect "3" pedirAjudaPresencial matrAluno="111124242" disciplina="Programacao 2" horario="13:00" dia="sex" localInteresse="LCC3"
+
+expect "4" pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="10:00" dia="ter" localInteresse="CAA 404"
+expect "5" pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="16:00" dia="qui" localInteresse="CAA 404"
+
+expect "6" pedirAjudaOnline matrAluno="116209078" disciplina="Calculo 1"
+expect "7" pedirAjudaOnline matrAluno="111124242" disciplina="ATAL"
+
+expect "Programacao 2" getInfoAjuda idAjuda=1 atributo="disciplina"
+expect "15:00" getInfoAjuda idAjuda=1 atributo="horario"
+expect "seg" getInfoAjuda idAjuda=1 atributo="dia"
+expect "LCC3" getInfoAjuda idAjuda=1 atributo="localInteresse"
+
+expect "Tutor - 115212345, disciplina - ATAL" pegarTutor idAjuda=7
+expect "Tutor - 115260904, horario - 15:00, dia - seg, local - LCC3, disciplina - Programacao 2" pegarTutor idAjuda=1
+
+
+# Testes com exception
+
+expectError "Erro no pedido de ajuda presencial: matricula de aluno nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="" disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
+expectError "Erro no pedido de ajuda presencial: matricula de aluno nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="     " disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
+
+expectError "Erro no pedido de ajuda presencial: disciplina nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="111221004" disciplina="" horario="15:00" dia="seg" localInteresse="LCC3"
+expectError "Erro no pedido de ajuda presencial: disciplina nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="111221004" disciplina="     " horario="15:00" dia="seg" localInteresse="LCC3"
+
+expectError "Erro no pedido de ajuda presencial: horario nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="111221004" disciplina="P2" horario="" dia="seg" localInteresse="LCC3"
+expectError "Erro no pedido de ajuda presencial: horario nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="111221004" disciplina="P2" horario="     " dia="seg" localInteresse="LCC3"
+
+expectError "Erro no pedido de ajuda presencial: dia nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="111221004" disciplina="P2" horario="16:20" dia="" localInteresse="CA"
+expectError "Erro no pedido de ajuda presencial: dia nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="111221004" disciplina="P2" horario="16:20" dia="     " localInteresse="CA"
+
+expectError "Erro no pedido de ajuda presencial: local de interesse nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="111221004" disciplina="P2" horario="16:20" dia="seg" localInteresse=""
+expectError "Erro no pedido de ajuda presencial: local de interesse nao pode ser vazio ou em branco" pedirAjudaPresencial matrAluno="111221004" disciplina="P2" horario="16:20" dia="seg" localInteresse="     "
+
+expectError "Erro no pedido de ajuda online: matricula de aluno nao pode ser vazio ou em branco" pedirAjudaOnline matrAluno="" disciplina="Calculo 1"
+expectError "Erro no pedido de ajuda online: matricula de aluno nao pode ser vazio ou em branco" pedirAjudaOnline matrAluno="    " disciplina="Calculo 1"
+
+expectError "Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco" pedirAjudaOnline matrAluno="1111111" disciplina=""
+expectError "Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco" pedirAjudaOnline matrAluno="1111111" disciplina="     "
+
+expectError "Erro ao tentar recuperar info da ajuda : id nao pode menor que zero " getInfoAjuda idAjuda="-1" atributo="localInteresse"
+expectError "Erro ao tentar recuperar info da ajuda : id nao encontrado " getInfoAjuda idAjuda="10000" atributo="localInteresse"
+expectError "Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco" getInfoAjuda idAjuda="1" atributo=""
+expectError "Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco" getInfoAjuda idAjuda="1" atributo="     "
+expectError "Erro ao tentar recuperar info da ajuda : atributo nao encontrado" getInfoAjuda idAjuda="1" atributo="onTime"
+
+expectError "Erro ao tentar recuperar tutor : id nao pode menor que zero " pegarTutor idAjuda="-1"
+expectError "Erro ao tentar recuperar tutor : id nao encontrado " pegarTutor idAjuda="1000000"
+
+
+
+
