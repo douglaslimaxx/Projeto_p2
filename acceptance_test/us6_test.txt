@@ -1,0 +1,29 @@
+##########################
+#   US5 - Doar ao Tutor  #
+##########################
+
+doar matriculaTutor="115260904" totalCentavos=500
+expect 450 totalDinheiroTutor emailTutor="matthew.met@ccc.ufcg.edu.br"
+expect 50 totalDinheiroSistema
+
+doar matriculaTutor="115212345" totalCentavos=100
+expect 80 totalDinheiroTutor emailTutor="uesle_han@ccc.ufcg.edu.br"
+expect 70 totalDinheiroSistema
+
+pedirAjudaOnline matrAluno="111124242" disciplina="ATAL"
+pegarTutor idAjuda=12
+avaliarTutor idAjuda=12 nota=0
+
+pedirAjudaOnline matrAluno="111124242" disciplina="ATAL"
+pegarTutor idAjuda=13
+avaliarTutor idAjuda=13 nota=0
+
+doar matriculaTutor="115212345" totalCentavos=100
+expect 117 totalDinheiroTutor emailTutor="uesle_han@ccc.ufcg.edu.br"
+
+# Testes com exception
+
+expectError "Erro na consulta de total de dinheiro do tutor: emailTutor nao pode ser vazio ou nulo" totalDinheiroTutor emailTutor=""
+expectError "Erro na consulta de total de dinheiro do tutor: Tutor nao encontrado" totalDinheiroTutor emailTutor="gauds@cc.ufcg.edu.br"
+expectError "Erro na doacao para tutor: totalCentavos nao pode ser menor que zero" doar matriculaTutor="115260904" totalCentavos=-1
+expectError "Erro na doacao para tutor: Tutor nao encontrado" doar matriculaTutor="101001010" totalCentavos=500
