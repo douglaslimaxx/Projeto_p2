@@ -1,0 +1,68 @@
+##########################
+# US3 -  Disponibilizar e listar horários e locais #
+##########################
+
+
+cadastrarHorario email="matthew.met@ccc.ufcg.edu.br" horario="15:00" dia="seg"
+cadastrarHorario email="matthew.met@ccc.ufcg.edu.br" horario="08:00" dia="qua"
+cadastrarHorario email="matthew.met@ccc.ufcg.edu.br" horario="13:00" dia="sex"
+
+cadastrarHorario email="uesle_han@ccc.ufcg.edu.br" horario="10:00" dia="ter"
+cadastrarHorario email="uesle_han@ccc.ufcg.edu.br" horario="16:00" dia="qui"
+
+cadastrarLocalDeAtendimento email="matthew.met@ccc.ufcg.edu.br" locaL="LCC3"
+cadastrarLocalDeAtendimento email="uesle_han@ccc.ufcg.edu.br" locaL="CAA 404"
+
+expect "true" consultaHorario email="matthew.met@ccc.ufcg.edu.br" horario="15:00" dia="seg"
+expect "true" consultaHorario email="matthew.met@ccc.ufcg.edu.br" horario="08:00" dia="qua"
+expect "true" consultaHorario email="matthew.met@ccc.ufcg.edu.br" horario="13:00" dia="sex"
+
+expect "false" consultaHorario email="matthew.met@ccc.ufcg.edu.br" horario="15:00" dia="ter"
+expect "false" consultaHorario email="matthew.met@ccc.ufcg.edu.br" horario="08:00" dia="qui"
+
+expect "false" consultaHorario email="matthew.met@ccc.ufcg.edu.br" horario="22:00" dia="seg"
+expect "false" consultaHorario email="matthew.met@ccc.ufcg.edu.br" horario="13:00" dia="qua"
+expect "false" consultaHorario email="matthew.met@ccc.ufcg.edu.br" horario="01:00" dia="sex"
+
+expect "true" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="10:00" dia="ter"
+expect "true" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="16:00" dia="qui"
+
+expect "false" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="10:00" dia="seg"
+expect "false" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="16:00" dia="qua"
+expect "false" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="10:00" dia="sex"
+
+expect "false" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="02:00" dia="ter"
+expect "false" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="19:00" dia="qui"
+
+expect "false" consultaHorario email="annah.go@ccc.ufcg.edu.br" horario="24:00" dia="sex"
+
+expect "true" consultaLocal email="matthew.met@ccc.ufcg.edu.br" locaL="LCC3"
+expect "true" consultaLocal email="uesle_han@ccc.ufcg.edu.br" locaL="CAA 404"
+
+expect "false" consultaLocal email="matthew.met@ccc.ufcg.edu.br" locaL="LCC1"
+expect "false" consultaLocal email="uesle_han@ccc.ufcg.edu.br" locaL="LCC2"
+
+expect "false" consultaLocal email="annah.go@ccc.ufcg.edu.br" locaL="Embedded"
+
+
+
+# Testes com exception
+
+expectError "Erro no cadastrar horario: tutor nao cadastrado" cadastrarHorario email="annah.go@ccc.ufcg.edu.br" horario="15:00" dia="seg"
+
+expectError "Erro no cadastrar horario: email nao pode ser vazio ou em branco" cadastrarHorario email="" horario="15:00" dia="seg"
+expectError "Erro no cadastrar horario: email nao pode ser vazio ou em branco" cadastrarHorario email="   " horario="15:00" dia="seg"
+
+expectError "Erro no cadastrar horario: horario nao pode ser vazio ou em branco" cadastrarHorario email="matthew.met@ccc.ufcg.edu.br" horario="" dia="seg"
+expectError "Erro no cadastrar horario: horario nao pode ser vazio ou em branco" cadastrarHorario email="matthew.met@ccc.ufcg.edu.br" horario="   " dia="seg"
+
+expectError "Erro no cadastrar horario: dia nao pode ser vazio ou em branco" cadastrarHorario email="matthew.met@ccc.ufcg.edu.br" horario="15:00" dia=""
+expectError "Erro no cadastrar horario: dia nao pode ser vazio ou em branco" cadastrarHorario email="matthew.met@ccc.ufcg.edu.br" horario="15:00" dia="    "
+
+
+expectError "Erro no cadastrar local de atendimento: tutor nao cadastrado" cadastrarLocalDeAtendimento email="annah.go@ccc.ufcg.edu.br" locaL="LCC3"
+expectError "Erro no cadastrar local de atendimento: email nao pode ser vazio ou em branco" cadastrarLocalDeAtendimento email="" locaL="LCC3"
+expectError "Erro no cadastrar local de atendimento: email nao pode ser vazio ou em branco" cadastrarLocalDeAtendimento email="     " locaL="LCC3"
+
+expectError "Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco" cadastrarLocalDeAtendimento email="matthew.met@ccc.ufcg.edu.br" locaL=""
+expectError "Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco" cadastrarLocalDeAtendimento email="matthew.met@ccc.ufcg.edu.br" locaL="    "

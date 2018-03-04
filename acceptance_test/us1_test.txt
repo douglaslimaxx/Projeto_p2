@@ -1,0 +1,38 @@
+##########################
+# US1 - Cadastrar Alunos #
+##########################
+
+cadastrarAluno nome="Matthew Melio" matricula="115260904" codigoCurso="10000" telefone="" email="matthew.met@ccc.ufcg.edu.br"
+expect "115260904 - Matthew Melio - 10000 - matthew.met@ccc.ufcg.edu.br" recuperaAluno matricula="115260904"
+
+cadastrarAluno nome="Ueslle Hannibal" matricula="115212345" codigoCurso="10000" telefone="99903-3020" email="uesle_han@ccc.ufcg.edu.br"
+expect "115212345 - Ueslle Hannibal - 10000 - 99903-3020 - uesle_han@ccc.ufcg.edu.br" recuperaAluno matricula="115212345"
+
+cadastrarAluno nome="Viktor Bottas" matricula="111124242" codigoCurso="20304" telefone="98030-1124" email="viktor_gatinho123@hotmail.com"
+expect "111124242 - Viktor Bottas - 20304 - 98030-1124 - viktor_gatinho123@hotmail.com" recuperaAluno matricula="111124242"
+
+cadastrarAluno nome="Davidson Sadman" matricula="116209078" codigoCurso="24040" telefone="3333-3038" email="davidson.sadman@ee.ufcg.edu.br"
+
+expect "Ueslle Hannibal" getInfoAluno matricula="115212345" atributo="Nome"
+expect "99903-3020" getInfoAluno matricula="115212345" atributo="Telefone"
+expect "viktor_gatinho123@hotmail.com" getInfoAluno matricula="111124242" atributo="Email"
+
+expect "116209078 - Davidson Sadman - 24040 - 3333-3038 - davidson.sadman@ee.ufcg.edu.br, 115260904 - Matthew Melio - 10000 - matthew.met@ccc.ufcg.edu.br, 115212345 - Ueslle Hannibal - 10000 - 99903-3020 - uesle_han@ccc.ufcg.edu.br, 111124242 - Viktor Bottas - 20304 - 98030-1124 - viktor_gatinho123@hotmail.com" listarAlunos
+
+# Testes com exception
+
+expectError "Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado" cadastrarAluno nome="Matthew Melio" matricula="115260904" codigoCurso="10000" telefone="" email="matthew.met@ccc.ufcg.edu.br"
+
+expectError "Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo" cadastrarAluno nome="" matricula="115230904" codigoCurso="10000" telefone="" email="matthew.met@ccc.ufcg.edu.br"
+
+expectError "Erro no cadastro de aluno: Email invalido" cadastrarAluno nome="Matthew Melio" matricula="115260904" codigoCurso="10000" telefone="" email="matthew.metccc.ufcg.edu.br"
+
+expectError "Erro no cadastro de aluno: Email invalido" cadastrarAluno nome="Matthew Melio" matricula="115260904" codigoCurso="10000" telefone="" email="@ccc.ufcg.edu.br"
+
+expectError "Erro no cadastro de aluno: Email invalido" cadastrarAluno nome="Matthew Melio" matricula="115260904" codigoCurso="10000" telefone="" email="ccc.ufcg.edu.br@"
+
+expectError "Erro no cadastro de aluno: Email invalido" cadastrarAluno nome="Matthew Melio" matricula="115260904" codigoCurso="10000" telefone="" email="@"
+
+expectError "Erro na obtencao de informacao de aluno: Aluno nao encontrado" getInfoAluno matricula="111111111" atributo="Nome"
+
+expectError "Erro na busca por aluno: Aluno nao encontrado" recuperaAluno matricula="77732723"
