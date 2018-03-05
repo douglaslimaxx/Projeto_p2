@@ -43,6 +43,9 @@ public class Tutoria {
 	 *            que e a proficiencia do tutor na disciplina.
 	 */
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
+		if (this.disciplinas.containsKey(disciplina)) {
+			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
+		}
 		this.disciplinas.put(disciplina, new Disciplina(disciplina, proficiencia));
 	}
 
