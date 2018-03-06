@@ -13,7 +13,7 @@ import java.util.Map;
 public class Tutoria {
 
 	private int dinheiroTutor;
-	private int avaliacao;
+	private int pontuacaoAtual;
 	private int quantia;
 	private Map<String, Disciplina> disciplinas;
 	private Disponibilidade disponibilidade;
@@ -28,7 +28,7 @@ public class Tutoria {
 	 *            int referente a proficiencia do tutor nessa disciplina.
 	 */
 	public Tutoria() {
-		this.avaliacao = 4;
+		this.pontuacaoAtual = 4;
 		this.quantia = 0;
 		this.disciplinas = new HashMap<>();
 		this.disponibilidade = new Disponibilidade();
@@ -92,7 +92,7 @@ public class Tutoria {
 	 * @return int referente a avaliação da tutoria.
 	 */
 	public int getAvaliacao() {
-		return avaliacao;
+		return pontuacaoAtual;
 	}
 
 	/**
@@ -102,8 +102,8 @@ public class Tutoria {
 	 * @param avaliacao
 	 *            int que e o valor a ser atribuído ao atributo Avaliacao.
 	 */
-	public void setAvaliacao(int avaliacao) {
-		this.avaliacao = avaliacao;
+	public void avaliarTutor(int avaliacaoRecebida) {
+		this.pontuacaoAtual = (this.pontuacaoAtual * 5 + avaliacaoRecebida) / 6;
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class Tutoria {
 	 * Método que modifica o valor atribuido ao atributo quantia a partir de um
 	 * parametro.
 	 * 
-	 * @param avaliacao
+	 * @param pontuacaoAtual
 	 *            int referente ao valor a ser atribuído ao atributo Quantia.
 	 */
 	public void setQuantia(int quantia) {
@@ -183,7 +183,7 @@ public class Tutoria {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + avaliacao;
+		result = prime * result + pontuacaoAtual;
 		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
 		result = prime * result + quantia;
 		return result;
@@ -198,7 +198,7 @@ public class Tutoria {
 		if (getClass() != obj.getClass())
 			return false;
 		Tutoria other = (Tutoria) obj;
-		if (avaliacao != other.avaliacao)
+		if (pontuacaoAtual != other.pontuacaoAtual)
 			return false;
 		if (disciplinas == null) {
 			if (other.disciplinas != null)

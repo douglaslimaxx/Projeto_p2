@@ -216,7 +216,23 @@ public class ControllerAluno {
 	}
 
 	public void doar(String matriculaTutor, int valor) {
-		alunos.get(matriculaTutor).doar(valor);
+		this.alunos.get(matriculaTutor).doar(valor);
+	}
+	
+	public void pegarNota(String matriculaTutor) {
+		this.alunos.get(matriculaTutor).getTutoria().getAvaliacao();
+	}
+	
+	public String pegarNivel(String matriculaTutor) {
+		String nivel = "";
+		if (this.alunos.get(matriculaTutor).getTutoria().getAvaliacao() > 4.5) {
+			nivel = "TOP";
+		} else if ((this.alunos.get(matriculaTutor).getTutoria().getAvaliacao() > 3) && (this.alunos.get(matriculaTutor).getTutoria().getAvaliacao() <= 4.5)) {
+			nivel = "Tutor";
+		} else {
+			nivel = "Aprendiz";
+		} 
+		return nivel;
 	}
 	
 }
