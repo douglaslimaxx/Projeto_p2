@@ -168,7 +168,7 @@ public class TutoriaTest {
 	@Test
 	public void testeSetAvaliacaoAvaliacaoMenorZero() {
 		try {
-			this.tutoria.setAvaliacao(-5);
+			this.tutoria.avaliarTutor(-5);
 		} catch(NoSuchElementException amz) {
 			assertEquals(amz.getMessage(), "Erro na definicao da avaliacao: Avaliacao nao pode ser menor que 0");
 		}
@@ -177,7 +177,7 @@ public class TutoriaTest {
 	@Test
 	public void testeSetAvaliacaoAvaliacaoMaiorCinco() {
 		try {
-			this.tutoria.setAvaliacao(8);
+			this.tutoria.avaliarTutor(8);
 		} catch(NoSuchElementException amc) {
 			assertEquals(amc.getMessage(), "Erro na definicao da avaliacao: Avaliacao nao pode ser maior que cinco");
 		}
