@@ -120,7 +120,11 @@ public class Sistema {
      * @return
      */
     public void cadastrarHorario(String email, String horario, String dia) {
+    	try {
     	this.controllerAluno.cadastrarHorario(email, horario, dia);
+    	}catch (Exception e) {
+    		throw new RuntimeException("Erro no cadastrar horario: " + e.getMessage());
+    	}
     }
     
    /**
@@ -130,7 +134,11 @@ public class Sistema {
      * @return
      */
     public void cadastrarLocalDeAtendimento(String email, String local) {
-    	this.controllerAluno.cadastrarLocalDeAtendimento(email, local);
+    	try {
+    		this.controllerAluno.cadastrarLocalDeAtendimento(email, local);
+    	}catch (Exception e) {
+    		throw new RuntimeException("Erro no cadastrar local de atendimento: " + e.getMessage());
+    	}
     }
     
    /**

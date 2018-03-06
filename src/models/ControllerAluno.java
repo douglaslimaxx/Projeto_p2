@@ -38,7 +38,7 @@ public class ControllerAluno {
 	 * @param email String Representa o email do aluno.
 	 */
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		if(!validarEmail(email))throw new IllegalArgumentException("Email invalido");
+		validarEmail(email);
 		if(alunos.containsKey(matricula))throw new IllegalArgumentException("Aluno de mesma matricula ja cadastrado");
 		alunos.put(matricula, new Aluno(nome, matricula, email, telefone, codigoCurso));
 	}
@@ -47,10 +47,11 @@ public class ControllerAluno {
 	 * Metodo que verifica se um email e valido para o sistema, ou seja, se existe um "@" e conteudo antes e depois da mesma.
 	 * @return boolean.
 	 */	
-    public static boolean validarEmail(String email){
+    public void validarEmail(String email){
+    	if(email == null || email.trim().equals(""))throw new IllegalArgumentException("email nao pode ser vazio ou em branco");
         Matcher matcher; 
         matcher = pattern.matcher(email);
-        return matcher.matches();
+        if(!matcher.matches())throw new IllegalArgumentException("Email invalido");
      }
     
 	/**
@@ -136,7 +137,7 @@ public class ControllerAluno {
 		for(Aluno a : alunos.values()) {
 			if(a.getEmail().equals(email))return a;
 		}
-		throw new IllegalArgumentException("");
+		return null;
 	}
 	
 	/**
@@ -155,13 +156,16 @@ public class ControllerAluno {
 		}
 		return ret;
 	}
-
+	
 	/**
 	 * Cadastra o local de atendimento de um tutor com base no e-mail dele.
 	 * @param email do aluno que tera o local atendimento cadastrado.
 	 * @param local disponivel que o tutor possuira.
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
+		validarEmail(email);
+		Aluno aluno = alunoPorEmail(email);
+		if(aluno == null)throw new IllegalArgumentException("tutor nao cadastrado");
 		alunoPorEmail(email).cadastrarLocalDeAtendimento(local);
 	}
 
@@ -172,7 +176,10 @@ public class ControllerAluno {
 	 * @param dia que o tutor estara disponivel.
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		alunoPorEmail(email).cadastrarHorario(horario, dia);
+		validarEmail(email);
+		Aluno aluno = alunoPorEmail(email);
+		if(aluno == null)throw new IllegalArgumentException("tutor nao cadastrado");
+		aluno.cadastrarHorario(horario, dia);
 		
 	}
 
@@ -184,7 +191,10 @@ public class ControllerAluno {
 	 * @return booleano que representa se existe ou nao horario disponivel.
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		return alunoPorEmail(email).consultaHorario(horario, dia);
+		validarEmail(email);
+		Aluno aluno = alunoPorEmail(email);
+		if(aluno == null)return false;
+		return aluno.consultaHorario(horario, dia);
 	}
 
 	/**
@@ -194,10 +204,14 @@ public class ControllerAluno {
 	 * @return booleano que representa se existe ou nao horario disponivel.
 	 */
 	public boolean consultaLocal(String email, String local) {
-		return alunoPorEmail(email).consultaLocal(local);
+		validarEmail(email);
+		Aluno aluno = alunoPorEmail(email);
+		if(aluno == null)return false;
+		return aluno.consultaLocal(local);
 	}
 
 	public int totalDinheiroTutor(String email) {
+		validarEmail(email);
 		return alunoPorEmail(email).totalDinheiroTutor();
 	}
 
