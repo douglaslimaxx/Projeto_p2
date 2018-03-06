@@ -13,6 +13,7 @@ public class Sistema {
 	
 	private int dinheiroSistema;
 	private ControllerAluno controllerAluno;
+	private ControllerAjuda controllerAjuda;
 	
 	/**
 	 * Constroi o Sistema, inicializando os seus dois atributos que sao controllers.
@@ -20,6 +21,7 @@ public class Sistema {
 	public Sistema() {
 		this.dinheiroSistema = 0;
 		this.controllerAluno = new ControllerAluno();
+		this.controllerAjuda = new ControllerAjuda();
 	}
 	
 	/**
@@ -188,4 +190,23 @@ public class Sistema {
     public int totalDinheiroSistema() {
     	return this.dinheiroSistema;
     }
+
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
+		return controllerAjuda.pedirAjudaPresencial(matrAluno, disciplina, this.controllerAluno.melhorTutor(disciplina), horario, dia, localInteresse);
+	}
+
+	public int pedirAjudaOnline(String matrAluno, String disciplina) {
+		return controllerAjuda.pedirAjudaOnline(matrAluno, disciplina, this.controllerAluno.melhorTutor(disciplina));
+	}
+
+	public String pegarTutor(int idAjuda) {
+		return controllerAjuda.pegarTutor(idAjuda);
+	}
+
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return controllerAjuda.getInfoAjuda(idAjuda, atributo);
+	}
+    
+    
 }

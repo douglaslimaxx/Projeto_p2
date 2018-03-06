@@ -234,5 +234,10 @@ public class ControllerAluno {
 		} 
 		return nivel;
 	}
+
+	public String melhorTutor(String disciplina) {
+		
+		return null;
+	}
 	
 }
