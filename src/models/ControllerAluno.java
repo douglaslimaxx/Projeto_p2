@@ -204,5 +204,10 @@ public class ControllerAluno {
 	public void doar(String matriculaTutor, int valor) {
 		alunos.get(matriculaTutor).doar(valor);
 	}
+
+	public String melhorTutor(String disciplina) {
+		
+		return null;
+	}
 	
 }
