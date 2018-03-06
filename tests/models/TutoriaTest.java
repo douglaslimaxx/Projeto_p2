@@ -41,7 +41,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.adicionaDisciplina(null, 3);
 		} catch (NullPointerException dn){
-			assertEquals(dn.getMessage(), "Erro na definicao de papel: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dn.getMessage(), "Disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -50,7 +50,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.adicionaDisciplina("   ", 3);
 		} catch (IllegalArgumentException dv){
-			assertEquals(dv.getMessage(), "Erro na definicao de papel: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dv.getMessage(), "Disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -59,7 +59,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.adicionaDisciplina("Ingles", 0);
 		} catch (NoSuchElementException pz){
-			assertEquals(pz.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
+			assertEquals(pz.getMessage(), "Proficiencia Invalida");
 		}
 	}
 	
@@ -68,7 +68,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.adicionaDisciplina("Ingles", -2);
 		} catch (NoSuchElementException pmz){
-			assertEquals(pmz.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
+			assertEquals(pmz.getMessage(), "Proficiencia Invalida");
 		}
 	}
 	
@@ -77,7 +77,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.adicionaDisciplina("Ingles", 6);
 		} catch (NoSuchElementException pmc){
-			assertEquals(pmc.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
+			assertEquals(pmc.getMessage(), "Proficiencia Invalida");
 		}
 	}
 	
@@ -86,7 +86,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.getDisciplina(null);
 		} catch (NullPointerException dn){
-			assertEquals(dn.getMessage(), "Erro na recuperação de disciplina: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dn.getMessage(), "Erro na recuperacao de disciplina: Disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.getDisciplina("   ");
 		} catch (IllegalArgumentException dv){
-			assertEquals(dv.getMessage(), "Erro na recuperação de disciplina: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dv.getMessage(), "Erro na recuperacao de disciplina: Disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -104,7 +104,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.getProficiencia(null);
 		} catch (NullPointerException dn){
-			assertEquals(dn.getMessage(), "Erro na recuperação da proficiencia: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dn.getMessage(), "Erro na recuperacao da proficiencia: Disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -113,7 +113,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.getProficiencia("   ");
 		} catch (IllegalArgumentException dv){
-			assertEquals(dv.getMessage(), "Erro na recuperação da proficiencia: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dv.getMessage(), "Erro na recuperacao da proficiencia: Disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -122,7 +122,7 @@ public class TutoriaTest {
 		try {
 			this.tutoria.setProficiencia(null, 3);
 		} catch (NullPointerException dn){
-			assertEquals(dn.getMessage(), "Erro na definicao de papel: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dn.getMessage(), "Erro na definicao da proficiencia: Disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -131,34 +131,37 @@ public class TutoriaTest {
 		try {
 			this.tutoria.setProficiencia("   ", 3);
 		} catch (IllegalArgumentException dv){
-			assertEquals(dv.getMessage(), "Erro na definicao de papel: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dv.getMessage(), "Erro na definicao da proficiencia: Disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
 	@Test
 	public void testeSetProficienciaProficienciaZero() {
 		try {
+			this.tutoria.adicionaDisciplina("Ingles", 2);
 			this.tutoria.setProficiencia("Ingles", 0);
 		} catch (NoSuchElementException pz){
-			assertEquals(pz.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
+			assertEquals(pz.getMessage(), "Erro na definicao da proficiencia: Proficiencia Invalida");
 		}
 	}
 	
 	@Test
 	public void testeSetProficienciaProficienciaMenorZero() {
 		try {
+			this.tutoria.adicionaDisciplina("Ingles", 2);
 			this.tutoria.setProficiencia("Ingles", -2);
 		} catch (NoSuchElementException pmz){
-			assertEquals(pmz.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
+			assertEquals(pmz.getMessage(), "Erro na definicao da proficiencia: Proficiencia Invalida");
 		}
 	}
 	
 	@Test
 	public void testeSetProficienciaProficienciaMaiorCinco() {
 		try {
+			this.tutoria.adicionaDisciplina("Ingles", 2);
 			this.tutoria.setProficiencia("Ingles", 6);
 		} catch (NoSuchElementException pmc){
-			assertEquals(pmc.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
+			assertEquals(pmc.getMessage(), "Erro na definicao da proficiencia: Proficiencia Invalida");
 		}
 	}
 	

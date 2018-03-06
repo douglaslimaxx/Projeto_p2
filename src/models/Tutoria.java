@@ -65,10 +65,23 @@ public class Tutoria {
 	 * @return int referente a proficiencia do tutor na disciplina.
 	 */
 	public int getProficiencia(String disciplina) {
+		if (disciplina == null) {
+			throw new NullPointerException("Erro na recuperacao da proficiencia: Disciplina nao pode ser vazia ou nula");
+		}
+		if (disciplina.trim().equals("")) {
+			throw new IllegalArgumentException("Erro na recuperacao da proficiencia: Disciplina nao pode ser vazia ou nula");
+		}
+		
 		return this.disciplinas.get(disciplina).getProficiencia();
 	}
 
 	public void setProficiencia(String disciplina, int proficiencia) {
+		if (disciplina == null) {
+			throw new NullPointerException("Erro na definicao da proficiencia: Disciplina nao pode ser vazia ou nula");
+		}
+		if (disciplina.trim().equals("")) {
+			throw new IllegalArgumentException("Erro na definicao da proficiencia: Disciplina nao pode ser vazia ou nula");
+		}
 		this.disciplinas.get(disciplina).setProficiencia(proficiencia);
 	}
 
