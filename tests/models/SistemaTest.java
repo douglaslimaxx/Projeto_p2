@@ -113,6 +113,25 @@ public class SistemaTest {
 	}
 	
 	@Test
+	public void testeCadastrarAlunoEmailInvalido5() {
+		try {
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "");
+		} catch (IllegalArgumentException ei) {
+			assertEquals(ei.getMessage(), "Erro no cadastro de aluno: Email invalido");
+		}
+	}
+	@Test
+	public void testeCadastrarAlunoMatriculaJaCadastrada() {
+		try {
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+			this.sistema.cadastrarAluno("Joao", "1111", 2, "4563", "coisinha@poomail.com");
+		} catch (IllegalArgumentException jc) {
+			assertEquals(jc.getMessage(), "Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
+		}
+	}
+	
+	
+	@Test
 	public void testeRecuperaAlunoMatriculaNula() {
 		try {
 			this.sistema.recuperaAluno(null);
@@ -128,6 +147,35 @@ public class SistemaTest {
 		} catch (IllegalArgumentException mv) {
 			assertEquals(mv.getMessage(), "Erro na busca por aluno: Matricula nao pode ser vazia ou nula");
 		}
+	}
+	
+	@Test
+	public void testeRecuperaAlunoNaoCadastrado() {
+		try {
+			this.sistema.recuperaAluno("1112");
+		} catch (NoSuchElementException nc) {
+			assertEquals(nc.getMessage(), "Erro na busca por aluno: Aluno nao encontrado");
+		}
+	}
+	@Test
+	public void testeRecuperaAlunoCorreto() {
+		this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+		String msg = "Representacao desse Aluno deve estar da seguinte forma - '1111 - Douglas - 2 - 9999 - misscoisinha@poomail.com'";
+		assertEquals(msg, "1111 - Douglas - 2 - 9999 - misscoisinha@poomail.com", this.sistema.recuperaAluno("1111"));
+	}
+	
+	@Test
+	public void testeListarAluno() {
+		this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+		this.sistema.cadastrarAluno("Marcella", "2222", 2, "8888", "cella@poomail.com");
+		this.sistema.cadastrarAluno("Marta", "3333", 2, "6363", "martatop@poogmail.com");
+		this.sistema.cadastrarAluno("Gabriel", "0000", 2, "7777", "doritos@poomail.com");
+		String msg = "A lista de alunos, deve ter a representacao textual dos alunos cadastrados, em ordem alfabeticas dos nomes";
+		assertEquals(msg, ("1111 - Douglas - 2 - 9999 - misscoisinha@poomail.com" + System.lineSeparator() +
+						"0000 - Gabriel - 2 - 7777 - doritos@poomail.com" + System.lineSeparator() +
+						"2222 - Marcella - 2 - 8888 - cella@poomail.com" + System.lineSeparator() + 
+						"3333 - Marta - 2 - 6363 - martatop@poogmail.com" + System.lineSeparator()), 
+						this.sistema.listarAlunos());
 	}
 	
 	@Test
@@ -153,7 +201,7 @@ public class SistemaTest {
 		try {
 			this.sistema.getInfoAluno("1111", null);
 		} catch (NullPointerException mn) {
-			assertEquals(mn.getMessage(), "Erro na obtencao de informacao de aluno: Matricula nao pode ser vazia ou nula");
+			assertEquals(mn.getMessage(), "Erro na obtencao de informacao de aluno: Atributo nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -162,7 +210,26 @@ public class SistemaTest {
 		try {
 			this.sistema.getInfoAluno("1111", "   ");
 		} catch (IllegalArgumentException mv) {
-			assertEquals(mv.getMessage(), "Erro na obtencao de informacao de aluno: Matricula nao pode ser vazia ou nula");
+			assertEquals(mv.getMessage(), "Erro na obtencao de informacao de aluno: Atributo nao pode ser vazia ou nula");
+		}
+	}
+	
+	@Test
+	public void testeGetInfoAlunoNaoCadastrado() {
+		try {
+			this.sistema.getInfoAluno("1152", "Nome");
+		} catch (IllegalArgumentException nd) {
+			assertEquals(nd.getMessage(), "Erro na obtencao de informacao de aluno: Aluno nao encontrado");
+		}
+	}
+	
+	@Test
+	public void testeGetInfoAtributoInvalido() {
+		try {
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+			this.sistema.getInfoAluno("1111", "musica favorita");
+		} catch (IllegalArgumentException ai) {
+			assertEquals(ai.getMessage(), "Erro na obtencao de informacao de aluno: Atributo invalido");
 		}
 	}
 	
@@ -231,6 +298,26 @@ public class SistemaTest {
 	}
 	
 	@Test
+	public void testeTornarTutorAlunoNaoCadastrado() {
+		try {
+			this.sistema.tornarTutor("1179", "Ingles", 4);
+		} catch (IllegalArgumentException nc) {
+			assertEquals(nc.getMessage(), "Erro na definicao de papel: Tutor nao encontrado");
+		}
+	}
+	
+	@Test
+	public void testeTornarTutorAlunoJaTutor() {
+		try {
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+			this.sistema.tornarTutor("1111", "p2", 3);
+			this.sistema.tornarTutor("1111", "p2", 3);
+		} catch (IllegalArgumentException jt) {
+			assertEquals(jt.getMessage(), "Erro na definicao de papel: Ja eh tutor dessa disciplina");
+		}
+	}
+	
+	@Test
 	public void testeRecuperaTutorMatriculaNula() {
 		try {
 			this.sistema.recuperaTutor(null);
@@ -247,7 +334,5 @@ public class SistemaTest {
 			assertEquals(mv.getMessage(), "Erro na busca por Tutor: Matricula nao pode ser vazia ou nula");
 		}
 	}
-	
-	
 	
 }
