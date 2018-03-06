@@ -41,9 +41,24 @@ public class ControllerAjuda {
     		throw new IllegalArgumentException("Erro ao tentar recuperar tutor : id nao encontrado");
     	}
     }
-    
+	
     public String getInfoAjuda(int idAjuda, String atributo) {
-    	return "";
+    	if (this.ajudasOnline.containsKey(idAjuda)) {
+    		return this.ajudasOnline.get(idAjuda).getMatriculaTutor();
+    	} else if (this.ajudasPresencial.containsKey(idAjuda)) {
+    		return this.ajudasPresencial.get(idAjuda).getMatriculaTutor();
+    	} if (idAjuda < 0) {
+    		throw new NoSuchElementException("Erro ao tentar recuperar info da ajuda : id nao pode menor que zero");
+    	} else {
+    		throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : id nao encontrado");
+    	} if (idAjuda.equals(null) or idAjuda == " ") {
+    		throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
+    	} else {
+    		throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : atributo nao encontrado");
+    	}	
+    	
     }
+    
+    
 	
 }
