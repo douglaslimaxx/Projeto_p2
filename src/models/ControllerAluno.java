@@ -219,8 +219,8 @@ public class ControllerAluno {
 		this.alunos.get(matriculaTutor).doar(valor);
 	}
 	
-	public void pegarNota(String matriculaTutor) {
-		this.alunos.get(matriculaTutor).getTutoria().getAvaliacao();
+	public double pegarNota(String matriculaTutor) {
+		return this.alunos.get(matriculaTutor).getTutoria().getAvaliacao();
 	}
 	
 	public String pegarNivel(String matriculaTutor) {
@@ -236,8 +236,21 @@ public class ControllerAluno {
 	}
 
 	public String melhorTutor(String disciplina) {
-		
-		return null;
+		String melhorTutor = "";
+		int melhorProficiencia = 0;
+		for (String a : this.alunos.keySet()) {
+			if (this.alunos.get(a).isTutor()) {
+				try {
+					if (this.alunos.get(a).getTutoria().getDisciplina(disciplina).getProficiencia() > melhorProficiencia) {
+						melhorTutor = this.alunos.get(a).getMatricula();
+						melhorProficiencia = this.alunos.get(a).getTutoria().getDisciplina(disciplina).getProficiencia(); 
+					};
+				} catch (NullPointerException nd) {
+					continue;
+				}
+			}
+		}
+		return melhorTutor;
 	}
 	
 }
