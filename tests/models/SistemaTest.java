@@ -335,4 +335,14 @@ public class SistemaTest {
 		}
 	}
 	
+	@Test
+	public void testeRecuperaTutorNaoCadastrado() {
+		try {
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+			this.sistema.recuperaTutor("1111");
+		} catch (IllegalArgumentException nc) {
+			assertEquals(nc.getMessage(), "Erro na busca por tutor: Tutor nao encontrado");
+		}
+	}
+	
 }
