@@ -135,5 +135,48 @@ public class Facade {
 	public int totalDinheiroSistema() {
 		return sistema.totalDinheiroSistema();
 	}
+
+	/**
+	 * @param matrAluno
+	 * @param disciplina
+	 * @param horario
+	 * @param dia
+	 * @param localInteresse
+	 * @return
+	 * @see models.Sistema#pedirAjudaPresencial(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
+		return sistema.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+	}
+
+	/**
+	 * @param matrAluno
+	 * @param disciplina
+	 * @return
+	 * @see models.Sistema#pedirAjudaOnline(java.lang.String, java.lang.String)
+	 */
+	public int pedirAjudaOnline(String matrAluno, String disciplina) {
+		return sistema.pedirAjudaOnline(matrAluno, disciplina);
+	}
+
+	/**
+	 * @param idAjuda
+	 * @return
+	 * @see models.Sistema#pegarTutor(int)
+	 */
+	public String pegarTutor(int idAjuda) {
+		return sistema.pegarTutor(idAjuda);
+	}
+
+	/**
+	 * @param idAjuda
+	 * @param atributo
+	 * @return
+	 * @see models.Sistema#getInfoAjuda(int, java.lang.String)
+	 */
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return sistema.getInfoAjuda(idAjuda, atributo);
+	}
 	
 }
