@@ -21,7 +21,7 @@ public class ControllerAjuda {
     public String pegarTutor(int idAjuda) {
     	if (this.ajudasOnline.containsKey(idAjuda)) {
     		return this.ajudasOnline.get(idAjuda).getMatriculaTutor();
-    	} if else (this.ajudasPresencial.containsKey(idAjuda)) {
+    	} else if (this.ajudasPresencial.containsKey(idAjuda)) {
     		return this.ajudasPresencial.get(idAjuda).getMatriculaTutor();
     	}
     }

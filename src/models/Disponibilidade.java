@@ -17,20 +17,12 @@ public class Disponibilidade {
 	
 	private Set<String> locaisDisponiveis = new HashSet<>();
 	private Map<String, HashSet<String>> horariosDisponiveis = new HashMap<>();
-	private String email;
 	
 /**
  * Constroi a disponibilidade do tutor a partir de seu email.
  * @param email String de email passado pelo tutor.
  */
-	public Disponibilidade(String email) {
-		if (email == null) {
-			throw new NullPointerException("Erro na definicao de papel: email nao pode ser vazio ou nulo");
-		}
-		if (email.trim().equals("")) {
-			throw new IllegalArgumentException("Erro na definicao de papel: email nao pode ser vazio ou nulo");
-		}
-		this.email = email;
+	public Disponibilidade() {
 		this.locaisDisponiveis = new HashSet<>();
 		this.horariosDisponiveis = new HashMap<>();
 		horariosDisponiveis.put("seg", new HashSet<String>());
@@ -49,16 +41,16 @@ public class Disponibilidade {
  */
 	public void cadastrarHorario(String horario, String dia) {
 		if (horario == null) {
-			throw new NullPointerException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+			throw new NullPointerException("horario nao pode ser vazio ou em branco");
 		}
 		if (horario.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("horario nao pode ser vazio ou em branco");
 		}
 		if (dia == null) {
-			throw new NullPointerException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+			throw new NullPointerException("dia nao pode ser vazio ou em branco");
 		}
 		if (dia.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("dia nao pode ser vazio ou em branco");
 		}
 		horariosDisponiveis.get(dia).add(horario);
 	}
@@ -69,10 +61,10 @@ public class Disponibilidade {
  */
 	public void cadastrarLocalDeAtendimento(String local) {
 		if (local == null) {
-			throw new NullPointerException("Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+			throw new NullPointerException("local nao pode ser vazio ou em branco");
 		}
 		if (local.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("local nao pode ser vazio ou em branco");
 		}
 		locaisDisponiveis.add(local);
 	}
@@ -85,16 +77,16 @@ public class Disponibilidade {
  */
 	public boolean consultaHorario(String horario, String dia) {
 		if (horario == null) {
-			throw new NullPointerException("Erro ao consultar horario de atendimento: horario nao pode ser vazio ou em branco");
+			throw new NullPointerException("horario nao pode ser vazio ou em branco");
 		}
 		if (horario.trim().equals("")) {
-			throw new IllegalArgumentException("Erro ao consultar horario de atendimento: horario nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("horario nao pode ser vazio ou em branco");
 		}
 		if (dia == null) {
-			throw new NullPointerException("Erro ao consultar horario de atendimento: dia nao pode ser vazio ou em branco");
+			throw new NullPointerException("dia nao pode ser vazio ou em branco");
 		}
 		if (dia.trim().equals("")) {
-			throw new IllegalArgumentException("Erro ao consultar horario de atendimento: dia nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("dia nao pode ser vazio ou em branco");
 		}
 		boolean consulta = false;
 		if (horariosDisponiveis.containsKey(dia)) {
@@ -113,52 +105,43 @@ public class Disponibilidade {
  */
 	public boolean consultaLocal(String local) {
 		if (local == null) {
-			throw new NullPointerException("Erro ao consultar local de atendimento: local nao pode ser vazio ou em branco");
+			throw new NullPointerException("local nao pode ser vazio ou em branco");
 		}
 		if (local.trim().equals("")) {
-			throw new IllegalArgumentException("Erro ao consultar local de atendimento: local nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("local nao pode ser vazio ou em branco");
 		}
 		return locaisDisponiveis.contains(local);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((horariosDisponiveis == null) ? 0 : horariosDisponiveis.hashCode());
+		result = prime * result + ((locaisDisponiveis == null) ? 0 : locaisDisponiveis.hashCode());
+		return result;
+	}
 	
-
-@Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((email == null) ? 0 : email.hashCode());
-	result = prime * result + ((horariosDisponiveis == null) ? 0 : horariosDisponiveis.hashCode());
-	result = prime * result + ((locaisDisponiveis == null) ? 0 : locaisDisponiveis.hashCode());
-	return result;
-}
-
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Disponibilidade other = (Disponibilidade) obj;
+		if (horariosDisponiveis == null) {
+			if (other.horariosDisponiveis != null)
+				return false;
+		} else if (!horariosDisponiveis.equals(other.horariosDisponiveis))
+			return false;
+		if (locaisDisponiveis == null) {
+			if (other.locaisDisponiveis != null)
+				return false;
+		} else if (!locaisDisponiveis.equals(other.locaisDisponiveis))
+			return false;
 		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Disponibilidade other = (Disponibilidade) obj;
-	if (email == null) {
-		if (other.email != null)
-			return false;
-	} else if (!email.equals(other.email))
-		return false;
-	if (horariosDisponiveis == null) {
-		if (other.horariosDisponiveis != null)
-			return false;
-	} else if (!horariosDisponiveis.equals(other.horariosDisponiveis))
-		return false;
-	if (locaisDisponiveis == null) {
-		if (other.locaisDisponiveis != null)
-			return false;
-	} else if (!locaisDisponiveis.equals(other.locaisDisponiveis))
-		return false;
-	return true;
-}
+	}
 	
-	
-
 }

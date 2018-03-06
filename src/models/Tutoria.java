@@ -31,6 +31,7 @@ public class Tutoria {
 		this.avaliacao = 4;
 		this.quantia = 0;
 		this.disciplinas = new HashMap<>();
+		this.disponibilidade = new Disponibilidade();
 	}
 
 	/**
