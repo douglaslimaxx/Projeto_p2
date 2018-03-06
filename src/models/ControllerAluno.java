@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 /**
  * Essa classe e usada como controlador para a classe alunos.
  * 
@@ -7,11 +9,17 @@ package models;
  */
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ControllerAluno {
 
 	private HashMap<String, Aluno> alunos;
-	
+	private static final String EMAIL_PATTERN = 
+	        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+	        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+	private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
 	/**
 	 * Construtor do Controller, ele cria um HashMap onde os alunos
 	 * serao armazenados.
@@ -30,9 +38,21 @@ public class ControllerAluno {
 	 * @param email String Representa o email do aluno.
 	 */
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
+		if(!validarEmail(email))throw new IllegalArgumentException("Email invalido");
+		if(alunos.containsKey(matricula))throw new IllegalArgumentException("Aluno de mesma matricula ja cadastrado");
 		alunos.put(matricula, new Aluno(nome, matricula, email, telefone, codigoCurso));
 	}
 	
+	/**
+	 * Metodo que verifica se um email e valido para o sistema, ou seja, se existe um "@" e conteudo antes e depois da mesma.
+	 * @return boolean.
+	 */	
+    public static boolean validarEmail(String email){
+        Matcher matcher; 
+        matcher = pattern.matcher(email);
+        return matcher.matches();
+     }
+    
 	/**
 	 * Apos realizar a matricula do aluno para busca-lo, retornara uma
 	 * representacao textual do cadastro do aluno.
@@ -41,6 +61,7 @@ public class ControllerAluno {
 	 */
 	
 	public String recuperaAluno(String matricula) {
+		if(!alunos.containsKey(matricula)) throw new UnsupportedOperationException("Aluno nao encontrado");
 		return alunos.get(matricula).toString();
 	}
 	
@@ -49,9 +70,13 @@ public class ControllerAluno {
 	 * @return String referente a representacao visual dos alunos.
 	 */
 	public String listaAlunos() {
+		//GMB
+		ArrayList<Aluno> alunosOrdenados = new ArrayList<Aluno>();
+		for(Aluno a : alunos.values())alunosOrdenados.add(a);
+		alunosOrdenados.sort((a1, a2) -> a1.getNome().compareTo(a2.getNome()));
 		String ret = "";
 		int qtd = 0;
-		for(Aluno a : alunos.values()) {
+		for(Aluno a : alunosOrdenados) {
 			if(qtd != 0)ret += ", ";
 			ret += a.toString();
 			qtd++;
@@ -67,19 +92,20 @@ public class ControllerAluno {
 	 * @return String representacao textual daquele atributo
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
+		if(!alunos.containsKey(matricula)) throw new UnsupportedOperationException("Aluno nao encontrado");
 		switch(atributo) {
-			case "nome":
+			case "Nome":
 				return alunos.get(matricula).getNome();
-			case "matricula":
+			case "Matricula":
 				return alunos.get(matricula).getMatricula();
-			case "codigoCurso":
+			case "CodigoCurso":
 				return "" + alunos.get(matricula).getCodigoCurso();
-			case "telefone":
+			case "Telefone":
 				return alunos.get(matricula).getTelefone();
-			case "email":
+			case "Email":
 				return alunos.get(matricula).getEmail();
 		}
-		throw new IllegalArgumentException("");
+		throw new IllegalArgumentException("Atributo nao encontrado");
 	}
 	
 	/**

@@ -9,7 +9,8 @@ import static org.junit.Assert.assertEquals;
  *
  */
 public class Sistema {
-
+	
+	
 	private int dinheiroSistema;
 	private ControllerAluno controllerAluno;
 	
@@ -31,9 +32,13 @@ public class Sistema {
 	 * @param email String referente ao email do Aluno.
 	 */
     public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-    	this.controllerAluno.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
+    	try {
+    		this.controllerAluno.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
+    	} catch (Exception e){
+    		throw new IllegalArgumentException("Erro no cadastro de aluno: " + e.getMessage());
+    	}
     }
-    
+	
     /**
      * Metodo retorna a representacao textual do aluno, cuja matrícula sera passada 
      * como parametro.
@@ -41,7 +46,11 @@ public class Sistema {
      * @return String de representacao textual do Aluno.
      */
     public String recuperaAluno(String matricula) {
-    	return this.controllerAluno.recuperaAluno(matricula);
+    	try {
+    		return this.controllerAluno.recuperaAluno(matricula);
+    	}catch(Exception e) {
+    		throw new IllegalArgumentException("Erro na busca por aluno: " + e.getMessage());
+    	}
     }
     
     /**
@@ -60,7 +69,11 @@ public class Sistema {
      * @return 
      */
     public String getInfoAluno(String matricula, String atributo) {
-    	return this.controllerAluno.getInfoAluno(matricula, atributo);
+    	try {
+    		return this.controllerAluno.getInfoAluno(matricula, atributo);
+    	}catch (Exception e) {
+    		throw new IllegalArgumentException("Erro na obtencao de informacao de aluno: " + e.getMessage());
+    	}
     }
     
    /**

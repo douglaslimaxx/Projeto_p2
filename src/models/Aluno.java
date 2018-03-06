@@ -1,8 +1,5 @@
 package models;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 /**
  * Cria uma classe aluno atraves de sua matricula, nome, telefone e codigo de curso e email.
@@ -26,42 +23,16 @@ public class Aluno {
 	 * @param codigoCurso int que representa o codigo do curso do Aluno.
 	 */
 	public Aluno(String nome, String matricula, String email, String telefone, int codigoCurso) {
-		entradaValida(nome);
-		entradaValida(matricula);
-		entradaValida(telefone);
+		if(nome == null || nome.trim().equals(""))throw new NullPointerException("Nome nao pode ser vazio ou nulo");
+		if(matricula == null || matricula.trim().equals(""))throw new NullPointerException("Matricula nao pode ser vazio ou nulo");
 		
+		this.email = email;
 		this.nome = nome;
 		this.matricula = matricula;
 		this.telefone = telefone;
 		this.codigoCurso = codigoCurso;
 		this.tutoria = new Tutoria();
 		
-	}
-	
-	/**
-	 * Metodo que retorna se as entradas sao validas.
-	 * @return void.
-	 */		
-	private void entradaValida(String entrada){
-        if(entrada == null)throw new NullPointerException("Parâmetro null!");
-        if(entrada.trim().equals("")) throw new IllegalArgumentException("Entrada vazia!");
-    }
-	
-	/**
-	 * Metodo que verifica se um email e valido para o sistema, ou seja, se existe um "@" e conteudo antes e depois da mesma.
-	 * @return boolean.
-	 */	
-	public static boolean validaEmail(String email) {
-		boolean emailValido = false;
-		if (email != null && email.length() > 0 ) {
-			
-			Pattern pattern = Pattern.compile("*@*");
-			Matcher matcher = pattern.matcher(email);
-			if (matcher.find()) {
-				emailValido = true;				
-			}
-		}
-		return emailValido;
 	}
 	
 	/**
