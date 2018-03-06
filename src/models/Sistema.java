@@ -84,7 +84,11 @@ public class Sistema {
      * @return 
      */
     public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-    	this.controllerAluno.tornaTutor(matricula, disciplina, proficiencia);
+    	try {
+    		this.controllerAluno.tornaTutor(matricula, disciplina, proficiencia);
+    	}catch (Exception e) {
+    		throw new IllegalArgumentException("Erro na definicao de papel: " + e.getMessage());
+    	}
     }
     
    /**
@@ -93,7 +97,11 @@ public class Sistema {
      * @return
      */
     public String recuperaTutor(String matricula) {
-    	return this.controllerAluno.recuperaTutor(matricula);
+    	try {
+    		return this.controllerAluno.recuperaTutor(matricula);
+    	}catch (Exception e) {
+    		throw new IllegalArgumentException("Erro na busca por tutor: " + e.getMessage());
+    	}
     }
     
    /**
@@ -101,7 +109,7 @@ public class Sistema {
      * @return lista de tutores.
      */
     public String listarTutores() {
-    	return this.listarTutores();
+    	return this.controllerAluno.listaTutores();
     }
     
    /**

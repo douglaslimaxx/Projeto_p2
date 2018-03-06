@@ -116,6 +116,7 @@ public class ControllerAluno {
 	 * @param proficiencia int respectivo ao nivel de proficiencia daquele aluno naquela disciplina
 	 */
 	public void tornaTutor(String matricula, String disciplina, int proficiencia) {
+		if(!alunos.containsKey(matricula)) throw new UnsupportedOperationException("Tutor nao encontrado");
 		alunos.get(matricula).tornaTutor(disciplina, proficiencia);
 	}
 	
@@ -126,8 +127,9 @@ public class ControllerAluno {
 	 * @return String que representa um tutor de forma textual.
 	 */
 	public String recuperaTutor(String matricula) {
+		if(!alunos.containsKey(matricula)) throw new UnsupportedOperationException("Tutor nao encontrado");
 		if(alunos.get(matricula).isTutor()) return alunos.get(matricula).toString();
-		throw new IllegalArgumentException("");
+		throw new IllegalArgumentException("Tutor nao encontrado");
 	}
 	
 	private Aluno alunoPorEmail(String email) {

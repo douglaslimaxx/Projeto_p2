@@ -44,7 +44,7 @@ public class Tutoria {
 	 */
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
 		if (this.disciplinas.containsKey(disciplina)) {
-			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
+			throw new IllegalArgumentException("Ja eh tutor dessa disciplina");
 		}
 		this.disciplinas.put(disciplina, new Disciplina(disciplina, proficiencia));
 	}
@@ -65,10 +65,23 @@ public class Tutoria {
 	 * @return int referente a proficiencia do tutor na disciplina.
 	 */
 	public int getProficiencia(String disciplina) {
+		if (disciplina == null) {
+			throw new NullPointerException("Disciplina nao pode ser vazia ou nula");
+		}
+		if (disciplina.trim().equals("")) {
+			throw new IllegalArgumentException("Disciplina nao pode ser vazia ou nula");
+		}
+		
 		return this.disciplinas.get(disciplina).getProficiencia();
 	}
 
 	public void setProficiencia(String disciplina, int proficiencia) {
+		if (disciplina == null) {
+			throw new NullPointerException("Disciplina nao pode ser vazia ou nula");
+		}
+		if (disciplina.trim().equals("")) {
+			throw new IllegalArgumentException("Disciplina nao pode ser vazia ou nula");
+		}
 		this.disciplinas.get(disciplina).setProficiencia(proficiencia);
 	}
 

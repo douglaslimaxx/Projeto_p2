@@ -33,6 +33,11 @@ public class Disponibilidade {
 		this.email = email;
 		this.locaisDisponiveis = new HashSet<>();
 		this.horariosDisponiveis = new HashMap<>();
+		horariosDisponiveis.put("seg", new HashSet<String>());
+		horariosDisponiveis.put("ter", new HashSet<String>());
+		horariosDisponiveis.put("qua", new HashSet<String>());
+		horariosDisponiveis.put("qui", new HashSet<String>());
+		horariosDisponiveis.put("sex", new HashSet<String>());
 	}
 	
 /**

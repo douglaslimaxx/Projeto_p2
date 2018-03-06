@@ -141,7 +141,19 @@ public class DisponibilidadeTest {
 			assertEquals(rg.getMessage(), "Erro ao consultar local de atendimento: local nao pode ser vazio ou em branco");
 		}
 	}
+	
+	@Test
+	public void testeConsultaHorario() {
+		this.disponibilidade.cadastrarHorario("15:00", "seg");
+		assertTrue(this.disponibilidade.consultaHorario("15:00", "seg"));
+	}
 
+	
+	@Test
+	public void testeConsultaLocal() {
+		this.disponibilidade.cadastrarLocalDeAtendimento("caa");
+		assertTrue(this.disponibilidade.consultaLocal("caa"));
+	}
 	
 	
 
