@@ -2,6 +2,12 @@ package models;
 
 import java.util.NoSuchElementException;
 
+/**
+ * Cria uma classe Disciplina //TODO
+ * @author 
+ *
+ */
+
 public class Disciplina {
 	
 	private String disciplina;
@@ -24,6 +30,10 @@ public class Disciplina {
 		this.proficiencia = proficiencia;
 	}
 	
+	/**
+	 * Metodo que retorna a proficiencia do tutor naquela disciplina.
+	 * @return int.
+	 */
 	public int getProficiencia() {
 		return this.proficiencia;
 	}
@@ -48,6 +58,7 @@ public class Disciplina {
 		return result;
 	}
 
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
