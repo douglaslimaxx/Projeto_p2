@@ -235,14 +235,16 @@ public class ControllerAluno {
 		return nivel;
 	}
 
-	public String melhorTutor(String disciplina) {
-		String melhorTutor = "";
+	public Aluno melhorTutor(String disciplina) {
+		// mudar para comparator
+		
+		Aluno melhorTutor = null;
 		int melhorProficiencia = 0;
 		for (String a : this.alunos.keySet()) {
 			if (this.alunos.get(a).isTutor()) {
 				try {
 					if (this.alunos.get(a).getTutoria().getDisciplina(disciplina).getProficiencia() > melhorProficiencia) {
-						melhorTutor = this.alunos.get(a).getMatricula();
+						melhorTutor = this.alunos.get(a);
 						melhorProficiencia = this.alunos.get(a).getTutoria().getDisciplina(disciplina).getProficiencia(); 
 					};
 				} catch (NullPointerException nd) {

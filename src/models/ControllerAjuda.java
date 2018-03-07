@@ -10,7 +10,7 @@ public class ControllerAjuda {
 	private Map<Integer, AjudaPresencial> ajudasPresencial = new HashMap<>();
 	private int numeroAjudas = 0;
 	
-    public int pedirAjudaPresencial (String matrAluno, String disciplina, String tutor, String horario, String dia, String localInteresse) {
+    public int pedirAjudaPresencial (String matrAluno, String disciplina, Aluno tutor, String horario, String dia, String localInteresse) {
     	try{
     		this.ajudasPresencial.put(this.ajudasPresencial.size(), new AjudaPresencial(matrAluno, disciplina, tutor, horario, dia, localInteresse));
     	} catch (Exception e) {
@@ -20,7 +20,7 @@ public class ControllerAjuda {
     	return this.numeroAjudas;
     }
     
-    public int pedirAjudaOnline (String matrAluno, String disciplina, String tutor) {
+    public int pedirAjudaOnline (String matrAluno, String disciplina, Aluno tutor) {
     	try{
     		this.ajudasOnline.put(this.ajudasOnline.size(), new AjudaOnline(matrAluno, disciplina, tutor));
     	} catch (Exception e) {
@@ -32,9 +32,9 @@ public class ControllerAjuda {
     
     public String pegarTutor(int idAjuda) {
     	if (this.ajudasOnline.containsKey(idAjuda)) {
-    		return this.ajudasOnline.get(idAjuda).getMatriculaTutor();
+    		return this.ajudasOnline.get(idAjuda).getTutor().toString();
     	} else if (this.ajudasPresencial.containsKey(idAjuda)) {
-    		return this.ajudasPresencial.get(idAjuda).getMatriculaTutor();
+    		return this.ajudasPresencial.get(idAjuda).getTutor().toString();
     	} if (idAjuda < 0) {
     		throw new NoSuchElementException("Erro ao tentar recuperar tutor : id nao pode menor que zero");
     	} else {
@@ -55,7 +55,7 @@ public class ControllerAjuda {
     	if (this.ajudasOnline.containsKey(idAjuda)) {
     		switch (atributo) {
     		case "tutor":
-    			this.ajudasOnline.get(idAjuda).getMatriculaTutor();
+    			this.ajudasOnline.get(idAjuda).getTutor().toString();
     		case "disciplina":
     			this.ajudasOnline.get(idAjuda).getDisciplina();
     		case "aluno":
@@ -64,7 +64,7 @@ public class ControllerAjuda {
     	} else if (this.ajudasPresencial.containsKey(idAjuda)) {
     		switch (atributo) {
     		case "tutor":
-    			this.ajudasPresencial.get(idAjuda).getMatriculaTutor();
+    			this.ajudasPresencial.get(idAjuda).getTutor().toString();
     		case "disciplina":
     			this.ajudasPresencial.get(idAjuda).getDisciplina();
     		case "aluno":
