@@ -6,7 +6,7 @@ public class AjudaPresencial extends AjudaOnline{
 	private String dia;
 	private String local;
 	
-	public AjudaPresencial(String aluno, String disciplina, String tutor, String horario, String dia, String localInteresse) {
+	public AjudaPresencial(String aluno, String disciplina, Aluno tutor, String horario, String dia, String localInteresse) {
 		super(aluno, disciplina, tutor);
 		if (horario == null) {
 			throw new NullPointerException("horario nao pode ser vazio ou em branco");

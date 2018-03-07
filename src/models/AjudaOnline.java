@@ -11,7 +11,7 @@ public class AjudaOnline {
 
 	private String matriculaAluno;
 	private String disciplina;
-	private String matriculaTutor;
+	private Aluno Tutor;
 	
 	/**
 	 * Metodo que cadrasta o pedido de ajuda online dos alunos a partir dos parametros 
@@ -19,9 +19,9 @@ public class AjudaOnline {
 	 * 
 	 * @param aluno String que representa o aluno que pediu ajuda.
 	 * @param disciplina String que representa a disciplina.
-	 * @param tutor String que representa o tutor.
+	 * @param tutor2 String que representa o tutor.
 	 */	
-	public AjudaOnline(String aluno, String disciplina, String tutor) {
+	public AjudaOnline(String aluno, String disciplina, Aluno tutor2) {
 		if (aluno == null) {
 			throw new NullPointerException("matricula de aluno nao pode ser vazio ou em branco");
 		} 
@@ -36,7 +36,7 @@ public class AjudaOnline {
 		}
 		this.matriculaAluno = aluno;
 		this.disciplina = disciplina;
-		this.matriculaTutor = tutor;
+		this.Tutor = tutor2;
 	}
        /**
 	 * Metodo que retorna a matricula do aluno.
@@ -58,8 +58,8 @@ public class AjudaOnline {
 	 * Metodo que retorna a matricula do tutor.
 	 * @return String.
 	 */
-	public String getMatriculaTutor() {
-		return matriculaTutor;
+	public Aluno getTutor() {
+		return Tutor;
 	}
 	
 }
