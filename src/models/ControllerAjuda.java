@@ -49,20 +49,35 @@ public class ControllerAjuda {
     	if (idAjuda < 0) {
     		throw new NoSuchElementException("Erro ao tentar recuperar info da ajuda : id nao pode menor que zero");
     	}
-    	
-    	
-		return ""; 
-    	
-    	/**if (idAjuda < 0) {
-    		throw new NoSuchElementException("Erro ao tentar recuperar info da ajuda : id nao pode menor que zero");
-    	} else {
-    		throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : id nao encontrado");
-    	} if (atributo == null || atributo.trim().equals("")) {
+    	if (atributo == null || atributo.trim().equals("")) {
     		throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
-    	} else {
-    		throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : atributo nao encontrado");
-    	}	*/
-    	
+    	}
+    	if (this.ajudasOnline.containsKey(idAjuda)) {
+    		switch (atributo) {
+    		case "tutor":
+    			this.ajudasOnline.get(idAjuda).getMatriculaTutor();
+    		case "disciplina":
+    			this.ajudasOnline.get(idAjuda).getDisciplina();
+    		case "aluno":
+    			this.ajudasOnline.get(idAjuda).getMatriculaAluno();
+    		}   
+    	} else if (this.ajudasPresencial.containsKey(idAjuda)) {
+    		switch (atributo) {
+    		case "tutor":
+    			this.ajudasPresencial.get(idAjuda).getMatriculaTutor();
+    		case "disciplina":
+    			this.ajudasPresencial.get(idAjuda).getDisciplina();
+    		case "aluno":
+    			this.ajudasPresencial.get(idAjuda).getMatriculaAluno();
+    		case "horario":
+    			this.ajudasPresencial.get(idAjuda).getHorario();
+    		case "dia":
+    			this.ajudasPresencial.get(idAjuda).getDia();
+    		case "local":
+    			this.ajudasPresencial.get(idAjuda).getLocal();
+    		}
+    	} 
+    	throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : atributo nao encontrado");
     }
     
     
