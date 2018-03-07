@@ -1,11 +1,26 @@
 package models;
 
+/**
+ * Cria uma classe AjudaOnline que, atraves da disciplina, matriculaAluno e matriculaTutor, cadastra
+ * pedidos de ajudas online.
+ * @author 
+ *
+ */
+
 public class AjudaOnline {
 
 	private String matriculaAluno;
 	private String disciplina;
 	private String matriculaTutor;
 	
+	/**
+	 * Metodo que cadrasta o pedido de ajuda online dos alunos a partir dos parametros 
+	 * aluno, disciplina e tutor.
+	 * 
+	 * @param aluno String que representa o aluno que pediu ajuda.
+	 * @param disciplina String que representa a disciplina.
+	 * @param tutor String que representa o tutor.
+	 */	
 	public AjudaOnline(String aluno, String disciplina, String tutor) {
 		if (aluno == null) {
 			throw new NullPointerException("matricula de aluno nao pode ser vazio ou em branco");
@@ -23,18 +38,28 @@ public class AjudaOnline {
 		this.disciplina = disciplina;
 		this.matriculaTutor = tutor;
 	}
-
+       /**
+	 * Metodo que retorna a matricula do aluno.
+	 * @return String.
+	 */
 	public String getMatriculaAluno() {
 		return matriculaAluno;
 	}
 
+	/**
+	 * Metodo que retorna a disciplina.
+	 * @return String.
+	 */
 	public String getDisciplina() {
 		return disciplina;
 	}
 
+	/**
+	 * Metodo que retorna a matricula do tutor.
+	 * @return String.
+	 */
 	public String getMatriculaTutor() {
 		return matriculaTutor;
 	}
-	
 	
 }
