@@ -13,25 +13,7 @@ public class DisponibilidadeTest {
 	
 	@Before
 	public void setUp() {
-		disponibilidade = new Disponibilidade("algumnome@email.com");
-	}
-
-	@Test
-	public void testeEmailNulo() {
-		try {
-			disponibilidade = new Disponibilidade(null);
-		} catch (NullPointerException ms) {
-			assertEquals(ms.getMessage(), "Erro na definicao de papel: email nao pode ser vazio ou nulo");
-		}
-	}
-
-	@Test
-	public void testeEmailVazio() {
-		try {
-			disponibilidade = new Disponibilidade("   ");
-		} catch (IllegalArgumentException ma) {
-			assertEquals(ma.getMessage(), "Erro na definicao de papel: email nao pode ser vazio ou nulo");
-		}
+		disponibilidade = new Disponibilidade();
 	}
 	
 	@Test
