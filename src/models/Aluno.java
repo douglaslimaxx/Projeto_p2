@@ -12,6 +12,7 @@ public class Aluno {
 	private int codigoCurso;
 	private String matricula, nome, telefone, email;
 	private Tutoria tutoria;
+	private int cadastro;
 	
 	/**
 	 * Metodo que constroi um objeto do tipo Aluno a partir dos parametros 
@@ -23,7 +24,7 @@ public class Aluno {
 	 * @param telefone String que representa o telefone do Aluno.
 	 * @param codigoCurso int que representa o codigo do curso do Aluno.
 	 */
-	public Aluno(String nome, String matricula, String email, String telefone, int codigoCurso) {
+	public Aluno(String nome, String matricula, String email, String telefone, int codigoCurso, int cadastro) {
 		if(nome == null || nome.trim().equals(""))throw new NullPointerException("Nome nao pode ser vazio ou nulo");
 		if(matricula == null || matricula.trim().equals(""))throw new NullPointerException("Matricula nao pode ser vazio ou nulo");
 		
@@ -33,6 +34,7 @@ public class Aluno {
 		this.telefone = telefone;
 		this.codigoCurso = codigoCurso;
 		this.tutoria = new Tutoria();
+		this.cadastro = cadastro;
 		
 	}
 	
@@ -159,6 +161,11 @@ public class Aluno {
 
 	public void doar(int valor) {
 		this.tutoria.doar(valor);
+	}
+
+	public int getCadastro() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
