@@ -1,7 +1,5 @@
 package models;
 
-import static org.junit.Assert.assertEquals;
-
 /**
  * Representa um Sistema de tutorias, onde alunos podem encontrar tutores que ensinam 
  * certas disciplinas, e tambem podem se tornar tutores de algumas disciplinas.
@@ -193,7 +191,7 @@ public class Sistema {
 
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
-		return controllerAjuda.pedirAjudaPresencial(matrAluno, disciplina, this.controllerAluno.melhorTutor(disciplina), horario, dia, localInteresse);
+		return controllerAjuda.pedirAjudaPresencial(matrAluno, disciplina, this.controllerAluno.melhorTutor(disciplina, horario, dia, localInteresse), horario, dia, localInteresse);
 	}
 
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {

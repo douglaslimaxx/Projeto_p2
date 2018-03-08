@@ -36,19 +36,20 @@ public class ControllerAjuda {
     	} else if (this.ajudasPresencial.containsKey(idAjuda)) {
     		return this.ajudasPresencial.get(idAjuda).getTutor().toString();
     	} if (idAjuda < 0) {
-    		throw new NoSuchElementException("Erro ao tentar recuperar tutor : id nao pode menor que zero");
+    		throw new NoSuchElementException("Erro ao tentar recuperar tutor : id nao pode menor que zero ");
     	} else {
-    		throw new IllegalArgumentException("Erro ao tentar recuperar tutor : id nao encontrado");
+    		throw new IllegalArgumentException("Erro ao tentar recuperar tutor : id nao encontrado ");
     	}
     }
 	
     public String getInfoAjuda(int idAjuda, String atributo) {
-    	if (!(this.ajudasOnline.containsKey(idAjuda) || this.ajudasPresencial.containsKey(idAjuda))){
-    		throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : id nao encontrado");
-    	}
     	if (idAjuda < 0) {
     		throw new NoSuchElementException("Erro ao tentar recuperar info da ajuda : id nao pode menor que zero");
     	}
+    	if (!(this.ajudasOnline.containsKey(idAjuda) || this.ajudasPresencial.containsKey(idAjuda))){
+    		throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : id nao encontrado ");
+    	}
+   
     	if (atributo == null || atributo.trim().equals("")) {
     		throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
     	}

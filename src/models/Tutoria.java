@@ -218,4 +218,8 @@ public class Tutoria {
 		this.dinheiroTutor += valor;
 	}
 
+	public boolean contemDisciplina(String disciplina) {
+		return this.disciplinas.containsKey(disciplina);
+	}
+
 }
