@@ -20,8 +20,8 @@ public class AlunoTest {
 	
 	@Before
 	public void setup() {
-		aluno1 = new Aluno("Florence", "123123", "florence@maquina.com", "6543-2123", 14);
-		aluno2 = new Aluno("Aurora", "321321", "aurora@fada.com", "1234-8765", 18);
+		aluno1 = new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", 65, 14);
+		aluno2 = new Aluno("Aurora", "111610", "aurora@fada.com", "3312-6000", 12, 18);
 	}
 	
 	@Test
@@ -36,14 +36,14 @@ public class AlunoTest {
 	@Test
 	public void testaNullVazioNome() {
 		try {
-			new Aluno(null, "123123", "florence@maquina.com", "6543-2123", 14);
+			new Aluno(null, "117110", "florence@maquina.com", "3321-3456", 65, 14);
 			fail("aluno com nome null cadastrado");
 		} catch (NullPointerException e) {
 			//funcionando
 		}
 		
 		try {
-			new Aluno("   ", "123123", "florence@maquina.com", "6543-2123", 14);
+			new Aluno("    ", "117110", "florence@maquina.com", "3321-3456", 65, 14);
 			fail("aluno com nome vazio cadastrado");
 		} catch (IllegalArgumentException e) {
 			//funcionando
@@ -53,14 +53,14 @@ public class AlunoTest {
 	@Test
 	public void testaNullVazioMatricula() {
 		try {
-			new Aluno("Florence", null, "florence@maquina.com", "6543-2123", 14);
+			new Aluno("Florence", null, "florence@maquina.com", "3321-3456", 65, 14);
 			fail("aluno com matricula null cadastrado");
 		} catch (NullPointerException e) {
 			//funcionando
 		}
 		
 		try {
-			new Aluno("Florence", " ", "florence@maquina.com", "6543-2123", 14);
+			new Aluno("Florence", "   ", "florence@maquina.com", "3321-3456", 65, 14);
 			fail("aluno com matricula vazio cadastrado");
 		} catch (IllegalArgumentException e) {
 			//funcionando
@@ -70,14 +70,14 @@ public class AlunoTest {
 	@Test
 	public void testaNullVazioEmail() {
 		try {
-			new Aluno("Florence", "123123", null, "6543-2123", 14);
+			new Aluno("Florence", "117110", null, "3321-3456", 65, 14);
 			fail("aluno com email null cadastrado");
 		} catch (NullPointerException e) {
 			//funcionando
 		}
 		
 		try {
-			new Aluno("Florence", "123123", " ", "6543-2123", 14);
+			new Aluno("Florence", "117110", "    ", "3321-3456", 65, 14);
 			fail("aluno com email vazio cadastrado");
 		} catch (IllegalArgumentException e) {
 			//funcionando
@@ -92,14 +92,14 @@ public class AlunoTest {
 	@Test
 	public void testaNullVazioTelefone() {
 		try {
-			new Aluno("Florence", "123123", "florence@maquina.com", null, 14);
+			new Aluno("Florence", "117110", "florence@maquina.com", null, 65, 14);
 			fail("aluno com telefone null cadastrado");
 		} catch (NullPointerException e) {
 			//funcionando
 		}
 		
 		try {
-			new Aluno("Florence", "123123", "florence@maquina.com", " ", 14);
+			new Aluno("Florence", "117110", "florence@maquina.com", "    ", 65, 14);
 			fail("aluno com nome vazio cadastrado");
 		} catch (IllegalArgumentException e) {
 			//funcionando
@@ -108,7 +108,7 @@ public class AlunoTest {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testaCodigoNegativo() {
-		new Aluno("Florence", "123123", "florence@maquina.com", "6543-2123", -23);
+		new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", -65, 14);
 	}
 	
 	@Test
