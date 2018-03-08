@@ -238,39 +238,45 @@ public class ControllerAluno {
 	}
 
 	public Aluno melhorTutor(String disciplina) {
-		// mudar para comparator
-
-		List<Aluno> tutoresParaAjuda = new ArrayList<>();
-		tutoresParaAjuda.addAll(this.alunos.values());
-		tutoresParaAjuda = tutoresParaAjuda.stream().filter((Aluno t) -> t.isTutor() == true)
+		List<Aluno> tutores = new ArrayList<>();
+		tutores.addAll(this.alunos.values());
+		tutores = tutores.stream().filter((Aluno t) -> t.isTutor() == true)
 				.collect(Collectors.toList());
-		tutoresParaAjuda = tutoresParaAjuda.stream().filter((Aluno t) -> t.getTutoria().contemDisciplina(disciplina) == true)
+		tutores = tutores.stream().filter((Aluno t) -> t.getTutoria().contemDisciplina(disciplina) == true)
 				.collect(Collectors.toList());
-		ProficienciaComparator proficienciaComparator = new ProficienciaComparator();
-		tutoresParaAjuda.sort(proficienciaComparator);
-		if (tutoresParaAjuda.size() != 0) {
-			return tutoresParaAjuda.get(0);
+		if (tutores.size() != 0) {
+			return this.compareTutor(tutores, disciplina);
 		}
 		return null;
 	}
 	
 	public Aluno melhorTutor(String disciplina, String horario, String dia, String local) {
-		List<Aluno> tutoresParaAjuda = new ArrayList<>();
-		tutoresParaAjuda.addAll(this.alunos.values());
-		tutoresParaAjuda = tutoresParaAjuda.stream().filter((Aluno t) -> t.isTutor() == true)
+		List<Aluno> tutores = new ArrayList<>();
+		tutores.addAll(this.alunos.values());
+		tutores = tutores.stream().filter((Aluno t) -> t.isTutor() == true)
 				.collect(Collectors.toList());
-		tutoresParaAjuda = tutoresParaAjuda.stream().filter((Aluno t) -> t.getTutoria().contemDisciplina(disciplina) == true)
+		tutores = tutores.stream().filter((Aluno t) -> t.getTutoria().contemDisciplina(disciplina) == true)
 				.collect(Collectors.toList());
-		tutoresParaAjuda = tutoresParaAjuda.stream().filter((Aluno t) -> t.getTutoria().consultaHorario(horario, dia) == true)
+		tutores = tutores.stream().filter((Aluno t) -> t.getTutoria().consultaHorario(horario, dia) == true)
 				.collect(Collectors.toList());
-		tutoresParaAjuda = tutoresParaAjuda.stream().filter((Aluno t) -> t.getTutoria().consultaLocal(local) == true)
+		tutores = tutores.stream().filter((Aluno t) -> t.getTutoria().consultaLocal(local) == true)
 				.collect(Collectors.toList());
-		ProficienciaComparator proficienciaComparator = new ProficienciaComparator();
-		tutoresParaAjuda.sort(proficienciaComparator);
-		if (tutoresParaAjuda.size() != 0) {
-			return tutoresParaAjuda.get(0);
+		if (tutores.size() != 0) {
+			return this.compareTutor(tutores, disciplina);
 		}
 		return null;
 	}
 	
+	
+	private Aluno compareTutor(List<Aluno> tutoresParaAjuda, String disciplina) {
+		Aluno melhorTutor = null;
+		int melhorProficiencia = 0;
+		for (Aluno a : tutoresParaAjuda) {
+			if (a.getTutoria().getDisciplina(disciplina).getProficiencia() > melhorProficiencia) {
+				melhorTutor = a;
+				melhorProficiencia = a.getTutoria().getDisciplina(disciplina).getProficiencia(); 
+			}
+		}
+		return melhorTutor;
+	}
 }
