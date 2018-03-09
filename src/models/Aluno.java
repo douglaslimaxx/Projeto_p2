@@ -163,26 +163,26 @@ public class Aluno {
 
 	public void cadastrarHorario(String horario, String dia) {
 		if (horario == null) {
-			throw new NullPointerException("horario nao pode ser vazio ou nulo");
+			throw new NullPointerException("horario nao pode ser vazio ou em branco");
 		}
 		if (horario.trim().equals("")) {
-			throw new IllegalArgumentException("horario nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException("horario nao pode ser vazio ou em branco");
 		}
 		if (dia == null) {
-			throw new NullPointerException("horario nao pode ser vazio ou nulo");
+			throw new NullPointerException("dia nao pode ser vazio ou em branco");
 		}
 		if (dia.trim().equals("")) {
-			throw new IllegalArgumentException("dia nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException("dia nao pode ser vazio ou em branco");
 		}
 		tutoria.cadastrarHorario(horario, dia);
 	}
 
 	public void cadastrarLocalDeAtendimento(String local) {
 		if (local == null) {
-			throw new NullPointerException("local nao pode ser vazio ou nulo");
+			throw new NullPointerException("local nao pode ser vazio ou em branco");
 		}
 		if (local.trim().equals("")) {
-			throw new IllegalArgumentException("local nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException("local nao pode ser vazio ou em branco");
 		}
 		tutoria.cadastrarLocalDeAtendimento(local);
 	}

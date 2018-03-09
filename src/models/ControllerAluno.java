@@ -1,6 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 
 /**
  * Essa classe e usada como controlador para a classe alunos.
@@ -22,12 +24,15 @@ public class ControllerAluno {
 	        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+	
+	private Comparator comparador;
 	/**
 	 * Construtor do Controller, ele cria um HashMap onde os alunos
 	 * serao armazenados.
 	 */
 	public ControllerAluno() {
 		alunos = new HashMap<String, Aluno>();
+		this.comparador = new NomeComparador();
 	}
 	
 	/**
@@ -150,8 +155,12 @@ public class ControllerAluno {
 	public String listaTutores() {
 		String ret = "";
 		int qtd = 0;
-		for(Aluno a : alunos.values()) {
-			if(!a.isTutor())continue;
+		List<Aluno> tutoresOrdenados = new ArrayList<Aluno>();
+		tutoresOrdenados.addAll(alunos.values());
+		tutoresOrdenados = tutoresOrdenados.stream().filter((Aluno t) -> t.isTutor() == true)
+				.collect(Collectors.toList());
+		tutoresOrdenados.sort(comparador);
+		for(Aluno a : tutoresOrdenados) {
 			if(qtd != 0)ret += ", ";
 			ret += a.toString();
 			qtd++;
@@ -278,5 +287,18 @@ public class ControllerAluno {
 			}
 		}
 		return melhorTutor;
+	}
+	
+	public void configurarOrdem(String atributo) {
+		switch (atributo) {
+		case "NOME":
+			this.comparador = new NomeComparador();
+		case "EMAIL":
+			this.comparador = new EmailComparador();
+		case "MATRICULA":
+			this.comparador = new MatriculaComparador();
+		default:
+			throw new IllegalArgumentException("Erro na configuracao da ordem: Atributo invalido");
+		}
 	}
 }
