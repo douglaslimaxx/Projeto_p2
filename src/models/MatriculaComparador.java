@@ -2,6 +2,11 @@ package models;
 
 import java.util.Comparator;
 
+/**
+ * 
+ * @author Douglas Lima
+ *
+ */
 public class MatriculaComparador implements Comparator<Aluno>{
 
 	@Override
