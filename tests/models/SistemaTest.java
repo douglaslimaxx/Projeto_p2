@@ -210,7 +210,7 @@ public class SistemaTest {
 		try {
 			this.sistema.getInfoAluno("1111", "   ");
 		} catch (IllegalArgumentException mv) {
-			assertEquals(mv.getMessage(), "Erro na obtencao de informacao de aluno: Atributo nao pode ser vazia ou nula");
+			assertEquals(mv.getMessage(), "Erro na obtencao de informacao de aluno: Atributo nao pode ser vazio ou nulo");
 		}
 	}
 	
@@ -344,5 +344,7 @@ public class SistemaTest {
 			assertEquals(nc.getMessage(), "Erro na busca por tutor: Tutor nao encontrado");
 		}
 	}
+	
+	
 	
 }

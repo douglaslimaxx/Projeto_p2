@@ -3,7 +3,7 @@ package models;
 /**
  * Cria uma classe AjudaOnline que, atraves da disciplina, matriculaAluno e matriculaTutor, cadastra
  * pedidos de ajudas online.
- * @author 
+ * @author Douglas Lima 
  *
  */
 

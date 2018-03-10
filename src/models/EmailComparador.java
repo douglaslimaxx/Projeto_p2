@@ -2,6 +2,11 @@ package models;
 
 import java.util.Comparator;
 
+/**
+ * 
+ * @author Douglas Lima
+ *
+ */
 public class EmailComparador implements Comparator<Aluno>{
 
 	@Override

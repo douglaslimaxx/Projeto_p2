@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+/**
+ * 
+ * @author Douglas Lima
+ *
+ */
 public class ControllerAjuda {
 
 	private Map<Integer, AjudaOnline> ajudasOnline = new HashMap<>();

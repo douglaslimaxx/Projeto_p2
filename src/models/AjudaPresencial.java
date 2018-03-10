@@ -1,5 +1,10 @@
 package models;
 
+/**
+ * 
+ * @author Douglas Lima
+ *
+ */
 public class AjudaPresencial extends AjudaOnline{
 
 	private String horario;
