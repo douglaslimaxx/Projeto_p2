@@ -103,7 +103,7 @@ public class Aluno {
 	}
 	
 	
-        /**
+    /**
 	 * Metodo que retorna o formato de impressao do aluno.
 	 * O telefone e opcional.
 	 * @return toString de saida do Aluno.
@@ -125,6 +125,12 @@ public class Aluno {
 		return this.tutoria.isTutor();
 	}
 	
+	/**
+	 * Metodo que adiciona disciplina.
+	 * @param disciplina String que representa a disciplina.
+	 * @param proficiencia int que representa a proficiencia.                                                                                                                                             
+	 * @return 
+	 */	
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
 		if (disciplina == null) {
 			throw new NullPointerException("disciplina nao pode ser vazia ou nula");
@@ -135,6 +141,12 @@ public class Aluno {
 		tutoria.adicionaDisciplina(disciplina, proficiencia);
 	}
 
+	/**
+	 * Metodo que consulta o horário.
+	 * @param horario String que representa o horario.
+	 * @param dia String que representa o dia.                                                                                                                                             
+	 * @return String.
+	 */	 
 	public boolean consultaHorario(String horario, String dia) {
 		if (horario == null) {
 			throw new NullPointerException("horario nao pode ser vazio ou nulo");
@@ -150,7 +162,12 @@ public class Aluno {
 		}
 		return tutoria.consultaHorario(horario, dia);
 	}
-
+	
+	/**
+	 * Metodo que consulta o local.
+	 * @param local String que representa o local.                                                                                                                                         
+	 * @return String.
+	 */	 
 	public boolean consultaLocal(String local) {
 		if (local == null) {
 			throw new NullPointerException("local nao pode ser vazio ou nulo");
@@ -161,6 +178,13 @@ public class Aluno {
 		return tutoria.consultaLocal(local);
 	}
 
+
+	/**
+	 * Metodo que cadastra o horario.
+	 * @param horario String que representa o horario.
+	 * @param dia String que representa o dia.                                                                                                                                      
+	 * @return String.
+	 */	 
 	public void cadastrarHorario(String horario, String dia) {
 		if (horario == null) {
 			throw new NullPointerException("horario nao pode ser vazio ou em branco");
@@ -177,6 +201,11 @@ public class Aluno {
 		tutoria.cadastrarHorario(horario, dia);
 	}
 
+	/**
+	 * Metodo que cadastra o local de atendimento.
+	 * @param local String que representa o local.                                                                                                                                   
+	 * @return String.
+	 */	 
 	public void cadastrarLocalDeAtendimento(String local) {
 		if (local == null) {
 			throw new NullPointerException("local nao pode ser vazio ou em branco");
@@ -203,10 +232,18 @@ public class Aluno {
 		this.tutoria.adicionaDisciplina(disciplina, proficiencia);		
 	}
 
+	/**
+	 * Metodo que retorna o total de dinheiro do tutor.                                                                                                                              
+	 * @return String.
+	 */	 
 	public int totalDinheiroTutor() {
 		return tutoria.totalDinheiroTutor();
 	}
 
+	/**
+	 * Metodo que faz a doacao de aluno para tutor.                                                                                                                              
+	 * @return String.
+	 */	 
 	public void doar(int valor) {
 		if (valor <= 0) {
 			throw new UnsupportedOperationException("doacao nao pode ser zero ou negativa");
@@ -214,8 +251,11 @@ public class Aluno {
 		this.tutoria.doar(valor);
 	}
 
+	/**
+	 * Metodo que retorna o cadastro.                                                                                                                              
+	 * @return String.
+	 */	 
 	public int getCadastro() {
 		return this.cadastro;
 	}
-
 }
