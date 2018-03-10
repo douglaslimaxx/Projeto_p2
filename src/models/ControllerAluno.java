@@ -293,10 +293,13 @@ public class ControllerAluno {
 		switch (atributo) {
 		case "NOME":
 			this.comparador = new NomeComparador();
+			break;
 		case "EMAIL":
 			this.comparador = new EmailComparador();
+			break;
 		case "MATRICULA":
 			this.comparador = new MatriculaComparador();
+			break;
 		default:
 			throw new IllegalArgumentException("Erro na configuracao da ordem: Atributo invalido");
 		}
