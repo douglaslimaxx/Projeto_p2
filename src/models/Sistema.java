@@ -169,10 +169,13 @@ public class Sistema {
     	switch (nivel) {
     		case "TOP":
     			taxa_tutor = 0.9 + ((nota - 4.5)/10.0);
+    			break;
     		case "Tutor":
     			taxa_tutor = 0.8;
+    			break;
     		case "Aprendiz":
     			taxa_tutor = 0.4 - ((3.0 - nota)/10.0);
+    			break;
     		default:
     			throw new IllegalArgumentException("");
     	}
