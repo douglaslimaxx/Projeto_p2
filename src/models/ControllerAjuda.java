@@ -36,15 +36,16 @@ public class ControllerAjuda {
     }
     
     public String pegarTutor(int idAjuda) {
+    	 if (idAjuda < 0) {
+     		throw new NoSuchElementException("Erro ao tentar recuperar tutor : id nao pode menor que zero ");
+     	} 
     	if (this.ajudasOnline.containsKey(idAjuda)) {
-    		return this.ajudasOnline.get(idAjuda).getTutor().toString();
+    		return this.ajudasOnline.get(idAjuda).toString();
     	} else if (this.ajudasPresencial.containsKey(idAjuda)) {
-    		return this.ajudasPresencial.get(idAjuda).getTutor().toString();
-    	} if (idAjuda < 0) {
-    		throw new NoSuchElementException("Erro ao tentar recuperar tutor : id nao pode menor que zero ");
+    		return this.ajudasPresencial.get(idAjuda).toString();
     	} else {
-    		throw new IllegalArgumentException("Erro ao tentar recuperar tutor : id nao encontrado ");
-    	}
+     		throw new IllegalArgumentException("Erro ao tentar recuperar tutor : id nao encontrado ");
+     	}
     }
 	
     public String getInfoAjuda(int idAjuda, String atributo) {

@@ -44,7 +44,7 @@ public class AjudaPresencial extends AjudaOnline{
 		}
 		this.horario = horario;
 		this.dia = dia;
-		this.setLocal(local);
+		this.local = localInteresse;
 	}
 	
 	
@@ -71,9 +71,10 @@ public class AjudaPresencial extends AjudaOnline{
 	public String getLocal() {
 		return this.local;
 	}
-
-	private void setLocal(String local) {
-		this.local = local;
+	
+	@Override
+	public String toString() {
+		return "Tutor - " + this.getTutor().getMatricula() + ", horario - " + this.horario + ", dia - " + this.dia + ", local - " + this.local + ", disciplina - " + this.getDisciplina();
 	}
 		
 }

@@ -11,7 +11,7 @@ public class AjudaOnline {
 
 	private String matriculaAluno;
 	private String disciplina;
-	private Aluno Tutor;
+	private Aluno tutor;
 	
 	/**
 	 * Metodo que cadrasta o pedido de ajuda online dos alunos a partir dos parametros 
@@ -36,7 +36,7 @@ public class AjudaOnline {
 		}
 		this.matriculaAluno = aluno;
 		this.disciplina = disciplina;
-		this.Tutor = tutor2;
+		this.tutor = tutor2;
 	}
        /**
 	 * Metodo que retorna a matricula do aluno.
@@ -59,7 +59,11 @@ public class AjudaOnline {
 	 * @return String.
 	 */
 	public Aluno getTutor() {
-		return Tutor;
+		return tutor;
 	}
 	
+	@Override
+	public String toString() {
+		return "Tutor - " + this.tutor.getMatricula() + ", disciplina - " + this.disciplina;
+	}
 }
