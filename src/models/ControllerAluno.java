@@ -1,7 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 
 /**
@@ -25,7 +24,7 @@ public class ControllerAluno {
 
 	private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
 	
-	private Comparator comparador;
+	private Comparator<Aluno> comparador;
 	/**
 	 * Construtor do Controller, ele cria um HashMap onde os alunos
 	 * serao armazenados.
@@ -100,8 +99,8 @@ public class ControllerAluno {
 	 * @return String representacao textual daquele atributo
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		//if(matricula == null || matricula.trim().equals("")) throw new IllegalArgumentException("matricula nao pode ser vazia ou nula");
-		//if(atributo == null || atributo.trim().equals("")) throw new IllegalArgumentException("Atributo nao pode ser vazio ou nulo");
+		if(matricula == null || matricula.trim().equals("")) throw new IllegalArgumentException("matricula nao pode ser vazia ou nula");
+		if(atributo == null || atributo.trim().equals("")) throw new IllegalArgumentException("Atributo nao pode ser vazio ou nulo");
 		if(!alunos.containsKey(matricula)) throw new UnsupportedOperationException("Aluno nao encontrado");
 		switch(atributo) {
 			case "Nome":

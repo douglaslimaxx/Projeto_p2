@@ -339,11 +339,347 @@ public class SistemaTest {
 	public void testeRecuperaTutorNaoCadastrado() {
 		try {
 			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
-			this.sistema.recuperaTutor("1111");
+			this.sistema.recuperaTutor("0000");
 		} catch (IllegalArgumentException nc) {
 			assertEquals(nc.getMessage(), "Erro na busca por tutor: Tutor nao encontrado");
 		}
 	}
+	
+	@Test
+	public void testeListarTutoresNomeComparador() {
+		this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+		this.sistema.cadastrarAluno("Marcella", "2222", 2, "8888", "cella@poomail.com");
+		this.sistema.cadastrarAluno("Marta", "3333", 2, "6363", "martatop@poogmail.com");
+		this.sistema.cadastrarAluno("Gabriel", "0000", 2, "7777", "doritos@poomail.com");
+		this.sistema.tornarTutor("1111", "Programacao 2", 3);
+		this.sistema.tornarTutor("2222", "Ic", 5);
+		String msg = "O método listarTutores deve retornar uma concatenação da "
+				+ "representação textual de todos os alunos que se tornaram tutores"
+				+ "ordenando-os pelo nome";
+		assertEquals(msg, "1111 - Douglas - 2 - 9999 - misscoisinha@poomail.com" + ", " + 
+				"2222 - Marcella - 2 - 8888 - cella@poomail.com", this.sistema.listarTutores());
+	}
+	
+	@Test
+	public void testeListarTutoresEmailComparador() {
+		this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+		this.sistema.cadastrarAluno("Marcella", "2222", 2, "8888", "cella@poomail.com");
+		this.sistema.tornarTutor("1111", "Programacao 2", 3);
+		this.sistema.tornarTutor("2222", "Ic", 5);
+		this.sistema.configurarOrdem("EMAIL");
+		String msg = "O método listarTutores deve retornar uma concatenação da "
+				+ "representação textual de todos os alunos que se tornaram tutores"
+				+ "ordenando-os pelo email";
+		assertEquals(msg, "2222 - Marcella - 2 - 8888 - cella@poomail.com" + ", " +
+				"1111 - Douglas - 2 - 9999 - misscoisinha@poomail.com", this.sistema.listarTutores());
+	}
+	
+	@Test
+	public void testeListarTutoresMatriculaComparador() {
+		this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+		this.sistema.cadastrarAluno("Marcella", "2222", 2, "8888", "cella@poomail.com");
+		this.sistema.tornarTutor("1111", "Programacao 2", 3);
+		this.sistema.tornarTutor("2222", "Ic", 5);
+		this.sistema.configurarOrdem("MATRICULA");
+		String msg = "O método listarTutores deve retornar uma concatenação da "
+				+ "representação textual de todos os alunos que se tornaram tutores"
+				+ "ordenando-os pela matricula";
+		assertEquals(msg, "1111 - Douglas - 2 - 9999 - misscoisinha@poomail.com" + ", " + 
+				"2222 - Marcella - 2 - 8888 - cella@poomail.com", this.sistema.listarTutores());
+	}
+	
+	@Test
+	public void testeCadastrarHorarioEmailNulo() {
+		try {
+			this.sistema.cadastrarHorario(null, "15:00", "seg");
+		} catch (IllegalArgumentException en) {
+			assertEquals(en.getMessage(), "Erro no cadastrar horario: email nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarHorarioEmailVazio() {
+		try {
+			this.sistema.cadastrarHorario("   ", "15:00", "seg");
+		} catch (IllegalArgumentException ev) {
+			assertEquals(ev.getMessage(), "Erro no cadastrar horario: email nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarHorarioHorarioNulo() {
+		try {
+			this.sistema.cadastrarHorario("misscoisinha@poomail.com", null, "seg");
+		} catch (IllegalArgumentException hn) {
+			assertEquals(hn.getMessage(), "Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarHorarioHorarioVazio() {
+		try {
+			this.sistema.cadastrarHorario("misscoisinha@poomail.com", "   ", "seg");
+		} catch (IllegalArgumentException hv) {
+			assertEquals(hv.getMessage(), "Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarHorarioDiaNulo() {
+		try {
+			this.sistema.cadastrarHorario("misscoisinha@poomail.com", "15:00", null);
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarHorarioDiaVazio() {
+		try {
+			this.sistema.cadastrarHorario("misscoisinha@poomail.com", "15:00", "   ");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarHorarioTutorNaoCadastrado() {
+		try {
+			this.sistema.cadastrarHorario("misscoisinha@poomail.com", "15:00", "seg");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro no cadastrar horario: tutor nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarHorarioAlunoNaoTutor() {
+		try {
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+			this.sistema.cadastrarHorario("misscoisinha@poomail.com", "15:00", "seg");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro no cadastrar horario: aluno nao eh tutor");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarHorarioCorreto() {
+		this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+		this.sistema.tornarTutor("1111", "ingles", 5);
+		this.sistema.cadastrarHorario("misscoisinha@poomail.com", "15:00", "seg");
+		String msg = "O tutor Douglas deve ter esse horario disponivel, apos o cadastro";
+		assertTrue(msg, this.sistema.consultaHorario("misscoisinha@poomail.com", "15:00", "seg"));
+	}
+	
+	@Test
+	public void testeCadastrarLocalDeAtendimentoEmailNulo() {
+		try {
+			this.sistema.cadastrarLocalDeAtendimento(null, "LCC2");
+		} catch (NullPointerException en) {
+			assertEquals(en.getMessage(), "Erro no cadastrar local de atendimento: email nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarLocalDeAtendimentoEmailVazio() {
+		try {
+			this.sistema.cadastrarLocalDeAtendimento("   ", "LCC2");
+		} catch (IllegalArgumentException ev) {
+			assertEquals(ev.getMessage(), "Erro no cadastrar local de atendimento: email nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarLocalDeAtendimentoTutorNaoCadastrado() {
+		try {
+			this.sistema.cadastrarLocalDeAtendimento("misscoisinha@poomail.com", "LCC2");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro no cadastrar local de atendimento: tutor nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarLocalDeAtendimentoAlunoNaoTutor() {
+		try {
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+			this.sistema.cadastrarLocalDeAtendimento("misscoisinha@poomail.com", "LCC2");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro no cadastrar local de atendimento: aluno nao eh tutor");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarLocalDeAtendimentoLocalNulo() {
+		try {
+			this.sistema.cadastrarLocalDeAtendimento("misscoisinha@poomail.com", null);
+		} catch (NullPointerException ln) {
+			assertEquals(ln.getMessage(), "Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarLocalDeAtendimentoLocalVazio() {
+		try {
+			this.sistema.cadastrarLocalDeAtendimento("misscoisinha@poomail.com", "   ");
+		} catch (IllegalArgumentException lv) {
+			assertEquals(lv.getMessage(), "Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeCadastrarLocalDeAtendimentoCorreto() {
+		this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+		this.sistema.tornarTutor("1111", "ingles", 5);
+		this.sistema.cadastrarLocalDeAtendimento("misscoisinha@poomail.com", "LCC2");
+		String msg = "O tutor Douglas deve ter esse local disponivel, apos o cadastro";
+		assertTrue(msg, this.sistema.consultaLocal("misscoisinha@poomail.com", "LCC2"));
+	}
+	
+	@Test
+	public void testeConcultaHorarioEmailNulo() {
+		try {
+			this.sistema.consultaHorario(null, "15:00", "seg");
+		} catch (IllegalArgumentException en) {
+			assertEquals(en.getMessage(), "Erro na consulta horario: email nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaHorarioEmailVazio() {
+		try {
+			this.sistema.consultaHorario("   ", "15:00", "seg");
+		} catch (IllegalArgumentException ev) {
+			assertEquals(ev.getMessage(), "Erro na consulta horario: email nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaHorarioHorarioNulo() {
+		try {
+			this.sistema.consultaHorario("misscoisinha@poomail.com", null, "seg");
+		} catch (IllegalArgumentException hn) {
+			assertEquals(hn.getMessage(), "Erro na consulta horario: horario nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaHorarioHorarioVazio() {
+		try {
+			this.sistema.consultaHorario("misscoisinha@poomail.com", "   ", "seg");
+		} catch (IllegalArgumentException hv) {
+			assertEquals(hv.getMessage(), "Erro na consulta horario: horario nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaHorarioDiaNulo() {
+		try {
+			this.sistema.consultaHorario("misscoisinha@poomail.com", "15:00", null);
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro na consulta horario: dia nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaHorarioDiaVazio() {
+		try {
+			this.sistema.consultaHorario("misscoisinha@poomail.com", "15:00", "   ");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro na consulta horario: dia nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaHorarioTutorNaoCadastrado() {
+		try {
+			this.sistema.consultaHorario("misscoisinha@poomail.com", "15:00", "seg");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro na consulta horario: tutor nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeConsultaHorarioAlunoNaoTutor() {
+		try {
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+			this.sistema.consultaHorario("misscoisinha@poomail.com", "15:00", "seg");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro na consulta horario: aluno nao eh tutor");
+		}
+	}
+	
+	@Test
+	public void testeConsultaHorarioIndisponivel() {
+		this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+		this.sistema.tornarTutor("1111", "ingles", 5);
+		String msg = "O tutor Douglas nao deve ter esse horario disponivel";
+		assertFalse(msg, this.sistema.consultaHorario("misscoisinha@poomail.com", "15:00", "seg"));
+	}
+	
+	@Test
+	public void testeConsultaLocalEmailNulo() {
+		try {
+			this.sistema.consultaLocal(null, "LCC2");
+		} catch (NullPointerException en) {
+			assertEquals(en.getMessage(), "Erro na consulta local de atendimento: email nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaLocalEmailVazio() {
+		try {
+			this.sistema.consultaLocal("   ", "LCC2");
+		} catch (IllegalArgumentException ev) {
+			assertEquals(ev.getMessage(), "Erro na consulta local de atendimento: email nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaLocalTutorNaoCadastrado() {
+		try {
+			this.sistema.consultaLocal("misscoisinha@poomail.com", "LCC2");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro na consulta local de atendimento: tutor nao cadastrado");
+		}
+	}
+	
+	@Test
+	public void testeConsultaLocalAlunoNaoTutor() {
+		try {
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+			this.sistema.consultaLocal("misscoisinha@poomail.com", "LCC2");
+		} catch (IllegalArgumentException dn) {
+			assertEquals(dn.getMessage(), "Erro na consulta local de atendimento: aluno nao eh tutor");
+		}
+	}
+	
+	@Test
+	public void testeConsultaLocalLocalNulo() {
+		try {
+			this.sistema.consultaLocal("misscoisinha@poomail.com", null);
+		} catch (NullPointerException ln) {
+			assertEquals(ln.getMessage(), "Erro na consulta local de atendimento: local nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaLocalLocalVazio() {
+		try {
+			this.sistema.consultaLocal("misscoisinha@poomail.com", "   ");
+		} catch (IllegalArgumentException lv) {
+			assertEquals(lv.getMessage(), "Erro na consulta local de atendimento: local nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testeConsultaLocalIndisponivel() {
+		this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
+		this.sistema.tornarTutor("1111", "ingles", 5);
+		String msg = "O tutor Douglas nao deve ter esse local disponivel";
+		assertFalse(msg, this.sistema.consultaLocal("misscoisinha@poomail.com", "LCC2"));
+	}
+	
+	
+	
 	
 	
 	
