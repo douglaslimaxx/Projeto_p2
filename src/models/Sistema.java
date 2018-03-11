@@ -208,6 +208,10 @@ public class Sistema {
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return controllerAjuda.getInfoAjuda(idAjuda, atributo);
 	}
+	
+	public void configurarOrdem(String atributo) {
+		this.controllerAluno.configurarOrdem(atributo);
+	}
     
     
 }
