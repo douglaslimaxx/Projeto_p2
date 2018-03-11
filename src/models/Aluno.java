@@ -1,6 +1,5 @@
 package models;
 
-import java.util.Comparator;
 
 /**
  * Cria uma classe aluno atraves de sua matricula, nome, telefone e codigo de curso e email.

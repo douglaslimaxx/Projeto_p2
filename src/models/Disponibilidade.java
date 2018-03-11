@@ -143,5 +143,4 @@ public class Disponibilidade {
 			return false;
 		return true;
 	}
-	
 }
