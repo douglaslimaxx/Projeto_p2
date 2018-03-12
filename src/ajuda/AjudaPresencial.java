@@ -1,4 +1,6 @@
-package models;
+package ajuda;
+
+import aluno.Aluno;
 
 /**
  * Cria classe AjudaPresencial que, atraves de horario, dia e local cadastra pedidos de ajudas presenciais. 

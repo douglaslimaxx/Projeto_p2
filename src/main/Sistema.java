@@ -1,4 +1,9 @@
-package models;
+package main;
+
+import javax.management.RuntimeErrorException;
+
+import ajuda.ControllerAjuda;
+import aluno.ControllerAluno;
 
 /**
  * Representa um Sistema de tutorias, onde alunos podem encontrar tutores que ensinam 
@@ -121,7 +126,7 @@ public class Sistema {
      */
     public void cadastrarHorario(String email, String horario, String dia) {
     	try {
-    	this.controllerAluno.cadastrarHorario(email, horario, dia);
+    		this.controllerAluno.cadastrarHorario(email, horario, dia);
     	}catch (Exception e) {
     		throw new RuntimeException("Erro no cadastrar horario: " + e.getMessage());
     	}
@@ -149,7 +154,12 @@ public class Sistema {
      * @return
      */
     public boolean consultaHorario(String email, String horario, String dia) {
-    	return this.controllerAluno.consultaHorario(email, horario, dia);
+    	try {
+    		return this.controllerAluno.consultaHorario(email, horario, dia);
+    	} catch (Exception e) {
+    		throw new RuntimeException("Erro na consulta horario: " + e.getMessage());
+    	}
+    	
     }
     
    /**
@@ -159,10 +169,15 @@ public class Sistema {
      * @return
      */
     public boolean consultaLocal(String email, String local) {
-    	return this.controllerAluno.consultaLocal(email, local);
+    	try {
+    		return this.controllerAluno.consultaLocal(email, local);
+    	} catch (Exception e) {
+    		throw new RuntimeException("Erro na consulta local de atendimento: " + e.getMessage());
+    	}
     }
     
     public void doar(String matriculaTutor, int totalCentavos) {
+    	if(matriculaTutor == null || matriculaTutor.trim().equals("")) throw new IllegalArgumentException("Erro na doacao para tutor: matricula nao pode ser vazia ou nula");
     	String nivel = this.controllerAluno.pegarNivel(matriculaTutor);
     	double nota = this.controllerAluno.pegarNota(matriculaTutor);
     	double taxa_tutor;
@@ -181,7 +196,11 @@ public class Sistema {
     	}
     	int calculo = (int)(1 - taxa_tutor) * totalCentavos;
     	this.dinheiroSistema += calculo;
-    	this.controllerAluno.doar(matriculaTutor, totalCentavos - calculo);
+    	try {
+    		this.controllerAluno.doar(matriculaTutor, totalCentavos - calculo);
+    	} catch (Exception e) {
+    		throw new RuntimeException("Erro na doacao para tutor: " + e.getMessage());
+    	}
     }
     
     public int totalDinheiroTutor(String emailTutor) {
@@ -211,6 +230,17 @@ public class Sistema {
 	
 	public void configurarOrdem(String atributo) {
 		this.controllerAluno.configurarOrdem(atributo);
+	}
+	
+	public String pegarNivel(String matricula) {
+		return this.controllerAluno.pegarNivel(matricula);
+	}
+	
+	public String pegarNota(String matricula) {
+		double nota = this.controllerAluno.pegarNota(matricula);
+		String resultado = String.format("%.2f", nota);
+		resultado.replaceAll(".", ",");
+		return resultado;
 	}
     
     

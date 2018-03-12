@@ -1,8 +1,10 @@
-package models;
+package ajuda;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+
+import aluno.Aluno;
 
 /**
  * 

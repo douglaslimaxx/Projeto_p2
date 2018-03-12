@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 import org.junit.Before;
 import org.junit.Test;
 
-import models.Tutoria;
+import aluno.Tutoria;
 
 public class TutoriaTest {
 

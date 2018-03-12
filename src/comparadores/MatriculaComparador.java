@@ -1,6 +1,8 @@
-package models;
+package comparadores;
 
 import java.util.Comparator;
+
+import aluno.Aluno;
 
 /**
  * Classe que compara a matricula dos alunos, utilizando o comparator (compareTo).

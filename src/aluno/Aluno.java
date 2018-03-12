@@ -1,4 +1,4 @@
-package models;
+package aluno;
 
 
 /**
@@ -25,7 +25,7 @@ public class Aluno {
 	 */
 	public Aluno(String nome, String matricula, String email, String telefone, int codigoCurso, int cadastro) {
 		if(nome == null || nome.trim().equals(""))throw new NullPointerException("Nome nao pode ser vazio ou nulo");
-		if(matricula == null || matricula.trim().equals(""))throw new NullPointerException("Matricula nao pode ser vazio ou nulo");
+		if(matricula == null || matricula.trim().equals(""))throw new NullPointerException("matricula nao pode ser vazia ou nula");
 		
 		this.email = email;
 		this.nome = nome;
