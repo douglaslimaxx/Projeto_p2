@@ -37,7 +37,7 @@ public class AjudaPresencial extends AjudaOnline{
 			throw new IllegalArgumentException("dia nao pode ser vazio ou em branco");
 		}
 		if (localInteresse == null) {
-			throw new NullPointerException("local de interesse  nao pode ser vazio ou em branco");
+			throw new NullPointerException("local de interesse nao pode ser vazio ou em branco");
 		} 
 		if (localInteresse.trim().equals("")) {
 			throw new IllegalArgumentException("local de interesse nao pode ser vazio ou em branco");

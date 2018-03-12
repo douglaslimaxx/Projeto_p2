@@ -36,7 +36,7 @@ public class ControllerAjuda {
     }
     
     public String pegarTutor(int idAjuda) {
-    	 if (idAjuda < 0) {
+    	 if (idAjuda <= 0) {
      		throw new NoSuchElementException("Erro ao tentar recuperar tutor : id nao pode menor que zero ");
      	} 
     	if (this.ajudasOnline.containsKey(idAjuda)) {
@@ -49,7 +49,7 @@ public class ControllerAjuda {
     }
 	
     public String getInfoAjuda(int idAjuda, String atributo) {
-    	if (idAjuda < 0) {
+    	if (idAjuda <= 0) {
     		throw new NoSuchElementException("Erro ao tentar recuperar info da ajuda : id nao pode menor que zero ");
     	}
     	if (!(this.ajudasOnline.containsKey(idAjuda) || this.ajudasPresencial.containsKey(idAjuda))){
