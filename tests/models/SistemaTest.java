@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import main.Sistema;
+
 public class SistemaTest {
 
 	private Sistema sistema;
@@ -43,7 +45,7 @@ public class SistemaTest {
 		try {
 			this.sistema.cadastrarAluno("Douglas", null, 2, "9999", "misscoisinha@poomail.com");
 		} catch (RuntimeException mn) {
-			assertEquals(mn.getMessage(), "Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
+			assertEquals(mn.getMessage(), "Erro no cadastro de aluno: matricula nao pode ser vazia ou nula");
 		}
 	}
 
@@ -52,7 +54,7 @@ public class SistemaTest {
 		try {
 			this.sistema.cadastrarAluno("Douglas", "   ", 2, "9999", "misscoisinha@poomail.com");
 		} catch (RuntimeException mv) {
-			assertEquals(mv.getMessage(), "Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
+			assertEquals(mv.getMessage(), "Erro no cadastro de aluno: matricula nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -70,7 +72,7 @@ public class SistemaTest {
 		try {
 			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", null);
 		} catch (RuntimeException en) {
-			assertEquals(en.getMessage(), "Erro no cadastro de aluno: Email nao pode ser vazio ou nulo");
+			assertEquals(en.getMessage(), "Erro no cadastro de aluno: email nao pode ser vazio ou em branco");
 		}
 	}
 	
@@ -113,9 +115,9 @@ public class SistemaTest {
 	@Test
 	public void testeCadastrarAlunoEmailInvalido5() {
 		try {
-			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "");
+			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "   ");
 		} catch (RuntimeException ei) {
-			assertEquals(ei.getMessage(), "Erro no cadastro de aluno: Email invalido");
+			assertEquals(ei.getMessage(), "Erro no cadastro de aluno: email nao pode ser vazio ou em branco");
 		}
 	}
 	@Test
@@ -169,10 +171,10 @@ public class SistemaTest {
 		this.sistema.cadastrarAluno("Marta", "3333", 2, "6363", "martatop@poogmail.com");
 		this.sistema.cadastrarAluno("Gabriel", "0000", 2, "7777", "doritos@poomail.com");
 		String msg = "A lista de alunos, deve ter a representacao textual dos alunos cadastrados, em ordem alfabeticas dos nomes";
-		assertEquals(msg, ("1111 - Douglas - 2 - 9999 - misscoisinha@poomail.com" + System.lineSeparator() +
-						"0000 - Gabriel - 2 - 7777 - doritos@poomail.com" + System.lineSeparator() +
-						"2222 - Marcella - 2 - 8888 - cella@poomail.com" + System.lineSeparator() + 
-						"3333 - Marta - 2 - 6363 - martatop@poogmail.com" + System.lineSeparator()), 
+		assertEquals(msg, ("1111 - Douglas - 2 - 9999 - misscoisinha@poomail.com" + ", " +
+						"0000 - Gabriel - 2 - 7777 - doritos@poomail.com" + ", " +
+						"2222 - Marcella - 2 - 8888 - cella@poomail.com" + ", " + 
+						"3333 - Marta - 2 - 6363 - martatop@poogmail.com"), 
 						this.sistema.listarAlunos());
 	}
 	
@@ -181,7 +183,7 @@ public class SistemaTest {
 		try {
 			this.sistema.getInfoAluno(null, "Nome");
 		} catch (RuntimeException mn) {
-			assertEquals(mn.getMessage(), "Erro na obtencao de informacao de aluno: Matricula nao pode ser vazia ou nula");
+			assertEquals(mn.getMessage(), "Erro na obtencao de informacao de aluno: matricula nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -190,7 +192,7 @@ public class SistemaTest {
 		try {
 			this.sistema.getInfoAluno("   ", "Nome");
 		} catch (RuntimeException mv) {
-			assertEquals(mv.getMessage(), "Erro na obtencao de informacao de aluno: Matricula nao pode ser vazia ou nula");
+			assertEquals(mv.getMessage(), "Erro na obtencao de informacao de aluno: matricula nao pode ser vazia ou nula");
 		}
 	}
 
@@ -199,7 +201,7 @@ public class SistemaTest {
 		try {
 			this.sistema.getInfoAluno("1111", null);
 		} catch (RuntimeException mn) {
-			assertEquals(mn.getMessage(), "Erro na obtencao de informacao de aluno: Atributo nao pode ser vazia ou nula");
+			assertEquals(mn.getMessage(), "Erro na obtencao de informacao de aluno: Atributo nao pode ser vazio ou nulo");
 		}
 	}
 	
@@ -236,7 +238,7 @@ public class SistemaTest {
 		try {
 			this.sistema.tornarTutor(null, "p2", 3);
 		} catch (RuntimeException mn) {
-			assertEquals(mn.getMessage(), "Erro na definicao de papel: Matricula nao pode ser vazia ou nula");
+			assertEquals(mn.getMessage(), "Erro na definicao de papel: matricula nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -245,7 +247,7 @@ public class SistemaTest {
 		try {
 			this.sistema.tornarTutor("   ", "p2", 3);
 		} catch (RuntimeException mv) {
-			assertEquals(mv.getMessage(), "Erro na definicao de papel: Matricula nao pode ser vazia ou nula");
+			assertEquals(mv.getMessage(), "Erro na definicao de papel: matricula nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -254,7 +256,7 @@ public class SistemaTest {
 		try {
 			this.sistema.tornarTutor("1111", null, 3);
 		} catch (RuntimeException dn) {
-			assertEquals(dn.getMessage(), "Erro na definicao de papel: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dn.getMessage(), "Erro na definicao de papel: disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -263,7 +265,7 @@ public class SistemaTest {
 		try {
 			this.sistema.tornarTutor("1111", "    ", 3);
 		} catch (RuntimeException dv) {
-			assertEquals(dv.getMessage(), "Erro na definicao de papel: Disciplina nao pode ser vazia ou nula");
+			assertEquals(dv.getMessage(), "Erro na definicao de papel: disciplina nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -272,7 +274,7 @@ public class SistemaTest {
 		try {
 			this.sistema.tornarTutor("1111", "p2", 0);
 		} catch (RuntimeException pz){
-			assertEquals(pz.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
+			assertEquals(pz.getMessage(), "Erro na definicao de papel: Proficiencia invalida");
 		}
 	}
 	
@@ -281,7 +283,7 @@ public class SistemaTest {
 		try {
 			this.sistema.tornarTutor("1111", "p2", -6);
 		} catch (RuntimeException pmz){
-			assertEquals(pmz.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
+			assertEquals(pmz.getMessage(), "Erro na definicao de papel: Proficiencia invalida");
 		}
 	}
 	
@@ -291,7 +293,7 @@ public class SistemaTest {
 		try {
 			this.sistema.tornarTutor("1111", "p2", 9);
 		} catch (RuntimeException pmc){
-			assertEquals(pmc.getMessage(), "Erro na definicao de papel: Proficiencia Invalida");
+			assertEquals(pmc.getMessage(), "Erro na definicao de papel: Proficiencia invalida");
 		}
 	}
 	
@@ -320,7 +322,7 @@ public class SistemaTest {
 		try {
 			this.sistema.recuperaTutor(null);
 		} catch (RuntimeException mn) {
-			assertEquals(mn.getMessage(), "Erro na busca por Tutor: Matricula nao pode ser vazia ou nula");
+			assertEquals(mn.getMessage(), "Erro na busca por tutor: matricula nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -329,7 +331,7 @@ public class SistemaTest {
 		try {
 			this.sistema.recuperaTutor("  ");
 		} catch (RuntimeException mv) {
-			assertEquals(mv.getMessage(), "Erro na busca por Tutor: Matricula nao pode ser vazia ou nula");
+			assertEquals(mv.getMessage(), "Erro na busca por tutor: matricula nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -681,7 +683,7 @@ public class SistemaTest {
 		try {
 			this.sistema.doar(null, 100);
 		} catch (RuntimeException mn) {
-			assertEquals(mn.getMessage(), "Erro na doacao para tutor: matriculaTutor nao vazia ou nula");
+			assertEquals(mn.getMessage(), "Erro na doacao para tutor: matricula nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -690,7 +692,7 @@ public class SistemaTest {
 		try {
 			this.sistema.doar("   ", 100);
 		} catch (RuntimeException mv) {
-			assertEquals(mv.getMessage(), "Erro na doacao para tutor: matriculaTutor nao vazia ou nula");
+			assertEquals(mv.getMessage(), "Erro na doacao para tutor: matricula nao pode ser vazia ou nula");
 		}
 	}
 	
@@ -709,7 +711,7 @@ public class SistemaTest {
 			this.sistema.cadastrarAluno("Douglas", "1111", 2, "9999", "misscoisinha@poomail.com");
 			this.sistema.doar("1111", 100);
 		} catch (RuntimeException mv) {
-			assertEquals(mv.getMessage(), "Erro na doacao para tutor: Aluno nao Tutor");
+			assertEquals(mv.getMessage(), "Erro na doacao para tutor: aluno nao eh tutor");
 		}
 	}
 	
@@ -720,7 +722,7 @@ public class SistemaTest {
 			this.sistema.tornarTutor("1111", "p2", 4);
 			this.sistema.doar("1111", 0);
 		} catch (RuntimeException tcz) {
-			assertEquals(tcz.getMessage(), "Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
+			assertEquals(tcz.getMessage(), "Erro na doacao para tutor: doacao nao pode ser zero ou negativa");
 		}
 	}
 	
@@ -731,7 +733,7 @@ public class SistemaTest {
 			this.sistema.tornarTutor("1111", "p2", 4);
 			this.sistema.doar("1111", -9);
 		} catch (RuntimeException tcmz) {
-			assertEquals(tcmz.getMessage(), "Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
+			assertEquals(tcmz.getMessage(), "Erro na doacao para tutor: doacao nao pode ser zero ou negativa");
 		}
 	}
 

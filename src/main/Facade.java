@@ -1,4 +1,4 @@
-package models;
+package main;
 
 public class Facade {
 
@@ -10,7 +10,7 @@ public class Facade {
 	 * @param codigoCurso
 	 * @param telefone
 	 * @param email
-	 * @see models.Sistema#cadastrarAluno(java.lang.String, java.lang.String, int, java.lang.String, java.lang.String)
+	 * @see main.Sistema#cadastrarAluno(java.lang.String, java.lang.String, int, java.lang.String, java.lang.String)
 	 */
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
 		sistema.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
@@ -19,7 +19,7 @@ public class Facade {
 	/**
 	 * @param matricula
 	 * @return
-	 * @see models.Sistema#recuperaAluno(java.lang.String)
+	 * @see main.Sistema#recuperaAluno(java.lang.String)
 	 */
 	public String recuperaAluno(String matricula) {
 		return sistema.recuperaAluno(matricula);
@@ -27,7 +27,7 @@ public class Facade {
 
 	/**
 	 * @return
-	 * @see models.Sistema#listarAlunos()
+	 * @see main.Sistema#listarAlunos()
 	 */
 	public String listarAlunos() {
 		return sistema.listarAlunos();
@@ -37,7 +37,7 @@ public class Facade {
 	 * @param matricula
 	 * @param atributo
 	 * @return
-	 * @see models.Sistema#getInfoAluno(java.lang.String, java.lang.String)
+	 * @see main.Sistema#getInfoAluno(java.lang.String, java.lang.String)
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
 		return sistema.getInfoAluno(matricula, atributo);
@@ -47,7 +47,7 @@ public class Facade {
 	 * @param matricula
 	 * @param disciplina
 	 * @param proficiencia
-	 * @see models.Sistema#tornarTutor(java.lang.String, java.lang.String, int)
+	 * @see main.Sistema#tornarTutor(java.lang.String, java.lang.String, int)
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		sistema.tornarTutor(matricula, disciplina, proficiencia);
@@ -56,7 +56,7 @@ public class Facade {
 	/**
 	 * @param matricula
 	 * @return
-	 * @see models.Sistema#recuperaTutor(java.lang.String)
+	 * @see main.Sistema#recuperaTutor(java.lang.String)
 	 */
 	public String recuperaTutor(String matricula) {
 		return sistema.recuperaTutor(matricula);
@@ -64,7 +64,7 @@ public class Facade {
 
 	/**
 	 * @return
-	 * @see models.Sistema#listarTutores()
+	 * @see main.Sistema#listarTutores()
 	 */
 	public String listarTutores() {
 		return sistema.listarTutores();
@@ -74,7 +74,7 @@ public class Facade {
 	 * @param email
 	 * @param horario
 	 * @param dia
-	 * @see models.Sistema#cadastrarHorario(java.lang.String, java.lang.String, java.lang.String)
+	 * @see main.Sistema#cadastrarHorario(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
 		sistema.cadastrarHorario(email, horario, dia);
@@ -83,7 +83,7 @@ public class Facade {
 	/**
 	 * @param email
 	 * @param local
-	 * @see models.Sistema#cadastrarLocalDeAtendimento(java.lang.String, java.lang.String)
+	 * @see main.Sistema#cadastrarLocalDeAtendimento(java.lang.String, java.lang.String)
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
 		sistema.cadastrarLocalDeAtendimento(email, local);
@@ -94,7 +94,7 @@ public class Facade {
 	 * @param horario
 	 * @param dia
 	 * @return
-	 * @see models.Sistema#consultaHorario(java.lang.String, java.lang.String, java.lang.String)
+	 * @see main.Sistema#consultaHorario(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 		return sistema.consultaHorario(email, horario, dia);
@@ -104,7 +104,7 @@ public class Facade {
 	 * @param email
 	 * @param local
 	 * @return
-	 * @see models.Sistema#consultaLocal(java.lang.String, java.lang.String)
+	 * @see main.Sistema#consultaLocal(java.lang.String, java.lang.String)
 	 */
 	public boolean consultaLocal(String email, String local) {
 		return sistema.consultaLocal(email, local);
@@ -113,7 +113,7 @@ public class Facade {
 	/**
 	 * @param matriculaTutor
 	 * @param totalCentavos
-	 * @see models.Sistema#doar(java.lang.String, int)
+	 * @see main.Sistema#doar(java.lang.String, int)
 	 */
 	public void doar(String matriculaTutor, int totalCentavos) {
 		sistema.doar(matriculaTutor, totalCentavos);
@@ -122,7 +122,7 @@ public class Facade {
 	/**
 	 * @param emailTutor
 	 * @return
-	 * @see models.Sistema#totalDinheiroTutor(java.lang.String)
+	 * @see main.Sistema#totalDinheiroTutor(java.lang.String)
 	 */
 	public int totalDinheiroTutor(String emailTutor) {
 		return sistema.totalDinheiroTutor(emailTutor);
@@ -130,7 +130,7 @@ public class Facade {
 
 	/**
 	 * @return
-	 * @see models.Sistema#totalDinheiroSistema()
+	 * @see main.Sistema#totalDinheiroSistema()
 	 */
 	public int totalDinheiroSistema() {
 		return sistema.totalDinheiroSistema();
@@ -143,7 +143,7 @@ public class Facade {
 	 * @param dia
 	 * @param localInteresse
 	 * @return
-	 * @see models.Sistema#pedirAjudaPresencial(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * @see main.Sistema#pedirAjudaPresencial(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
@@ -154,7 +154,7 @@ public class Facade {
 	 * @param matrAluno
 	 * @param disciplina
 	 * @return
-	 * @see models.Sistema#pedirAjudaOnline(java.lang.String, java.lang.String)
+	 * @see main.Sistema#pedirAjudaOnline(java.lang.String, java.lang.String)
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		return sistema.pedirAjudaOnline(matrAluno, disciplina);
@@ -163,7 +163,7 @@ public class Facade {
 	/**
 	 * @param idAjuda
 	 * @return
-	 * @see models.Sistema#pegarTutor(int)
+	 * @see main.Sistema#pegarTutor(int)
 	 */
 	public String pegarTutor(int idAjuda) {
 		return sistema.pegarTutor(idAjuda);
@@ -173,10 +173,30 @@ public class Facade {
 	 * @param idAjuda
 	 * @param atributo
 	 * @return
-	 * @see models.Sistema#getInfoAjuda(int, java.lang.String)
+	 * @see main.Sistema#getInfoAjuda(int, java.lang.String)
 	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return sistema.getInfoAjuda(idAjuda, atributo);
 	}
+
+	/**
+	 * @param matricula
+	 * @return
+	 * @see main.Sistema#pegarNivel(java.lang.String)
+	 */
+	public String pegarNivel(String matricula) {
+		return sistema.pegarNivel(matricula);
+	}
+
+	/**
+	 * @param matricula
+	 * @return
+	 * @see main.Sistema#pegarNota(java.lang.String)
+	 */
+	public String pegarNota(String matricula) {
+		return sistema.pegarNota(matricula);
+	}
+	
+	
 	
 }

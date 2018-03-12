@@ -1,4 +1,4 @@
-package models;
+package aluno;
 
 import java.util.NoSuchElementException;
 

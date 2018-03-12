@@ -1,4 +1,4 @@
-package models;
+package aluno;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,9 +11,14 @@ import java.util.Comparator;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import comparadores.EmailComparador;
+import comparadores.MatriculaComparador;
+import comparadores.NomeComparador;
 
 public class ControllerAluno {
 
@@ -68,6 +73,7 @@ public class ControllerAluno {
 	 */
 	
 	public String recuperaAluno(String matricula) {
+		if (matricula == null || matricula.trim().equals("")) throw new IllegalArgumentException("Matricula nao pode ser vazia ou nula");
 		if(!alunos.containsKey(matricula)) throw new UnsupportedOperationException("Aluno nao encontrado");
 		return alunos.get(matricula).toString();
 	}
@@ -114,7 +120,7 @@ public class ControllerAluno {
 			case "Email":
 				return alunos.get(matricula).getEmail();
 		}
-		throw new IllegalArgumentException("Atributo nao encontrado");
+		throw new IllegalArgumentException("Atributo invalido");
 	}
 	
 	/**
@@ -125,6 +131,9 @@ public class ControllerAluno {
 	 * @param proficiencia int respectivo ao nivel de proficiencia daquele aluno naquela disciplina
 	 */
 	public void tornaTutor(String matricula, String disciplina, int proficiencia) {
+		if (matricula == null || matricula.trim().equals("")) throw new IllegalArgumentException("matricula nao pode ser vazia ou nula");
+		if (disciplina == null || disciplina.trim().equals("")) throw new IllegalArgumentException("disciplina nao pode ser vazia ou nula");
+		if (proficiencia <= 0 || proficiencia > 5) throw new NoSuchElementException("Proficiencia invalida");
 		if(!alunos.containsKey(matricula)) throw new UnsupportedOperationException("Tutor nao encontrado");
 		alunos.get(matricula).tornaTutor(disciplina, proficiencia);
 	}
@@ -136,9 +145,13 @@ public class ControllerAluno {
 	 * @return String que representa um tutor de forma textual.
 	 */
 	public String recuperaTutor(String matricula) {
+		if (matricula == null || matricula.trim().equals("")) throw new IllegalArgumentException("matricula nao pode ser vazia ou nula");
 		if(!alunos.containsKey(matricula)) throw new UnsupportedOperationException("Tutor nao encontrado");
-		if(alunos.get(matricula).isTutor()) return alunos.get(matricula).toString();
-		throw new IllegalArgumentException("Tutor nao encontrado");
+		if(alunos.get(matricula).isTutor()) {
+			return alunos.get(matricula).toString();
+		} else {
+			throw new IllegalArgumentException("aluno nao tutor");
+		}
 	}
 	
 	private Aluno alunoPorEmail(String email) {
@@ -175,6 +188,7 @@ public class ControllerAluno {
 	 * @param local disponivel que o tutor possuira.
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
+		if (local == null || local.trim().equals("")) throw new IllegalArgumentException("local nao pode ser vazio ou em branco");
 		validarEmail(email);
 		Aluno aluno = alunoPorEmail(email);
 		if(aluno == null)throw new IllegalArgumentException("tutor nao cadastrado");
@@ -188,6 +202,8 @@ public class ControllerAluno {
 	 * @param dia que o tutor estara disponivel.
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
+		if (horario == null || horario.trim().equals("")) throw new IllegalArgumentException("horario nao pode ser vazio ou em branco");
+		if (dia == null || dia.trim().equals("")) throw new IllegalArgumentException("dia nao pode ser vazio ou em branco");
 		validarEmail(email);
 		Aluno aluno = alunoPorEmail(email);
 		if(aluno == null)throw new IllegalArgumentException("tutor nao cadastrado");
@@ -228,6 +244,8 @@ public class ControllerAluno {
 	}
 
 	public void doar(String matriculaTutor, int valor) {
+		if (!(this.alunos.containsKey(matriculaTutor))) throw new IllegalArgumentException("Tutor nao encontrado");
+		if (!(this.alunos.get(matriculaTutor).isTutor())) throw new IllegalArgumentException("aluno nao eh tutor");
 		this.alunos.get(matriculaTutor).doar(valor);
 	}
 	
