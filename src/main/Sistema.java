@@ -1,7 +1,5 @@
 package main;
 
-import javax.management.RuntimeErrorException;
-
 /**
  * Representa um Sistema de tutorias, onde alunos podem encontrar tutores que ensinam 
  * certas disciplinas, e tambem podem se tornar tutores de algumas disciplinas.
