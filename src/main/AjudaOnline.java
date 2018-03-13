@@ -1,6 +1,5 @@
-package ajuda;
+package main;
 
-import aluno.Aluno;
 
 /**
  * Cria uma classe AjudaOnline que, atraves da disciplina, matriculaAluno e matriculaTutor, cadastra

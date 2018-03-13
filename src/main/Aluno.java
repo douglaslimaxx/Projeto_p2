@@ -1,4 +1,4 @@
-package aluno;
+package main;
 
 
 /**
@@ -248,6 +248,10 @@ public class Aluno {
 			throw new UnsupportedOperationException("doacao nao pode ser zero ou negativa");
 		}
 		this.tutoria.doar(valor);
+	}
+
+	public void avaliarTutor(int avaliacaoRecebida) {
+		tutoria.avaliarTutor(avaliacaoRecebida);
 	}
 
 	/**

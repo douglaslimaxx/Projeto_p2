@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import aluno.Disponibilidade;
+import main.Disponibilidade;
 
 public class DisponibilidadeTest {
 

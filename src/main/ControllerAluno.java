@@ -1,4 +1,4 @@
-package aluno;
+package main;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,9 +16,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import comparadores.EmailComparador;
-import comparadores.MatriculaComparador;
-import comparadores.NomeComparador;
 
 public class ControllerAluno {
 
@@ -37,6 +34,10 @@ public class ControllerAluno {
 	public ControllerAluno() {
 		alunos = new HashMap<String, Aluno>();
 		this.comparador = new NomeComparador();
+	}
+	
+	public void avaliarTutor(String matricula, int avaliacaoRecebida) {
+		alunos.get(matricula).avaliarTutor(avaliacaoRecebida);
 	}
 	
 	/**

@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import ajuda.AjudaOnline;
-import aluno.Aluno;
+import main.AjudaOnline;
+import main.Aluno;
 
 public class AjudaOnlineTest {
 

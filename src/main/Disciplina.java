@@ -1,4 +1,4 @@
-package aluno;
+package main;
 
 import java.util.NoSuchElementException;
 
