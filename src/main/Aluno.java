@@ -1,6 +1,5 @@
 package main;
 
-
 /**
  * Cria uma classe aluno atraves de sua matricula, nome, telefone e codigo de curso e email.
  * @author Marta Lais de Macedo Dantas.
@@ -32,8 +31,10 @@ public class Aluno {
 		this.matricula = matricula;
 		this.telefone = telefone;
 		this.codigoCurso = codigoCurso;
-		this.tutoria = new Tutoria();
 		this.cadastro = cadastro;
+		
+		this.tutoria = new Tutoria();
+		
 		
 	}
 	
@@ -46,7 +47,7 @@ public class Aluno {
 	}
 	
 	/**
-	 * Metodo que retorna a matricula.
+	 * Metodo que retorna a matricula do aluno.
 	 * @return String.
 	 */
 	public String getMatricula() {
@@ -54,7 +55,7 @@ public class Aluno {
 	}
 	
 	/**
-	 * Metodo que retorna o nome.
+	 * Metodo que retorna o nome do aluno.
 	 * @return String.
 	 */
 	public String getNome() {
@@ -62,7 +63,7 @@ public class Aluno {
 	}
 
 	/**
-	 * Metodo que retorna o telefone.
+	 * Metodo que retorna o telefone do aluno.
 	 * @return String.
 	 */
 	public String getTelefone() {
@@ -71,14 +72,14 @@ public class Aluno {
 
 	/**
 	 * Metodo modifica o numero do telefone do Aluno a partir do parametro.
-	 * @param telefone String que e o novo numero de telefone do Aluno.
+	 * @param telefone String referente ao novo numero de telefone do Aluno.
 	 */
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
 	/**
-	 * Metodo que retorna o email.
+	 * Metodo que retorna o email do aluno.
 	 * @return String.
 	 */
 	public String getEmail() {
@@ -87,7 +88,7 @@ public class Aluno {
 
 	/**
 	 * Metodo modifica o email do aluno a partir do parametro.
-	 * @param email String que e o novo do email do Aluno. 
+	 * @param email String referente ao novo do email do Aluno. 
 	 */
 	public void setEmail(String email) {
 		this.email = email;
