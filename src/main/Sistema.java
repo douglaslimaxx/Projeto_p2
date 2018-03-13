@@ -239,6 +239,10 @@ public class Sistema {
 		resultado.replaceAll(".", ",");
 		return resultado;
 	}
-    
-    
+
+	public void avaliarTutor(int idAjuda, int avaliacaoRecebida) {
+		this.controllerAjuda.avaliarTutor(idAjuda, avaliacaoRecebida);
+	}
+
+
 }
