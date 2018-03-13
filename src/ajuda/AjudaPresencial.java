@@ -78,5 +78,49 @@ public class AjudaPresencial extends AjudaOnline{
 	public String toString() {
 		return "Tutor - " + this.getTutor().getMatricula() + ", horario - " + this.horario + ", dia - " + this.dia + ", local - " + this.local + ", disciplina - " + this.getDisciplina();
 	}
-		
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((dia == null) ? 0 : dia.hashCode());
+		result = prime * result + ((horario == null) ? 0 : horario.hashCode());
+		result = prime * result + ((local == null) ? 0 : local.hashCode());
+		return result;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AjudaPresencial other = (AjudaPresencial) obj;
+		if (dia == null) {
+			if (other.dia != null)
+				return false;
+		} else if (!dia.equals(other.dia))
+			return false;
+		if (horario == null) {
+			if (other.horario != null)
+				return false;
+		} else if (!horario.equals(other.horario))
+			return false;
+		if (local == null) {
+			if (other.local != null)
+				return false;
+		} else if (!local.equals(other.local))
+			return false;
+		return true;
+	}
 }
