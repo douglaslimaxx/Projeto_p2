@@ -18,12 +18,11 @@ import main.Aluno;
 
 public class AlunoTest {
 	private Aluno aluno1;
-	private Aluno aluno2;
+
 	
 	@Before
 	public void setup() {
 		aluno1 = new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", 65, 14);
-		aluno2 = new Aluno("Aurora", "111610", "aurora@fada.com", "3312-6000", 12, 18);
 	}
 	
 	@Test
@@ -48,7 +47,6 @@ public class AlunoTest {
 			new Aluno("    ", "117110", "florence@maquina.com", "3321-3456", 65, 14);
 			fail("aluno com nome vazio cadastrado");
 		} catch (IllegalArgumentException e) {
-			//funcionando
 		}
 	}
 	
@@ -58,14 +56,12 @@ public class AlunoTest {
 			new Aluno("Florence", null, "florence@maquina.com", "3321-3456", 65, 14);
 			fail("aluno com matricula null cadastrado");
 		} catch (NullPointerException e) {
-			//funcionando
 		}
 		
 		try {
 			new Aluno("Florence", "   ", "florence@maquina.com", "3321-3456", 65, 14);
 			fail("aluno com matricula vazio cadastrado");
 		} catch (IllegalArgumentException e) {
-			//funcionando
 		}
 	}
 	
@@ -75,14 +71,12 @@ public class AlunoTest {
 			new Aluno("Florence", "117110", null, "3321-3456", 65, 14);
 			fail("aluno com email null cadastrado");
 		} catch (NullPointerException e) {
-			//funcionando
 		}
 		
 		try {
 			new Aluno("Florence", "117110", "    ", "3321-3456", 65, 14);
 			fail("aluno com email vazio cadastrado");
 		} catch (IllegalArgumentException e) {
-			//funcionando
 		}
 	}
 	
@@ -97,14 +91,12 @@ public class AlunoTest {
 			new Aluno("Florence", "117110", "florence@maquina.com", null, 65, 14);
 			fail("aluno com telefone null cadastrado");
 		} catch (NullPointerException e) {
-			//funcionando
 		}
 		
 		try {
 			new Aluno("Florence", "117110", "florence@maquina.com", "    ", 65, 14);
 			fail("aluno com nome vazio cadastrado");
 		} catch (IllegalArgumentException e) {
-			//funcionando
 		}
 	}
 	
@@ -136,7 +128,6 @@ public class AlunoTest {
 			aluno1.doar(11);
 			fail("Doacao para aluno que nao eh tutor");
 		} catch (Exception e) {
-			//funcionando
 		}
 	}
 	
@@ -148,7 +139,6 @@ public class AlunoTest {
 			aluno1.doar(0);
 			fail("Tutor recebeu doacao nula");
 		} catch (Exception e) {
-			//funcionando
 		}
 	}
 	
@@ -160,7 +150,6 @@ public class AlunoTest {
 			aluno1.doar(-3);
 			fail("Tutor recebeu doacao negativa");
 		} catch (Exception e) {
-			//funcionando
 		}
 	}
 	
