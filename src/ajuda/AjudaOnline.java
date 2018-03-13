@@ -68,4 +68,47 @@ public class AjudaOnline {
 	public String toString() {
 		return "Tutor - " + this.tutor.getMatricula() + ", disciplina - " + this.disciplina;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
+		result = prime * result + ((matriculaAluno == null) ? 0 : matriculaAluno.hashCode());
+		result = prime * result + ((tutor == null) ? 0 : tutor.hashCode());
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AjudaOnline other = (AjudaOnline) obj;
+		if (disciplina == null) {
+			if (other.disciplina != null)
+				return false;
+		} else if (!disciplina.equals(other.disciplina))
+			return false;
+		if (matriculaAluno == null) {
+			if (other.matriculaAluno != null)
+				return false;
+		} else if (!matriculaAluno.equals(other.matriculaAluno))
+			return false;
+		if (tutor == null) {
+			if (other.tutor != null)
+				return false;
+		} else if (!tutor.equals(other.tutor))
+			return false;
+		return true;
+	}
+	
+	
 }
