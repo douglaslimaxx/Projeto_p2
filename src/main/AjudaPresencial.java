@@ -6,7 +6,7 @@ package main;
  * @author Douglas Lima
  *
  */
-public class AjudaPresencial extends AjudaOnline{
+public class AjudaPresencial extends Ajuda{
 
 	private String horario;
 	private String dia;
@@ -71,6 +71,31 @@ public class AjudaPresencial extends AjudaOnline{
 	 */
 	public String getLocal() {
 		return this.local;
+	}
+
+	@Override
+	public String getInfoAjuda(String atributo) {
+		if (atributo == null || atributo.trim().equals("")) {
+    		throw new IllegalArgumentException("atributo nao pode ser vazio ou em branco");
+    	}
+    	if (!(atributo.equals("tutor") || atributo.equals("disciplina") || atributo.equals("aluno") || atributo.equals("dia") || atributo.equals("horario") || atributo.equals("localInteresse"))) {
+    		throw new IllegalArgumentException("atributo nao encontrado");
+    	}
+		switch (atributo) {
+		case "tutor":
+			return this.getTutor().toString();
+		case "disciplina":
+			return this.getDisciplina();
+		case "aluno":
+			return this.getMatriculaAluno();
+		case "horario":
+			return this.getHorario();
+		case "dia":
+			return this.getDia();
+		case "localInteresse":
+			return this.getLocal();
+		}
+		return null;
 	}
 	
 	@Override

@@ -8,59 +8,33 @@ package main;
  *
  */
 
-public class AjudaOnline {
+public class AjudaOnline extends Ajuda {
 
 	private String matriculaAluno;
 	private String disciplina;
 	private Aluno tutor;
 	
-	/**
-	 * Metodo que cadrasta o pedido de ajuda online dos alunos a partir dos parametros 
-	 * aluno, disciplina e tutor.
-	 * 
-	 * @param aluno String que representa o aluno que pediu ajuda.
-	 * @param disciplina String que representa a disciplina.
-	 * @param tutor2 String que representa o tutor.
-	 */	
 	public AjudaOnline(String aluno, String disciplina, Aluno tutor2) {
-		if (aluno == null) {
-			throw new NullPointerException("matricula de aluno nao pode ser vazio ou em branco");
+		super(aluno, disciplina, tutor2);
+	}
+	
+	@Override
+	public String getInfoAjuda(String atributo) {
+		if (atributo == null || atributo.trim().equals("")) {
+    		throw new IllegalArgumentException("atributo nao pode ser vazio ou em branco");
+    	}
+    	if (!(atributo.equals("tutor") || atributo.equals("disciplina") || atributo.equals("aluno") || atributo.equals("dia") || atributo.equals("horario") || atributo.equals("localInteresse"))) {
+    		throw new IllegalArgumentException("atributo nao encontrado");
+    	}
+		switch (atributo) {
+		case "tutor":
+			return this.getTutor().toString();
+		case "disciplina":
+			return this.getDisciplina();
+		case "aluno":
+			return this.getMatriculaAluno();
 		} 
-		if (aluno.trim().equals("")) {
-			throw new IllegalArgumentException("matricula de aluno nao pode ser vazio ou em branco");
-		}
-		if (disciplina == null) {
-			throw new NullPointerException("disciplina nao pode ser vazio ou em branco");
-		} 
-		if (disciplina.trim().equals("")) {
-			throw new IllegalArgumentException("disciplina nao pode ser vazio ou em branco");
-		}
-		this.matriculaAluno = aluno;
-		this.disciplina = disciplina;
-		this.tutor = tutor2;
-	}
-       /**
-	 * Metodo que retorna a matricula do aluno.
-	 * @return String.
-	 */
-	public String getMatriculaAluno() {
-		return matriculaAluno;
-	}
-
-	/**
-	 * Metodo que retorna a disciplina.
-	 * @return String.
-	 */
-	public String getDisciplina() {
-		return disciplina;
-	}
-
-	/**
-	 * Metodo que retorna a matricula do tutor.
-	 * @return String.
-	 */
-	public Aluno getTutor() {
-		return tutor;
+		return null;
 	}
 	
 	@Override
@@ -107,7 +81,5 @@ public class AjudaOnline {
 		} else if (!tutor.equals(other.tutor))
 			return false;
 		return true;
-	}
-	
-	
+	}	
 }
