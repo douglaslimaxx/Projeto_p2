@@ -94,6 +94,18 @@ public class ControllerAjuda {
     	
     }
     
+    public void avaliarTutor(int idAjuda, int avalicaoRecebida) {
+    	if (idAjuda <= 0) {
+      		throw new NoSuchElementException("Erro ao tentar avaliar tutor : id nao pode menor que zero ");
+      	} 
+     	if (this.ajudasOnline.containsKey(idAjuda)) {
+     		this.ajudasOnline.get(idAjuda).getTutor().avaliarTutor(avalicaoRecebida);;
+     	} else if (this.ajudasPresencial.containsKey(idAjuda)) {
+     		this.ajudasPresencial.get(idAjuda).getTutor().avaliarTutor(avalicaoRecebida);;
+     	} else {
+      		throw new IllegalArgumentException("Erro ao tentar avaliar tutor : id nao encontrado ");
+      	}
+    }
     
 	
 }

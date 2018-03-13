@@ -1,7 +1,5 @@
 package main;
 
-import javax.management.RuntimeErrorException;
-
 import ajuda.ControllerAjuda;
 import aluno.ControllerAluno;
 
@@ -241,6 +239,10 @@ public class Sistema {
 		String resultado = String.format("%.2f", nota);
 		resultado.replaceAll(".", ",");
 		return resultado;
+	}
+	
+	public void avaliarTutor(int idAjuda, int avaliacaoRecebida) {
+		this.controllerAjuda.avaliarTutor(idAjuda, avaliacaoRecebida);
 	}
     
     

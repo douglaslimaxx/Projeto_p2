@@ -196,6 +196,15 @@ public class Facade {
 	public String pegarNota(String matricula) {
 		return sistema.pegarNota(matricula);
 	}
+
+	/**
+	 * @param idAjuda
+	 * @param avaliacaoRecebida
+	 * @see main.Sistema#avaliarTutor(int, int)
+	 */
+	public void avaliarTutor(int idAjuda, int avaliacaoRecebida) {
+		sistema.avaliarTutor(idAjuda, avaliacaoRecebida);
+	}
 	
 	
 	

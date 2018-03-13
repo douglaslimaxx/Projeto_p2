@@ -16,9 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import comparadores.EmailComparador;
-import comparadores.MatriculaComparador;
-import comparadores.NomeComparador;
+import comparadores.*;
 
 public class ControllerAluno {
 

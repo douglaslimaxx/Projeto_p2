@@ -249,6 +249,10 @@ public class Aluno {
 		}
 		this.tutoria.doar(valor);
 	}
+	
+	public void avaliarTutor(int avaliacaoRecebida) {
+		this.tutoria.avaliarTutor(avaliacaoRecebida);
+	}
 
 	/**
 	 * Metodo que retorna o cadastro.                                                                                                                              
