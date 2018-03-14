@@ -41,6 +41,7 @@ public class AjudaOnline extends Ajuda {
 	public String toString() {
 		return "Tutor - " + this.tutor.getMatricula() + ", disciplina - " + this.disciplina;
 	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
