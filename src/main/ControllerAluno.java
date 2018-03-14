@@ -245,7 +245,7 @@ public class ControllerAluno {
 	}
 
 	public void doar(String matriculaTutor, int valor) {
-		if (!(this.alunos.containsKey(matriculaTutor))) {
+		if (!(this.alunos.keySet().contains(matriculaTutor))) {
 			throw new IllegalArgumentException("Tutor nao encontrado");
 		}
 		if (!(this.alunos.get(matriculaTutor).isTutor())) throw new IllegalArgumentException("aluno nao eh tutor");

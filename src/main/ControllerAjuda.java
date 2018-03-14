@@ -39,7 +39,6 @@ public class ControllerAjuda {
     	if (idAjuda > this.ajudas.size()) {
     		throw new IllegalArgumentException("Erro ao tentar recuperar tutor : id nao encontrado ");
     	}
-    	System.out.println("Tamanho do array - " + this.ajudas.size());
     	return this.ajudas.get(idAjuda - 1).toString();
     }
 	

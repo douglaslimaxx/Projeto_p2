@@ -23,7 +23,7 @@ public class AjudaOnline extends Ajuda {
 		if (atributo == null || atributo.trim().equals("")) {
     		throw new IllegalArgumentException("atributo nao pode ser vazio ou em branco");
     	}
-    	if (!(atributo.equals("tutor") || atributo.equals("disciplina") || atributo.equals("aluno") || atributo.equals("dia") || atributo.equals("horario") || atributo.equals("localInteresse"))) {
+    	if (!(atributo.equals("tutor") || atributo.equals("disciplina") || atributo.equals("aluno"))) {
     		throw new IllegalArgumentException("atributo nao encontrado");
     	}
 		switch (atributo) {
