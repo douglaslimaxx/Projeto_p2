@@ -5,6 +5,7 @@ public abstract class Ajuda {
 	protected String matriculaAluno;
 	protected String disciplina;
 	protected Aluno tutor;
+	protected boolean avaliada;
 
 	/**
 	 * Metodo que cadrasta o pedido de ajuda online dos alunos a partir dos parametros 
@@ -30,6 +31,7 @@ public abstract class Ajuda {
 		this.matriculaAluno = aluno;
 		this.disciplina = disciplina;
 		this.tutor = tutor2;
+		this.avaliada = false;
 	}
 	/**
 	 * Metodo que retorna a matricula do aluno.
@@ -58,4 +60,13 @@ public abstract class Ajuda {
 	public abstract String getInfoAjuda(String atributo);
 	
 	public abstract String toString();
+	
+	public void avaliando() {
+		if (this.avaliada == true) {
+			throw new IllegalArgumentException("Erro na avaliacao de tutor: Ajuda ja avaliada");
+		} else {
+			this.avaliada = true;
+		}
+		
+	}
 }

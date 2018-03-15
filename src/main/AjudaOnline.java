@@ -9,10 +9,6 @@ package main;
  */
 
 public class AjudaOnline extends Ajuda {
-
-	private String matriculaAluno;
-	private String disciplina;
-	private Aluno tutor;
 	
 	public AjudaOnline(String aluno, String disciplina, Aluno tutor2) {
 		super(aluno, disciplina, tutor2);

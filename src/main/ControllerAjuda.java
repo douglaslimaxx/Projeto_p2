@@ -58,11 +58,18 @@ public class ControllerAjuda {
     
     public void avaliarTutor(int idAjuda, int avalicaoRecebida) {
     	if (idAjuda <= 0) {
-    		throw new NoSuchElementException("Erro ao tentar avaliar tutor : id nao pode menor que zero ");
+    		throw new NoSuchElementException("Erro na avaliacao de tutor: id nao pode menor que zero ");
     	} 
-    	if (idAjuda > this.ajudas.size()) {
-    		throw new IllegalArgumentException("Erro ao tentar avaliar tutor : id nao encontrado ");
+    	if (avalicaoRecebida < 0) {
+    		throw new IllegalArgumentException("Erro na avaliacao de tutor: nota nao pode ser menor que 0");
     	}
+		if (avalicaoRecebida > 5) {
+			throw new IllegalArgumentException("Erro na avaliacao de tutor: nota nao pode ser maior que 5");
+		}
+    	if (idAjuda > this.ajudas.size()) {
+    		throw new IllegalArgumentException("Erro na avaliacao de tutor: id nao encontrado ");
+    	}
+    	this.ajudas.get(idAjuda - 1).avaliando();
     	this.ajudas.get(idAjuda - 1).getTutor().avaliarTutor(avalicaoRecebida);
     }
     

@@ -13,7 +13,7 @@ import java.util.Map;
 public class Tutoria {
 
 	private int dinheiroTutor;
-	private int pontuacaoAtual;
+	private double pontuacaoAtual;
 	private int quantia;
 	private Map<String, Disciplina> disciplinas;
 	private Disponibilidade disponibilidade;
@@ -91,7 +91,7 @@ public class Tutoria {
 	 * 
 	 * @return int referente a avaliação da tutoria.
 	 */
-	public int getAvaliacao() {
+	public double getAvaliacao() {
 		return pontuacaoAtual;
 	}
 
@@ -103,7 +103,7 @@ public class Tutoria {
 	 *            int que e o valor a ser atribuído ao atributo Avaliacao.
 	 */
 	public void avaliarTutor(int avaliacaoRecebida) {
-		this.pontuacaoAtual = (this.pontuacaoAtual * 5 + avaliacaoRecebida) / 6;
+		this.pontuacaoAtual = (this.pontuacaoAtual * 5.0 + avaliacaoRecebida) / 6.0;
 	}
 
 	/**
@@ -177,16 +177,6 @@ public class Tutoria {
 
 	public boolean isTutor() {
 		return !this.disciplinas.isEmpty();
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + pontuacaoAtual;
-		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
-		result = prime * result + quantia;
-		return result;
 	}
 
 	@Override
