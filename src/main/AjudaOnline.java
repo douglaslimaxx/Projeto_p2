@@ -39,7 +39,7 @@ public class AjudaOnline extends Ajuda {
 	
 	@Override
 	public String toString() {
-		return "Tutor - " + this.tutor.getMatricula() + ", disciplina - " + this.disciplina;
+		return "Tutor - " +  this.tutor.getMatricula() + ", disciplina - " + this.disciplina;
 	}
 	
 	/* (non-Javadoc)

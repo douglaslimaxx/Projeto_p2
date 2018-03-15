@@ -27,8 +27,6 @@ public class Aluno {
 		if(matricula == null || matricula.trim().equals(""))throw new NullPointerException("matricula nao pode ser vazia ou nula");
 		if (email == null) throw new NullPointerException("email nao pode ser vazio ou em branco");
 		if (email.trim().equals("")) throw new IllegalArgumentException("email nao pode ser vazio ou em branco");
-		if (telefone == null) throw new NullPointerException("telefone nao pode ser vazio ou em branco");
-		if (telefone.trim().equals("")) throw new IllegalArgumentException("telefone nao pode ser vazio ou em branco");
 		if (codigoCurso <= 0) throw new IllegalArgumentException("codigo de curso nao pode ser zero ou negativo");
 		if (cadastro <= 0) throw new IllegalArgumentException("cadastro nao pode ser zero ou negativo");
 		
