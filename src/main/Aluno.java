@@ -25,6 +25,12 @@ public class Aluno {
 	public Aluno(String nome, String matricula, String email, String telefone, int codigoCurso, int cadastro) {
 		if(nome == null || nome.trim().equals(""))throw new NullPointerException("Nome nao pode ser vazio ou nulo");
 		if(matricula == null || matricula.trim().equals(""))throw new NullPointerException("matricula nao pode ser vazia ou nula");
+		if (email == null) throw new NullPointerException("email nao pode ser vazio ou em branco");
+		if (email.trim().equals("")) throw new IllegalArgumentException("email nao pode ser vazio ou em branco");
+		if (telefone == null) throw new NullPointerException("telefone nao pode ser vazio ou em branco");
+		if (telefone.trim().equals("")) throw new IllegalArgumentException("telefone nao pode ser vazio ou em branco");
+		if (codigoCurso <= 0) throw new IllegalArgumentException("codigo de curso nao pode ser zero ou negativo");
+		if (cadastro <= 0) throw new IllegalArgumentException("cadastro nao pode ser zero ou negativo");
 		
 		this.email = email;
 		this.nome = nome;
@@ -132,12 +138,8 @@ public class Aluno {
 	 * @return 
 	 */	
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
-		if (disciplina == null) {
-			throw new NullPointerException("disciplina nao pode ser vazia ou nula");
-		}
-		if (disciplina.trim().equals("")) {
-			throw new IllegalArgumentException("disciplina nao pode ser vazia ou nula");
-		}
+		if (disciplina == null) throw new NullPointerException("disciplina nao pode ser vazia ou em branco");
+		if (disciplina.trim().equals("")) throw new IllegalArgumentException("disciplina nao pode ser vazia ou em branco");
 		tutoria.adicionaDisciplina(disciplina, proficiencia);
 	}
 
@@ -148,18 +150,10 @@ public class Aluno {
 	 * @return String.
 	 */	 
 	public boolean consultaHorario(String horario, String dia) {
-		if (horario == null) {
-			throw new NullPointerException("horario nao pode ser vazio ou nulo");
-		}
-		if (horario.trim().equals("")) {
-			throw new IllegalArgumentException("horario nao pode ser vazio ou nulo");
-		}
-		if (dia == null) {
-			throw new NullPointerException("horario nao pode ser vazio ou nulo");
-		}
-		if (dia.trim().equals("")) {
-			throw new IllegalArgumentException("dia nao pode ser vazio ou nulo");
-		}
+		if (horario == null) throw new NullPointerException("horario nao pode ser vazio ou em branco");
+		if (horario.trim().equals("")) throw new IllegalArgumentException("horario nao pode ser vazio ou em branco");
+		if (dia == null) throw new NullPointerException("dia nao pode ser vazio ou em branco");
+		if (dia.trim().equals("")) throw new IllegalArgumentException("dia nao pode ser vazio ou em branco");
 		return tutoria.consultaHorario(horario, dia);
 	}
 	
@@ -169,12 +163,8 @@ public class Aluno {
 	 * @return String.
 	 */	 
 	public boolean consultaLocal(String local) {
-		if (local == null) {
-			throw new NullPointerException("local nao pode ser vazio ou nulo");
-		}
-		if (local.trim().equals("")) {
-			throw new IllegalArgumentException("local nao pode ser vazio ou nulo");
-		}
+		if (local == null) throw new NullPointerException("local nao pode ser vazio ou em branco");
+		if (local.trim().equals("")) throw new IllegalArgumentException("local nao pode ser vazio ou em branco");
 		return tutoria.consultaLocal(local);
 	}
 
@@ -186,18 +176,10 @@ public class Aluno {
 	 * @return String.
 	 */	 
 	public void cadastrarHorario(String horario, String dia) {
-		if (horario == null) {
-			throw new NullPointerException("horario nao pode ser vazio ou em branco");
-		}
-		if (horario.trim().equals("")) {
-			throw new IllegalArgumentException("horario nao pode ser vazio ou em branco");
-		}
-		if (dia == null) {
-			throw new NullPointerException("dia nao pode ser vazio ou em branco");
-		}
-		if (dia.trim().equals("")) {
-			throw new IllegalArgumentException("dia nao pode ser vazio ou em branco");
-		}
+		if (horario == null) throw new NullPointerException("horario nao pode ser vazio ou em branco");
+		if (horario.trim().equals("")) throw new IllegalArgumentException("horario nao pode ser vazio ou em branco");
+		if (dia == null) throw new NullPointerException("dia nao pode ser vazio ou em branco");
+		if (dia.trim().equals("")) throw new IllegalArgumentException("dia nao pode ser vazio ou em branco");
 		tutoria.cadastrarHorario(horario, dia);
 	}
 
@@ -207,12 +189,8 @@ public class Aluno {
 	 * @return String.
 	 */	 
 	public void cadastrarLocalDeAtendimento(String local) {
-		if (local == null) {
-			throw new NullPointerException("local nao pode ser vazio ou em branco");
-		}
-		if (local.trim().equals("")) {
-			throw new IllegalArgumentException("local nao pode ser vazio ou em branco");
-		}
+		if (local == null) throw new NullPointerException("local nao pode ser vazio ou em branco");
+		if (local.trim().equals("")) throw new IllegalArgumentException("local nao pode ser vazio ou em branco");
 		tutoria.cadastrarLocalDeAtendimento(local);
 	}
 
@@ -223,12 +201,8 @@ public class Aluno {
 	 * @return 
 	 */
 	public void tornaTutor(String disciplina, int proficiencia) {
-		if (disciplina == null) {
-			throw new NullPointerException("disciplina nao pode ser vazia ou nula");
-		}
-		if (disciplina.trim().equals("")) {
-			throw new IllegalArgumentException("disciplina nao pode ser vazia ou nula");
-		}
+		if (disciplina == null) throw new NullPointerException("disciplina nao pode ser vazia ou em branco");
+		if (disciplina.trim().equals("")) throw new IllegalArgumentException("disciplina nao pode ser vazia ou em branco");
 		this.tutoria.adicionaDisciplina(disciplina, proficiencia);		
 	}
 
@@ -245,9 +219,7 @@ public class Aluno {
 	 * @return String.
 	 */	 
 	public void doar(int valor) {
-		if (valor <= 0) {
-			throw new UnsupportedOperationException("doacao nao pode ser zero ou negativa");
-		}
+		if (valor <= 0) throw new UnsupportedOperationException("doacao nao pode ser zero ou negativa");
 		this.tutoria.doar(valor);
 	}
 

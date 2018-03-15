@@ -10,147 +10,287 @@ import org.junit.Test;
 
 import main.Aluno;
 
-/**
- * Cria uma classe de teste para aluno.
- * @author Marta Lais de Macedo Dantas.
- *
- */
-
 public class AlunoTest {
-	private Aluno aluno1;
+	private Aluno Fulano;
 
 	
 	@Before
-	public void setup() {
-		aluno1 = new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", 65, 14);
+	public void setUp() {
+		Fulano = new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", 65, 14);
 	}
 	
 	@Test
-	public void testaConstructor() {
-		assertEquals(aluno1.getNome(), "Florence");
-		assertEquals(aluno1.getMatricula(), "123123");
-		assertEquals(aluno1.getEmail(), "florence@maquina.com");
-		assertEquals(aluno1.getTelefone(), "6543-2123");
-		assertEquals(aluno1.getCodigoCurso(), 14);
-	}
-	
-	@Test
-	public void testaNullVazioNome() {
+	public void testaNomeNulo() {
 		try {
-			new Aluno(null, "117110", "florence@maquina.com", "3321-3456", 65, 14);
-			fail("aluno com nome null cadastrado");
-		} catch (NullPointerException e) {
-			//funcionando
-		}
-		
-		try {
-			new Aluno("    ", "117110", "florence@maquina.com", "3321-3456", 65, 14);
-			fail("aluno com nome vazio cadastrado");
-		} catch (IllegalArgumentException e) {
+			Fulano = new Aluno(null, "117110", "florence@maquina.com", "3321-3456", 65, 14);  
+		} catch (NullPointerException qw) {
+			assertEquals(qw.getMessage(), "Nome nao pode ser vazio ou nulo");
 		}
 	}
 	
 	@Test
-	public void testaNullVazioMatricula() {
+	public void testaNomeVazio() {
 		try {
-			new Aluno("Florence", null, "florence@maquina.com", "3321-3456", 65, 14);
-			fail("aluno com matricula null cadastrado");
-		} catch (NullPointerException e) {
-		}
-		
-		try {
-			new Aluno("Florence", "   ", "florence@maquina.com", "3321-3456", 65, 14);
-			fail("aluno com matricula vazio cadastrado");
-		} catch (IllegalArgumentException e) {
+			Fulano = new Aluno("    ", "117110", "florence@maquina.com", "3321-3456", 65, 14);
+		} catch (NullPointerException he) {
+			assertEquals(he.getMessage(), "Nome nao pode ser vazio ou nulo");
 		}
 	}
 	
 	@Test
-	public void testaNullVazioEmail() {
+	public void testaMatriculaNulo() {
 		try {
-			new Aluno("Florence", "117110", null, "3321-3456", 65, 14);
-			fail("aluno com email null cadastrado");
-		} catch (NullPointerException e) {
-		}
-		
-		try {
-			new Aluno("Florence", "117110", "    ", "3321-3456", 65, 14);
-			fail("aluno com email vazio cadastrado");
-		} catch (IllegalArgumentException e) {
+			Fulano = new Aluno("Florence", null, "florence@maquina.com", "3321-3456", 65, 14);
+		} catch (NullPointerException ri) {
+			assertEquals(ri.getMessage(), "matricula nao pode ser vazia ou nula");
 		}
 	}
 	
 	@Test
-	public void testaInvalidoEmail() {
-		//TODO
+	public void testaMatriculaVazia() {
+		try {
+			Fulano = new Aluno("Florence", "     ", "florence@maquina.com", "3321-3456", 65, 14);
+		} catch (NullPointerException bn) {
+			assertEquals(bn.getMessage(), "matricula nao pode ser vazia ou nula");
+		}
 	}
 	
 	@Test
-	public void testaNullVazioTelefone() {
+	public void testaEmailNulo() {
 		try {
-			new Aluno("Florence", "117110", "florence@maquina.com", null, 65, 14);
-			fail("aluno com telefone null cadastrado");
-		} catch (NullPointerException e) {
-		}
-		
-		try {
-			new Aluno("Florence", "117110", "florence@maquina.com", "    ", 65, 14);
-			fail("aluno com nome vazio cadastrado");
-		} catch (IllegalArgumentException e) {
+			Fulano = new Aluno("Florence", "117110", null, "3321-3456", 65, 14);
+		} catch (NullPointerException vi) {
+			assertEquals(vi.getMessage(), "email nao pode ser vazio ou em branco");
 		}
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test
+	public void testaEmailVazio() {
+		try {
+			Fulano = new Aluno("Florence", "117110", "     ", "3321-3456", 65, 14);
+		} catch (IllegalArgumentException ur) {
+			assertEquals(ur.getMessage(), "email nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaTelefoneNulo() {
+		try {
+			Fulano = new Aluno("Florence", "117110", "florence@maquina.com", null, 65, 14);
+		} catch (NullPointerException pn) {
+			assertEquals(pn.getMessage(), "telefone nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaTelefoneVazio() {
+		try {
+			Fulano = new Aluno("Florence", "117110", "florence@maquina.com", "     ", 65, 14);
+		} catch (IllegalArgumentException bx) {
+			assertEquals(bx.getMessage(), "telefone nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaCodigoZero() {
+		try {
+			Fulano = new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", 0, 14);
+		} catch (IllegalArgumentException gg) {
+			assertEquals(gg.getMessage(), "codigo de curso nao pode ser zero ou negativo");
+		}
+	}
+	
+	@Test
 	public void testaCodigoNegativo() {
-		new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", -65, 14);
-	}
-	
-	@Test
-	public void testaIsTutor() {
-		assertFalse(aluno1.isTutor());
-		aluno1.tornaTutor("p2", 3);
-		assertTrue(aluno1.isTutor());
-	}
-	
-	@Test
-	public void testaDoar() {
-		aluno1.tornaTutor("p2", 3);
-		aluno1.doar(6);
-		assertEquals(6, aluno1.totalDinheiroTutor());
-		aluno1.doar(6);
-		assertEquals(12, aluno1.totalDinheiroTutor());
-	}
-	
-	
-	@Test
-	public void testaDoarAluno() {
 		try {
-			aluno1.doar(11);
-			fail("Doacao para aluno que nao eh tutor");
-		} catch (Exception e) {
+			Fulano = new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", -1, 14);
+		} catch (IllegalArgumentException we) {
+			assertEquals(we.getMessage(), "codigo de curso nao pode ser zero ou negativo");
 		}
 	}
 	
 	@Test
-	public void testaDoarNulo() {
-		aluno1.tornaTutor("p2", 3);
-		aluno1.doar(6);
+	public void testaCadastroZero() {
 		try {
-			aluno1.doar(0);
-			fail("Tutor recebeu doacao nula");
-		} catch (Exception e) {
+			Fulano = new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", 65, 0);
+		} catch (IllegalArgumentException cn) {
+			assertEquals(cn.getMessage(), "cadastro nao pode ser zero ou negativo");
+		}
+	}
+	
+	@Test
+	public void testaCadastroNegativo() {
+		try {
+			Fulano = new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", 65, -1);
+		} catch (IllegalArgumentException lp) {
+			assertEquals(lp.getMessage(), "cadastro nao pode ser zero ou negativo");
+		}
+	}
+	
+	@Test
+	public void testaAdicionaDisciplinaNula() {
+		try {
+			Fulano.adicionaDisciplina(null, 2);
+		} catch (NullPointerException ty) {
+			assertEquals(ty.getMessage(), "disciplina nao pode ser vazia ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaAdicionaDisciplinaVazia() {
+		try {
+			Fulano.adicionaDisciplina("    ", 2);
+		} catch (IllegalArgumentException pi) {
+			assertEquals(pi.getMessage(), "disciplina nao pode ser vazia ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaConsultaHorarioNulo() {
+		try {
+			Fulano.consultaHorario(null, "seg");
+		} catch (NullPointerException ij) {
+			assertEquals(ij.getMessage(), "horario nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaConsultaHorarioVazio() {
+		try {
+			Fulano.consultaHorario("    ", "seg");
+		} catch (IllegalArgumentException gh) {
+			assertEquals(gh.getMessage(), "horario nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaConsultaDiaNulo() {
+		try {
+			Fulano.consultaHorario("9:00", null);
+		} catch (NullPointerException lk) {
+			assertEquals(lk.getMessage(), "dia nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaConsultaDiaVazio() {
+		try {
+			Fulano.consultaHorario("9:00", "    ");
+		} catch (IllegalArgumentException ad) {
+			assertEquals(ad.getMessage(), "dia nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaConsultaLocalNulo() {
+		try {
+			Fulano.consultaLocal(null);
+		} catch (NullPointerException xl) {
+			assertEquals(xl.getMessage(), "local nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaConsultaLocalVazio() {
+		try {
+			Fulano.consultaLocal("     ");
+		} catch (IllegalArgumentException so) {
+			assertEquals(so.getMessage(), "local nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaCadastraHorarioNulo() {
+		try {
+			Fulano.cadastrarHorario(null, "ter");
+		} catch (NullPointerException sd) {
+			assertEquals(sd.getMessage(), "horario nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaCadastraHorarioVazio() {
+		try {
+			Fulano.cadastrarHorario("    ", "ter");
+		} catch (IllegalArgumentException pb) {
+			assertEquals(pb.getMessage(), "horario nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaCadastraDiaNulo() {
+		try {
+			Fulano.cadastrarHorario("15:00", null);
+		} catch (NullPointerException jk) {
+			assertEquals(jk.getMessage(), "dia nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaCadastraDiaVazio() {
+		try {
+			Fulano.cadastrarHorario("15:00", "     ");
+		} catch (IllegalArgumentException gt) {
+			assertEquals(gt.getMessage(), "dia nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaCadastraLocalNulo() {
+		try {
+			Fulano.cadastrarLocalDeAtendimento(null);
+		} catch (NullPointerException as) {
+			assertEquals(as.getMessage(), "local nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaCadastraLocalVazio() {
+		try {
+			Fulano.cadastrarLocalDeAtendimento("     ");
+		} catch (IllegalArgumentException er) {
+			assertEquals(er.getMessage(), "local nao pode ser vazio ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaTornaTutorNulo() {
+		try {
+			Fulano.tornaTutor(null, 2);
+		} catch (NullPointerException gb) {
+			assertEquals(gb.getMessage(), "disciplina nao pode ser vazia ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaTornaTutorVazio() {
+		try {
+			Fulano.tornaTutor("     ", 2);
+		} catch (IllegalArgumentException hj) {
+			assertEquals(hj.getMessage(), "disciplina nao pode ser vazia ou em branco");
+		}
+	}
+	
+	@Test
+	public void testaDoarZero() {
+		try {
+			Fulano.doar(0);
+		} catch (UnsupportedOperationException nm) {
+			assertEquals(nm.getMessage(), "doacao nao pode ser zero ou negativa");
 		}
 	}
 	
 	@Test
 	public void testaDoarNegativo() {
-		aluno1.tornaTutor("p2", 3);
-		aluno1.doar(6);
 		try {
-			aluno1.doar(-3);
-			fail("Tutor recebeu doacao negativa");
-		} catch (Exception e) {
+			Fulano.doar(-1);
+		} catch (UnsupportedOperationException nm) {
+			assertEquals(nm.getMessage(), "doacao nao pode ser zero ou negativa");
 		}
 	}
 	
+	
+	
+	
+ 
 }
