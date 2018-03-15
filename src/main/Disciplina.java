@@ -1,6 +1,5 @@
 package main;
 
-import java.util.NoSuchElementException;
 
 /**
  * Cria uma classe Disciplina //TODO
