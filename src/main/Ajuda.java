@@ -1,5 +1,10 @@
 package main;
 
+/**
+ * 
+ * @author douglas
+ *
+ */
 public abstract class Ajuda {
 
 	protected String matriculaAluno;
@@ -57,16 +62,27 @@ public abstract class Ajuda {
 		return tutor;
 	}
 	
+	/**
+	 * Metodo retorna algum atributo da ajuda. Mas qual do atributos sera retornado, 
+	 * e determinado pelo parametro.
+	 * @param atributo String que determina qual atributo sera retornado.
+	 * @return String que e um dos atributos de Ajuda.
+	 */
 	public abstract String getInfoAjuda(String atributo);
 	
-	public abstract String toString();
-	
+	/**
+	 * Metodo que muda o estado de uma ajuda para avaliada, caso essa nao tenha sido 
+	 * avaliada. Se caso a ajuda ja foi avaliada, e lançado uma excecao.
+	 */
 	public void avaliando() {
 		if (this.avaliada == true) {
 			throw new IllegalArgumentException("Erro na avaliacao de tutor: Ajuda ja avaliada");
 		} else {
 			this.avaliada = true;
 		}
-		
 	}
+	
+	@Override
+	public abstract String toString();
+	
 }

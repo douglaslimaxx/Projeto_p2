@@ -73,6 +73,9 @@ public class AjudaPresencial extends Ajuda{
 		return this.local;
 	}
 
+	/**
+	 * @see Ajuda#getInfoAjuda(String)
+	 */
 	@Override
 	public String getInfoAjuda(String atributo) {
 		if (atributo == null || atributo.trim().equals("")) {
