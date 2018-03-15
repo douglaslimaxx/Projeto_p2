@@ -289,7 +289,41 @@ public class AlunoTest {
 		}
 	}
 	
+	@Test
+	public void testaAdicionaProficienciaMenor() {
+		try {
+			Fulano.adicionaDisciplina("calculo", 0);
+		} catch (IllegalArgumentException bi) {
+			assertEquals(bi.getMessage(), "proficiencia invalida");
+		}
+	}
 	
+	@Test
+	public void testaAdicionaProficienciaMaior() {
+		try {
+			Fulano.adicionaDisciplina("calculo", 6);
+		} catch (IllegalArgumentException ka) {
+			assertEquals(ka.getMessage(), "proficiencia invalida");
+		}
+	}
+	
+	@Test
+	public void testaTornaProficienciaMenor() {
+		try {
+			Fulano.tornaTutor("prog", 0);
+		} catch (IllegalArgumentException jh) {
+			assertEquals(jh.getMessage(), "proficiencia invalida");
+		}
+	}
+	
+	@Test
+	public void testaTornaProficienciaMaior() {
+		try {
+			Fulano.tornaTutor("prog", 6);
+		} catch (IllegalArgumentException po) {
+			assertEquals(po.getMessage(), "proficiencia invalida");
+		}
+	}
 	
 	
  

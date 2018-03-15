@@ -138,6 +138,7 @@ public class Aluno {
 	 * @return 
 	 */	
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
+		if ((proficiencia < 1) || (proficiencia > 5)) throw new IllegalArgumentException("proficiencia invalida");
 		if (disciplina == null) throw new NullPointerException("disciplina nao pode ser vazia ou em branco");
 		if (disciplina.trim().equals("")) throw new IllegalArgumentException("disciplina nao pode ser vazia ou em branco");
 		tutoria.adicionaDisciplina(disciplina, proficiencia);
@@ -201,6 +202,7 @@ public class Aluno {
 	 * @return 
 	 */
 	public void tornaTutor(String disciplina, int proficiencia) {
+		if ((proficiencia < 1) || (proficiencia > 5)) throw new IllegalArgumentException("proficiencia invalida");
 		if (disciplina == null) throw new NullPointerException("disciplina nao pode ser vazia ou em branco");
 		if (disciplina.trim().equals("")) throw new IllegalArgumentException("disciplina nao pode ser vazia ou em branco");
 		this.tutoria.adicionaDisciplina(disciplina, proficiencia);		
