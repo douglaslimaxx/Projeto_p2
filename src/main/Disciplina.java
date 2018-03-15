@@ -14,18 +14,9 @@ public class Disciplina {
 	private int proficiencia;
 	
 	public Disciplina(String disciplina, int proficiencia) {
-		if(disciplina == null) {
-			throw new NullPointerException("Disciplina nao pode ser vazia ou nula");
-		}
-		if (disciplina.trim().equals("")) {
-			throw new IllegalArgumentException("Disciplina nao pode ser vazia ou nula");
-		}
-		if (proficiencia <= 0) {
-			throw new NoSuchElementException("Proficiencia invalida");
-		}
-		if (proficiencia > 5) {
-			throw new NoSuchElementException("Proficiencia invalida");
-		}
+		if(disciplina == null) throw new NullPointerException("Disciplina nao pode ser vazia ou nula");
+		if (disciplina.trim().equals("")) throw new IllegalArgumentException("Disciplina nao pode ser vazia ou nula");
+		if ((proficiencia <= 0) || (proficiencia > 5)) throw new IllegalArgumentException("Proficiencia invalida");
 		this.disciplina = disciplina;
 		this.proficiencia = proficiencia;
 	}
@@ -39,12 +30,7 @@ public class Disciplina {
 	}
 	
 	public void setProficiencia(int proficiencia) {
-		if (proficiencia <= 0) {
-			throw new NoSuchElementException("Proficiencia Invalida");
-		}
-		if (proficiencia > 5) {
-			throw new NoSuchElementException("Proficiencia Invalida");
-		}
+		if ((proficiencia <= 0) || (proficiencia > 5)) throw new IllegalArgumentException("Proficiencia invalida");
 		this.proficiencia = proficiencia;
 	}
 
