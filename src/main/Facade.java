@@ -217,6 +217,7 @@ public class Facade {
 	 * Esse método salva todo o sistema atual.
 	 */
 	public void salvar() {
+		this.limpar();
 		File file = new File("data.txt");
 		FileOutputStream fos;
 		ObjectOutputStream oos;
