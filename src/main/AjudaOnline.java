@@ -14,6 +14,9 @@ public class AjudaOnline extends Ajuda {
 		super(aluno, disciplina, tutor2);
 	}
 	
+	/**
+	 * @see Ajuda#getInfoAjuda(String)
+	 */
 	@Override
 	public String getInfoAjuda(String atributo) {
 		if (atributo == null || atributo.trim().equals("")) {
