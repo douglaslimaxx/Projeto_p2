@@ -1,5 +1,6 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -17,8 +18,12 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
-public class ControllerAluno {
+public class ControllerAluno  implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4L;
 	private HashMap<String, Aluno> alunos;
 	private static final String EMAIL_PATTERN = 
 	        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -241,6 +246,7 @@ public class ControllerAluno {
 
 	public int totalDinheiroTutor(String email) {
 		validarEmail(email);
+		if(alunoPorEmail(email) == null)throw new IllegalArgumentException("Tutor nao encontrado");
 		return alunoPorEmail(email).totalDinheiroTutor();
 	}
 
@@ -253,10 +259,12 @@ public class ControllerAluno {
 	}
 	
 	public double pegarNota(String matriculaTutor) {
+		if(!this.alunos.containsKey(matriculaTutor))throw new IllegalArgumentException("Tutor nao encontrado");
 		return this.alunos.get(matriculaTutor).getTutoria().getAvaliacao();
 	}
 	
 	public String pegarNivel(String matriculaTutor) {
+		if(!this.alunos.containsKey(matriculaTutor))throw new IllegalArgumentException("Tutor nao encontrado");
 		String nivel = "";
 		if (this.alunos.get(matriculaTutor).getTutoria().getAvaliacao() > 4.5) {
 			nivel = "TOP";

@@ -1,7 +1,13 @@
 package main;
 
-public abstract class Ajuda {
+import java.io.Serializable;
 
+public abstract class Ajuda implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3L;
 	protected String matriculaAluno;
 	protected String disciplina;
 	protected Aluno tutor;

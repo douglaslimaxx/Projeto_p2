@@ -1,14 +1,20 @@
 package main;
 
+import java.io.Serializable;
+
 /**
  * Representa um Sistema de tutorias, onde alunos podem encontrar tutores que ensinam 
  * certas disciplinas, e tambem podem se tornar tutores de algumas disciplinas.
  * @author Douglas Lima
  *
  */
-public class Sistema {
+public class Sistema implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int dinheiroSistema;
 	private ControllerAluno controllerAluno;
 	private ControllerAjuda controllerAjuda;
@@ -173,8 +179,15 @@ public class Sistema {
     
     public void doar(String matriculaTutor, int totalCentavos) {
     	if(matriculaTutor == null || matriculaTutor.trim().equals("")) throw new IllegalArgumentException("Erro na doacao para tutor: matricula nao pode ser vazia ou nula");
-    	String nivel = this.controllerAluno.pegarNivel(matriculaTutor);
-    	double nota = this.controllerAluno.pegarNota(matriculaTutor);
+    	if(totalCentavos < 0)throw new IllegalArgumentException("Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
+    	String nivel = "";
+    	double nota = 0;
+    	try {
+    		nivel = this.controllerAluno.pegarNivel(matriculaTutor);
+    		nota = this.controllerAluno.pegarNota(matriculaTutor);
+    	}catch(RuntimeException re){
+    		throw new IllegalArgumentException("Erro na doacao para tutor: " + re.getMessage());
+    	}
     	double taxa_tutor;
     	switch (nivel) {
     		case "TOP":
@@ -189,7 +202,7 @@ public class Sistema {
     		default:
     			throw new IllegalArgumentException("");
     	}
-    	int calculo = (int)(1 - taxa_tutor) * totalCentavos;
+    	int calculo = (int)((1 - taxa_tutor) * totalCentavos);
     	this.dinheiroSistema += calculo;
     	try {
     		this.controllerAluno.doar(matriculaTutor, totalCentavos - calculo);
@@ -199,7 +212,12 @@ public class Sistema {
     }
     
     public int totalDinheiroTutor(String emailTutor) {
-    	return this.controllerAluno.totalDinheiroTutor(emailTutor);
+    	if(emailTutor == null || emailTutor.trim().equals("")) throw new IllegalArgumentException("Erro na consulta de total de dinheiro do tutor: emailTutor nao pode ser vazio ou nulo");
+    	try {
+    		return this.controllerAluno.totalDinheiroTutor(emailTutor);
+    	}catch(RuntimeException re) {
+    		throw new IllegalArgumentException("Erro na consulta de total de dinheiro do tutor: " + re.getMessage());
+    	}
     }
     
     public int totalDinheiroSistema() {

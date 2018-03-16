@@ -1,12 +1,18 @@
 package main;
 
+import java.io.Serializable;
+
 /**
  * Cria uma classe aluno atraves de sua matricula, nome, telefone e codigo de curso e email.
  * @author Marta Lais de Macedo Dantas.
  *
  */
-public class Aluno {
+public class Aluno implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5L;
 	private int codigoCurso;
 	private String matricula, nome, telefone, email;
 	private Tutoria tutoria;

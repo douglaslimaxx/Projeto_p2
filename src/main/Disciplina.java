@@ -1,5 +1,6 @@
 package main;
 
+import java.io.Serializable;
 
 /**
  * Cria uma classe Disciplina //TODO
@@ -7,8 +8,12 @@ package main;
  *
  */
 
-public class Disciplina {
+public class Disciplina implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7L;
 	private String disciplina;
 	private int proficiencia;
 	

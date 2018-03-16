@@ -1,5 +1,6 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -10,8 +11,12 @@ import java.util.NoSuchElementException;
  * @author Douglas Lima
  *
  */
-public class ControllerAjuda {
+public class ControllerAjuda implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
 	private List<Ajuda> ajudas = new ArrayList<>();
 	
     public int pedirAjudaPresencial (String matrAluno, String disciplina, Aluno tutor, String horario, String dia, String localInteresse) {

@@ -1,5 +1,6 @@
 package main;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,8 +11,12 @@ import java.util.Map;
  * @author Douglas Lima
  *
  */
-public class Tutoria {
+public class Tutoria  implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6L;
 	private int dinheiroTutor;
 	private double pontuacaoAtual;
 	private int quantia;
@@ -177,6 +182,16 @@ public class Tutoria {
 
 	public boolean isTutor() {
 		return !this.disciplinas.isEmpty();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (int)(prime * result + pontuacaoAtual) ;
+		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
+		result = prime * result + quantia;
+		return result;
 	}
 
 	@Override

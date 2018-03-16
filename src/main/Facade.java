@@ -1,5 +1,12 @@
 package main;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class Facade {
 
 	private Sistema sistema = new Sistema();
@@ -206,4 +213,43 @@ public class Facade {
 		sistema.avaliarTutor(idAjuda, avaliacaoRecebida);
 	}
 
+	/**
+	 * Esse método salva todo o sistema atual.
+	 */
+	public void salvar() {
+		File file = new File("data.txt");
+		FileOutputStream fos;
+		ObjectOutputStream oos;
+		try {
+			fos = new FileOutputStream(file);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(this.sistema);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+	}
+	/**
+	 * Esse método apaga o atual save do sistema.
+	 */
+	public void limpar() {
+		File file = new File("data.txt");
+		file.delete();
+	}
+	
+	/**
+	 * Esse método carrega um sistema salvo previamente.
+	 */
+	public void carregar() {
+		File file = new File("data.txt");;
+		FileInputStream fis;
+		ObjectInputStream ois;
+		try {
+			fis = new FileInputStream(file);
+			ois = new ObjectInputStream(fis);
+			this.sistema = (Sistema)ois.readObject();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
 }

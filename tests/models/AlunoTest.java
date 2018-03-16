@@ -72,24 +72,6 @@ public class AlunoTest {
 	}
 	
 	@Test
-	public void testaTelefoneNulo() {
-		try {
-			Fulano = new Aluno("Florence", "117110", "florence@maquina.com", null, 65, 14);
-		} catch (NullPointerException pn) {
-			assertEquals(pn.getMessage(), "telefone nao pode ser vazio ou em branco");
-		}
-	}
-	
-	@Test
-	public void testaTelefoneVazio() {
-		try {
-			Fulano = new Aluno("Florence", "117110", "florence@maquina.com", "     ", 65, 14);
-		} catch (IllegalArgumentException bx) {
-			assertEquals(bx.getMessage(), "telefone nao pode ser vazio ou em branco");
-		}
-	}
-	
-	@Test
 	public void testaCodigoZero() {
 		try {
 			Fulano = new Aluno("Florence", "117110", "florence@maquina.com", "3321-3456", 0, 14);

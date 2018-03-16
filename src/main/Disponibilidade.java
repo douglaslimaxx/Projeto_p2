@@ -1,5 +1,6 @@
 package main;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -13,8 +14,12 @@ import java.util.Set;
  *
  */
 
-public class Disponibilidade {
+public class Disponibilidade implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9L;
 	private Set<String> locaisDisponiveis = new HashSet<>();
 	private Map<String, HashSet<String>> horariosDisponiveis = new HashMap<>();
 	
