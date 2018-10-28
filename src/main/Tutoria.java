@@ -11,11 +11,9 @@ import java.util.Map;
  * @author Douglas Lima
  *
  */
+ 
 public class Tutoria  implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6L;
 	private int dinheiroTutor;
 	private double pontuacaoAtual;
